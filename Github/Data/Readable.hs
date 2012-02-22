@@ -1,4 +1,5 @@
 {-# LANGUAGE StandaloneDeriving #-}
+{-# OPTIONS_GHC -fno-warn-orphans #-}
 
 -- | This module re-exports the @Github.Data.Definitions@ module, adding
 -- instances of @Read@ to it.

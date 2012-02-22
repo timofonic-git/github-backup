@@ -1,4 +1,4 @@
-BASEFLAGS=-Wall -fno-warn-orphans
+BASEFLAGS=-Wall
 GHCFLAGS=-O2 $(BASEFLAGS)
 bins=github-backup
 mans=github-backup.1
