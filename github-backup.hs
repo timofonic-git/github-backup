@@ -89,13 +89,13 @@ inRepo :: (Git.Repo -> IO a) -> Backup a
 inRepo a = liftIO . a =<< getState gitRepo
 
 failedRequest :: Request -> Github.Error-> Backup ()
-failedRequest req e = unless (ignorable e) $ do
+failedRequest req e = unless ignorable $ do
 	set <- getState failedRequests
 	changeState $ \s -> s { failedRequests = S.insert req set }
 	where
-		ignorable (Github.HTTPConnectionError m) =
-			"disabled for this repo" `isInfixOf` show m
-		ignorable _ = False
+		-- "410 Gone" is used for repos that have issues etc
+		-- disabled.
+		ignorable = "410 Gone" `isInfixOf` show e
 
 runRequest :: Request -> Backup ()
 runRequest req = do
