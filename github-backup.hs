@@ -41,7 +41,7 @@ data GithubUserRepo = GithubUserRepo String String
 
 toGithubUserRepo :: Github.Repo -> GithubUserRepo
 toGithubUserRepo r = GithubUserRepo 
-	(Github.githubUserLogin $ Github.repoOwner r)
+	(Github.githubOwnerLogin $ Github.repoOwner r)
 	(Github.repoName r)
 
 repoUrl :: GithubUserRepo -> String

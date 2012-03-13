@@ -26,7 +26,7 @@ Executable github-backup
   Main-Is: github-backup.hs
   Build-Depends: MissingH, hslogger, directory, filepath, containers, mtl,
    network, extensible-exceptions, unix, bytestring, base < 5,
-   IfElse, pretty-show, github
+   IfElse, pretty-show, github >= 0.2.1
 
 source-repository head
   type: git

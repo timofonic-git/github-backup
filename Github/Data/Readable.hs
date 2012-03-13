@@ -9,5 +9,5 @@ module Github.Data.Readable (module Github.Data.Definitions) where
 import Github.Data.Definitions
 
 deriving instance Read GithubDate
-deriving instance Read GithubUser
+deriving instance Read GithubOwner
 deriving instance Read Repo
