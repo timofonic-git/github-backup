@@ -21,6 +21,7 @@ import qualified Github.Repos as Github
 import qualified Github.Repos.Forks as Github
 import qualified Github.PullRequests as Github
 import qualified Github.Repos.Watching as Github
+import qualified Github.Data.Definitions as Github ()
 import qualified Github.Issues as Github
 import qualified Github.Issues.Comments
 import qualified Github.Issues.Milestones
@@ -92,8 +93,8 @@ failedRequest req e = unless (ignorable e) $ do
 	set <- getState failedRequests
 	changeState $ \s -> s { failedRequests = S.insert req set }
 	where
-		ignorable (Github.JsonError m) =
-			"disabled for this repo" `isInfixOf` m
+		ignorable (Github.HTTPConnectionError m) =
+			"disabled for this repo" `isInfixOf` show m
 		ignorable _ = False
 
 runRequest :: Request -> Backup ()
