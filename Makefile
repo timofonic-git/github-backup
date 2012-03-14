@@ -1,3 +1,4 @@
+PREFIX=/usr
 BASEFLAGS=-Wall
 GHCFLAGS=-O2 $(BASEFLAGS)
 bins=github-backup

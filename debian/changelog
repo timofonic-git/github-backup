@@ -1,5 +1,5 @@
-github-backup (1.20120130) UNRELEASED; urgency=low
+github-backup (1.20120314) unstable; urgency=low
 
   * First release.
 
- -- Joey Hess <joeyh@debian.org>  Tue, 24 Jan 2012 16:21:55 -0400
+ -- Joey Hess <joeyh@debian.org>  Tue, 13 Mar 2012 20:22:43 -0400
