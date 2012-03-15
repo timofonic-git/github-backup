@@ -1,12 +1,12 @@
 PREFIX=/usr
-BASEFLAGS=-Wall
+BASEFLAGS=-Wall -outputdir tmp
 GHCFLAGS=-O2 $(BASEFLAGS)
 bins=github-backup
 mans=github-backup.1
 all=$(bins)
 
 ifdef PROFILE
-GHCFLAGS=-prof -auto-all -rtsopts -caf-all -fforce-recomp
+GHCFLAGS=-prof -auto-all -rtsopts -caf-all -fforce-recomp $(BASEFLAGS)
 endif
 
 GHCMAKE=ghc $(GHCFLAGS) --make
@@ -32,7 +32,6 @@ install: all
 	install -m 0644 $(mans) $(DESTDIR)$(PREFIX)/share/man/man1
 
 clean:
-	rm -f $(bins)
-	find . \( -name \*.o -or -name \*.hi \) -exec rm {} \;
+	rm -f $(bins) tmp
 
 .PHONY: $(bins)
