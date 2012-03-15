@@ -7,7 +7,10 @@
 
 module Git.Command where
 
-import qualified Data.ByteString.Lazy.Char8 as L
+import qualified Data.Text.Lazy as L
+import qualified Data.Text.Lazy.IO as L
+import Control.Concurrent
+import Control.Exception (finally)
 
 import Common
 import Git
@@ -31,48 +34,46 @@ runBool subcommand params repo = assertLocal repo $
 run :: String -> [CommandParam] -> Repo -> IO ()
 run subcommand params repo = assertLocal repo $
 	unlessM (runBool subcommand params repo) $
-		error $ "git " ++ show params ++ " failed"
+		error $ "git " ++ subcommand ++ " " ++ show params ++ " failed"
 
 {- Runs a git subcommand and returns its output, lazily. 
  -
  - Note that this leaves the git process running, and so zombies will
  - result unless reap is called.
  -}
-pipeRead :: [CommandParam] -> Repo -> IO L.ByteString
+pipeRead :: [CommandParam] -> Repo -> IO String
 pipeRead params repo = assertLocal repo $ do
 	(_, h) <- hPipeFrom "git" $ toCommand $ gitCommandLine params repo
-	hSetBinaryMode h True
-	L.hGetContents h
+	fileEncoding h
+	hGetContents h
 
 {- Runs a git subcommand, feeding it input.
  - You should call either getProcessStatus or forceSuccess on the PipeHandle. -}
-pipeWrite :: [CommandParam] -> L.ByteString -> Repo -> IO PipeHandle
+pipeWrite :: [CommandParam] -> L.Text -> Repo -> IO PipeHandle
 pipeWrite params s repo = assertLocal repo $ do
 	(p, h) <- hPipeTo "git" (toCommand $ gitCommandLine params repo)
-	L.hPut h s
+	L.hPutStr h s
 	hClose h
 	return p
 
 {- Runs a git subcommand, feeding it input, and returning its output.
  - You should call either getProcessStatus or forceSuccess on the PipeHandle. -}
-pipeWriteRead :: [CommandParam] -> L.ByteString -> Repo -> IO (PipeHandle, L.ByteString)
+pipeWriteRead :: [CommandParam] -> String -> Repo -> IO (PipeHandle, String)
 pipeWriteRead params s repo = assertLocal repo $ do
 	(p, from, to) <- hPipeBoth "git" (toCommand $ gitCommandLine params repo)
-	hSetBinaryMode from True
-	L.hPut to s
-	hClose to
-	c <- L.hGetContents from
+	fileEncoding to
+	fileEncoding from
+	_ <- forkIO $ finally (hPutStr to s) (hClose to)
+	c <- hGetContents from
 	return (p, c)
 
 {- Reads null terminated output of a git command (as enabled by the -z 
  - parameter), and splits it. -}
 pipeNullSplit :: [CommandParam] -> Repo -> IO [String]
-pipeNullSplit params repo = map L.unpack <$> pipeNullSplitB params repo
-
-{- For when Strings are not needed. -}
-pipeNullSplitB ::[CommandParam] -> Repo -> IO [L.ByteString]
-pipeNullSplitB params repo = filter (not . L.null) . L.split '\0' <$>
-	pipeRead params repo
+pipeNullSplit params repo =
+	filter (not . null) . split sep <$> pipeRead params repo
+	where
+		sep = "\0"
 
 {- Reaps any zombie git processes. -}
 reap :: IO ()
