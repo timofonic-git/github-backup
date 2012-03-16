@@ -270,10 +270,10 @@ onGithubBranch r a = bracket prep cleanup (const a)
 			when (oldbranch == Just branchref) $
 				error $ "it's not currently safe to run github-backup while the " ++
 					branchname ++ " branch is checked out!"
-			exists <- Git.Ref.matching branchref r
-			if null exists
-				then checkout [Param "--orphan", Param branchname]
-				else checkout [Param branchname]
+			ifM (null <$> Git.Ref.matching branchref r)
+				( checkout [Param "--orphan", Param branchname]
+				, checkout [Param branchname]
+				)
 			return oldbranch
 		cleanup Nothing = return ()
 		cleanup (Just oldbranch)
@@ -301,33 +301,34 @@ commitWorkDir = do
 		removeDirectoryRecursive dir
 
 updateWiki :: GithubUserRepo -> Backup ()
-updateWiki fork = do
-	remotes <- Git.remotes <$> getState gitRepo
-	if any (\r -> Git.remoteName r == Just remote) remotes
-		then do
+updateWiki fork =
+	ifM (any (\r -> Git.remoteName r == Just remote) <$> remotes)
+		( do
 			_ <- fetchwiki
 			return ()
-		else do
+		, do
 			-- github often does not really have a wiki,
 			-- don't bloat config if there is none
 			unlessM (addRemote remote $ repoWikiUrl fork) $
 				removeRemote remote
 			return ()
+		)
 	where
 		fetchwiki = inRepo $ Git.Command.runBool "fetch" [Param remote]
+		remotes = Git.remotes <$> getState gitRepo
 		remote = remoteFor fork
 		remoteFor (GithubUserRepo user repo) =
 			"github_" ++ user ++ "_" ++ repo ++ ".wiki"
 
 addFork :: GithubUserRepo -> Backup Bool
-addFork fork = do
-	remotes <- gitHubRemotes
-	if fork `elem` remotes
-		then return False
-		else do
+addFork fork =
+	ifM (elem fork <$> gitHubRemotes)
+		( return False
+		, do
 			liftIO $ putStrLn $ "New fork: " ++ repoUrl fork
 			_ <- addRemote (remoteFor fork) (repoUrl fork)
 			return True
+		)
 	where
 		remoteFor (GithubUserRepo user repo) =
 			"github_" ++ user ++ "_" ++ repo

@@ -24,15 +24,18 @@ module Git (
 	gitDir,
 	configTrue,
 	attributes,
+	hookPath,
 	assertLocal,
 ) where
 
 import qualified Data.Map as M
 import Data.Char
 import Network.URI (uriPath, uriScheme, unEscapeString)
+import System.Posix.Files
 
 import Common
 import Git.Types
+import Utility.FileMode
 
 {- User-visible description of a git repo. -}
 repoDescribe :: Repo -> String
@@ -79,29 +82,43 @@ repoIsLocalBare r@(Repo { location = Dir _ }) = configAvail r && configBare r
 repoIsLocalBare _ = False
 
 assertLocal :: Repo -> a -> a
-assertLocal repo action = 
-	if not $ repoIsUrl repo
-		then action
-		else error $ "acting on non-local git repo " ++  repoDescribe repo ++ 
-				" not supported"
+assertLocal repo action
+	| repoIsUrl repo = error $ unwords
+		[ "acting on non-local git repo"
+		, repoDescribe repo
+		, "not supported"
+		]
+	| otherwise = action
+
 configBare :: Repo -> Bool
-configBare repo = maybe unknown configTrue $ M.lookup "core.bare" $ config repo
+configBare repo = maybe unknown (fromMaybe False . configTrue) $
+	M.lookup "core.bare" $ config repo
 	where
 		unknown = error $ "it is not known if git repo " ++
 			repoDescribe repo ++
 			" is a bare repository; config not read"
 
 {- Path to a repository's gitattributes file. -}
-attributes :: Repo -> String
+attributes :: Repo -> FilePath
 attributes repo
 	| configBare repo = workTree repo ++ "/info/.gitattributes"
 	| otherwise = workTree repo ++ "/.gitattributes"
 
 {- Path to a repository's .git directory. -}
-gitDir :: Repo -> String
+gitDir :: Repo -> FilePath
 gitDir repo
 	| configBare repo = workTree repo
 	| otherwise = workTree repo </> ".git"
+
+{- Path to a given hook script in a repository, only if the hook exists
+ - and is executable. -}
+hookPath :: String -> Repo -> IO (Maybe FilePath)
+hookPath script repo = do
+	let hook = gitDir repo </> "hooks" </> script
+	ifM (catchBoolIO $ isexecutable hook)
+		( return $ Just hook , return Nothing )
+	where
+		isexecutable f = isExecutable . fileMode <$> getFileStatus f
 
 {- Path to a repository's --work-tree, that is, its top.
  -
@@ -112,5 +129,10 @@ workTree Repo { location = Dir d } = d
 workTree Repo { location = Unknown } = undefined
 
 {- Checks if a string from git config is a true value. -}
-configTrue :: String -> Bool
-configTrue s = map toLower s == "true"
+configTrue :: String -> Maybe Bool
+configTrue s
+	| s' == "true" = Just True
+	| s' == "false" = Just False
+	| otherwise = Nothing
+	where
+		s' = map toLower s
