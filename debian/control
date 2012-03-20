@@ -12,7 +12,7 @@ Build-Depends:
 Maintainer: Joey Hess <joeyh@debian.org>
 Standards-Version: 3.9.3
 Vcs-Git: git://github.com/joeyh/github-backup.git
-Homepage: http://guthub.com/joeyh/github-backup
+Homepage: http://github.com/joeyh/github-backup
 
 Package: github-backup
 Architecture: any
