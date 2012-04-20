@@ -32,6 +32,6 @@ install: all
 	install -m 0644 $(mans) $(DESTDIR)$(PREFIX)/share/man/man1
 
 clean:
-	rm -f $(bins) tmp
+	rm -rf $(bins) tmp
 
 .PHONY: $(bins)
