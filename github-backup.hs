@@ -275,9 +275,9 @@ onGithubBranch r a = bracket prep cleanup (const a)
 				, checkout [Param branchname]
 				)
 			return oldbranch
-		cleanup Nothing = return ()
+		cleanup Nothing = noop
 		cleanup (Just oldbranch)
-			| name == branchname = return ()
+			| name == branchname = noop
 			| otherwise = checkout [Param "--force", Param name]
 			where
 				name = show $ Git.Ref.base oldbranch
@@ -303,15 +303,12 @@ commitWorkDir = do
 updateWiki :: GithubUserRepo -> Backup ()
 updateWiki fork =
 	ifM (any (\r -> Git.remoteName r == Just remote) <$> remotes)
-		( do
-			_ <- fetchwiki
-			return ()
-		, do
+		( void fetchwiki
+		, void $
 			-- github often does not really have a wiki,
 			-- don't bloat config if there is none
 			unlessM (addRemote remote $ repoWikiUrl fork) $
 				removeRemote remote
-			return ()
 		)
 	where
 		fetchwiki = inRepo $ Git.Command.runBool "fetch" [Param remote]
@@ -344,12 +341,10 @@ addRemote remotename remoteurl =
 		]
 
 removeRemote :: String -> Backup ()
-removeRemote remotename = do
-	_ <- inRepo $ Git.Command.runBool "remote"
-		[ Param "rm"
-		, Param remotename
-		]
-	return ()
+removeRemote remotename = void $ inRepo $ Git.Command.runBool "remote"
+	[ Param "rm"
+	, Param remotename
+	]
 
 {- Fetches from the github remote. Done by github-backup, just because
  - it would be weird for a backup to not fetch all available data.
@@ -369,9 +364,8 @@ gatherMetaData repo = do
 		call name = runRequest $ RequestSimple name repo
 
 storeRetry :: [Request] -> Git.Repo -> IO ()
-storeRetry [] r = do
-	_ <- try $ removeFile (retryFile r) :: IO (Either SomeException ()) 
-	return ()
+storeRetry [] r = void $ do
+	try $ removeFile (retryFile r) :: IO (Either SomeException ()) 
 storeRetry retryrequests r = writeFile (retryFile r) (show retryrequests)
 
 loadRetry :: Git.Repo -> IO [Request]
