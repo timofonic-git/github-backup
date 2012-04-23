@@ -31,6 +31,14 @@ ifM cond (thenclause, elseclause) = do
 	c <- cond
 	if c then thenclause else elseclause
 
+{- short-circuiting monadic || -}
+(<||>) :: Monad m => m Bool -> m Bool -> m Bool
+ma <||> mb = ifM ma ( return True , mb )
+
+{- short-circuiting monadic && -}
+(<&&>) :: Monad m => m Bool -> m Bool -> m Bool
+ma <&&> mb = ifM ma ( mb , return False )
+
 {- Runs an action, passing its value to an observer before returning it. -}
 observe :: Monad m => (a -> m b) -> m a -> m a
 observe observer a = do
@@ -41,3 +49,7 @@ observe observer a = do
 {- b `after` a runs first a, then b, and returns the value of a -}
 after :: Monad m => m b -> m a -> m a
 after = observe . const
+
+{- do nothing -}
+noop :: Monad m => m ()
+noop = return ()
