@@ -34,4 +34,9 @@ install: all
 clean:
 	rm -rf $(bins) tmp
 
+# Upload to hackage.
+hackage: clean
+	@cabal sdist
+	@cabal upload dist/*.tar.gz
+
 .PHONY: $(bins)
