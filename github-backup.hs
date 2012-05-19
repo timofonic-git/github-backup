@@ -220,7 +220,7 @@ store filebase req val = do
 
 workDir :: Backup FilePath
 workDir = (</>)
-		<$> (Git.gitDir <$> getState gitRepo)
+		<$> (Git.repoPath <$> getState gitRepo)
 		<*> pure "github-backup.tmp"
 
 storeSorted :: Ord a => Show a => FilePath -> Request -> [a] -> Backup ()
@@ -292,7 +292,7 @@ commitWorkDir = do
 	r <- getState gitRepo
 	let git_false_worktree ps = boolSystem "git" $
 		[ Param ("--work-tree=" ++ dir)
-		, Param ("--git-dir=" ++ Git.gitDir r)
+		, Param ("--git-dir=" ++ Git.localGitDir r)
 		] ++ ps
 	liftIO $ whenM (doesDirectoryExist dir) $ onGithubBranch r $ do
 		_ <- git_false_worktree [ Param "add", Param "." ]
@@ -373,7 +373,7 @@ loadRetry r = maybe [] (fromMaybe [] . readish)
 	<$> catchMaybeIO (readFileStrict (retryFile r))
 
 retryFile :: Git.Repo -> FilePath
-retryFile r = Git.gitDir r </> "github-backup.todo"
+retryFile r = Git.localGitDir r </> "github-backup.todo"
 
 retry :: Backup (S.Set Request)
 retry = do
