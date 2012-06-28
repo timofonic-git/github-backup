@@ -1,3 +1,11 @@
+github-backup (1.20120627) unstable; urgency=low
+
+  * Rebuilt with new haskell-github, that works with the new version
+    of http-conduit in Debian. Closes: #678787
+  * Various updates to internal git and utility libraries shared with git-annex.
+
+ -- Joey Hess <joeyh@debian.org>  Wed, 27 Jun 2012 22:21:01 -0400
+
 github-backup (1.20120314) unstable; urgency=low
 
   * First release.
