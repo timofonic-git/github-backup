@@ -19,6 +19,7 @@ module Git (
 	repoIsHttp,
 	repoIsLocal,
 	repoIsLocalBare,
+	repoIsLocalUnknown,
 	repoDescribe,
 	repoLocation,
 	repoPath,
@@ -80,8 +81,8 @@ repoIsSsh Repo { location = Url url }
 	| scheme == "git+ssh:" = True
 	| scheme == "ssh+git:" = True
 	| otherwise = False
-	where
-		scheme = uriScheme url
+  where
+	scheme = uriScheme url
 repoIsSsh _ = False
 
 repoIsHttp :: Repo -> Bool
@@ -98,6 +99,10 @@ repoIsLocal _ = False
 repoIsLocalBare :: Repo -> Bool
 repoIsLocalBare Repo { location = Local { worktree = Nothing } } = True
 repoIsLocalBare _ = False
+
+repoIsLocalUnknown :: Repo -> Bool
+repoIsLocalUnknown Repo { location = LocalUnknown { } } = True
+repoIsLocalUnknown _ = False
 
 assertLocal :: Repo -> a -> a
 assertLocal repo action
@@ -121,5 +126,5 @@ hookPath script repo = do
 	let hook = localGitDir repo </> "hooks" </> script
 	ifM (catchBoolIO $ isexecutable hook)
 		( return $ Just hook , return Nothing )
-	where
-		isexecutable f = isExecutable . fileMode <$> getFileStatus f
+  where
+	isexecutable f = isExecutable . fileMode <$> getFileStatus f

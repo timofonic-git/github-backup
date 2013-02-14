@@ -37,16 +37,19 @@ removeModes ms m = m `intersectFileModes` complement (combineModes ms)
 {- Runs an action after changing a file's mode, then restores the old mode. -}
 withModifiedFileMode :: FilePath -> (FileMode -> FileMode) -> IO a -> IO a
 withModifiedFileMode file convert a = bracket setup cleanup go
-	where
-		setup = modifyFileMode' file convert
-		cleanup oldmode = modifyFileMode file (const oldmode)
-		go _ = a
+  where
+	setup = modifyFileMode' file convert
+	cleanup oldmode = modifyFileMode file (const oldmode)
+	go _ = a
 
 writeModes :: [FileMode]
 writeModes = [ownerWriteMode, groupWriteMode, otherWriteMode]
 
 readModes :: [FileMode]
 readModes = [ownerReadMode, groupReadMode, otherReadMode]
+
+executeModes :: [FileMode]
+executeModes = [ownerExecuteMode, groupExecuteMode, otherExecuteMode]
 
 {- Removes the write bits from a file. -}
 preventWrite :: FilePath -> IO ()
@@ -63,15 +66,16 @@ groupWriteRead f = modifyFileMode f $ addModes
 	, ownerReadMode, groupReadMode
 	]
 
+checkMode :: FileMode -> FileMode -> Bool
+checkMode checkfor mode = checkfor `intersectFileModes` mode == checkfor
+
 {- Checks if a file mode indicates it's a symlink. -}
 isSymLink :: FileMode -> Bool
-isSymLink mode = symbolicLinkMode `intersectFileModes` mode == symbolicLinkMode
+isSymLink = checkMode symbolicLinkMode
 
 {- Checks if a file has any executable bits set. -}
 isExecutable :: FileMode -> Bool
-isExecutable mode = combineModes ebits `intersectFileModes` mode /= 0
-	where
-		ebits = [ownerExecuteMode, groupExecuteMode, otherExecuteMode]
+isExecutable mode = combineModes executeModes `intersectFileModes` mode /= 0
 
 {- Runs an action without that pesky umask influencing it, unless the
  - passed FileMode is the standard one. -}
@@ -79,12 +83,30 @@ noUmask :: FileMode -> IO a -> IO a
 noUmask mode a
 	| mode == stdFileMode = a
 	| otherwise = bracket setup cleanup go
-	where
-		setup = setFileCreationMask nullFileMode
-		cleanup = setFileCreationMask
-		go _ = a
+  where
+	setup = setFileCreationMask nullFileMode
+	cleanup = setFileCreationMask
+	go _ = a
 
 combineModes :: [FileMode] -> FileMode
 combineModes [] = undefined
 combineModes [m] = m
 combineModes (m:ms) = foldl unionFileModes m ms
+
+stickyMode :: FileMode
+stickyMode = 512
+
+isSticky :: FileMode -> Bool
+isSticky = checkMode stickyMode
+
+setSticky :: FilePath -> IO ()
+setSticky f = modifyFileMode f $ addModes [stickyMode]
+
+{- Writes a file, ensuring that its modes do not allow it to be read
+ - by anyone other than the current user, before any content is written. -}
+writeFileProtected :: FilePath -> String -> IO ()
+writeFileProtected file content = do
+	h <- openFile file WriteMode
+	modifyFileMode file $ removeModes [groupReadMode, otherReadMode]
+	hPutStr h content
+	hClose h
