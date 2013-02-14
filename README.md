@@ -65,9 +65,6 @@ your GitHub repositoriy is a fork of something else, the something else
 won't be backed up. There is an easy solution though. Just add the
 parent as a git remote. Then github-backup will find it, and back it up.
 
-Currently, only 30 of each thing will be returned. This is a bug in 
-the haskell github library I'm using. Hope to get it fixed soon.
-
 Currently, the GitHub API does not seem to provide a way to access notes
 added to commits and notes added to lines of code. So those notes won't get
 backed up. The GitHub folks have been told about this limitation of their API.

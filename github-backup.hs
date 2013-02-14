@@ -6,16 +6,18 @@
  -}
 
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE PackageImports #-}
 
 module Main where
 
 import qualified Data.Map as M
 import qualified Data.Set as S
 import Data.Either
+import Data.Monoid
 import System.Environment
 import Control.Exception (bracket, try, SomeException)
 import Text.Show.Pretty
-import Control.Monad.State.Strict
+import "mtl" Control.Monad.State.Strict
 import qualified Github.Data.Readable as Github
 import qualified Github.Repos as Github
 import qualified Github.Repos.Forks as Github
@@ -161,11 +163,20 @@ milestonesStore = simpleHelper Github.Issues.Milestones.milestones $
 		store ("milestone" </> show n) req m
 
 issuesStore :: Storer
-issuesStore = withHelper Github.issuesForRepo [] $ forValues $ \req i -> do
-	let repo = requestRepo req
-	let n = Github.issueNumber i
-	store ("issue" </> show n) req i
-	runRequest (RequestNum "issuecomments" repo n)
+issuesStore = withHelper (\u r y ->
+	Github.issuesForRepo u r (y <> [Github.Open])
+		>>= either (return . Left)
+			(\xs -> Github.issuesForRepo u r
+				(y <> [Github.OnlyClosed])
+					>>= either (return . Left)
+						(\ys -> return (Right (xs <> ys)))))
+	[Github.PerPage 100] go
+	where
+		go = forValues $ \req i -> do
+			let repo = requestRepo req
+			let n = Github.issueNumber i
+			store ("issue" </> show n) req i
+			runRequest (RequestNum "issuecomments" repo n)
 
 issuecommentsStore :: Storer
 issuecommentsStore = numHelper Github.Issues.Comments.comments $ \n ->

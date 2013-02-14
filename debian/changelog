@@ -1,3 +1,11 @@
+github-backup (1.20120628) UNRELEASED; urgency=low
+
+  * Updated to use haskell-github 0.5.1, which supports pagination of queries
+    Thanks to John Wiegley for making those changes.
+  * Also backup closed issues. Thanks, John Wiegley.
+
+ -- Joey Hess <joeyh@debian.org>  Wed, 13 Feb 2013 20:04:31 -0400
+
 github-backup (1.20120627) unstable; urgency=low
 
   * Rebuilt with new haskell-github, that works with the new version
