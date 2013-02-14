@@ -65,9 +65,8 @@ your GitHub repositoriy is a fork of something else, the something else
 won't be backed up. There is an easy solution though. Just add the
 parent as a git remote. Then github-backup will find it, and back it up.
 
-Currently, the GitHub API does not seem to provide a way to access notes
-added to commits and notes added to lines of code. So those notes won't get
-backed up. The GitHub folks have been told about this limitation of their API.
+Notes added to commits and lines of code don't get backed up yet.
+There is only recently API support for this.
 
 The labels that can be added to issues and milestones are not backed up.
 Neither are the hooks. They could be, but don't seem important
