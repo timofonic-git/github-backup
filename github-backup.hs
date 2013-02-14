@@ -94,10 +94,9 @@ failedRequest :: Request -> Github.Error-> Backup ()
 failedRequest req e = unless ignorable $ do
 	set <- getState failedRequests
 	changeState $ \s -> s { failedRequests = S.insert req set }
-	where
-		-- "410 Gone" is used for repos that have issues etc
-		-- disabled.
-		ignorable = "410 Gone" `isInfixOf` show e
+  where
+	-- "410 Gone" is used for repos that have issues etc disabled.
+	ignorable = "410 Gone" `isInfixOf` show e
 
 runRequest :: Request -> Backup ()
 runRequest req = do
@@ -132,9 +131,9 @@ toplevelApi = map (\(ApiListItem n _ _) -> n) $
 
 lookupApi :: Request -> Storer
 lookupApi req = fromMaybe bad $ M.lookup name api
-	where
-		name = requestName req
-		bad = error $ "internal error: bad api call: " ++ name
+  where
+	name = requestName req
+	bad = error $ "internal error: bad api call: " ++ name
 
 userrepoStore :: Storer
 userrepoStore = simpleHelper Github.userRepo $ \req r -> do
@@ -171,12 +170,12 @@ issuesStore = withHelper (\u r y ->
 					>>= either (return . Left)
 						(\ys -> return (Right (xs <> ys)))))
 	[Github.PerPage 100] go
-	where
-		go = forValues $ \req i -> do
-			let repo = requestRepo req
-			let n = Github.issueNumber i
-			store ("issue" </> show n) req i
-			runRequest (RequestNum "issuecomments" repo n)
+  where
+	go = forValues $ \req i -> do
+		let repo = requestRepo req
+		let n = Github.issueNumber i
+		store ("issue" </> show n) req i
+		runRequest (RequestNum "issuecomments" repo n)
 
 issuecommentsStore :: Storer
 issuecommentsStore = numHelper Github.Issues.Comments.comments $ \n ->
@@ -188,9 +187,9 @@ forksStore :: Storer
 forksStore = simpleHelper Github.forksFor $ \req fs -> do
 	storeSorted "forks" req fs
 	mapM_ (traverse . toGithubUserRepo) fs
-	where
-		traverse fork = whenM (addFork fork) $
-			gatherMetaData fork
+  where
+	traverse fork = whenM (addFork fork) $
+		gatherMetaData fork
 
 forValues :: (Request -> v -> Backup ()) -> Request -> [v] -> Backup ()
 forValues handle req vs = forM_ vs (handle req)
@@ -225,9 +224,9 @@ store filebase req val = do
 	liftIO $ do
 		createDirectoryIfMissing True (parentDir file)
 		writeFile file (ppShow val)
-	where
-		location (GithubUserRepo user repo) workdir =
-			workdir </> user ++ "_" ++ repo </> filebase
+  where
+	location (GithubUserRepo user repo) workdir =
+		workdir </> user ++ "_" ++ repo </> filebase
 
 workDir :: Backup FilePath
 workDir = (</>)
@@ -245,23 +244,23 @@ gitHubRemotes = snd . unzip . gitHubPairs <$> getState gitRepo
 
 gitHubPairs :: Git.Repo -> [(Git.Repo, GithubUserRepo)]
 gitHubPairs = filter (not . wiki ) . mapMaybe check . Git.Types.remotes
-	where
-		check r@Git.Repo { Git.Types.location = Git.Types.Url u } =
-			headMaybe $ mapMaybe (checkurl r $ show u) gitHubUrlPrefixes
-		check _ = Nothing
-		checkurl r u prefix
-			| prefix `isPrefixOf` u && length bits == 2 =
-				Just (r,
-					GithubUserRepo (bits !! 0)
-						(dropdotgit $ bits !! 1))
-			| otherwise = Nothing
-			where
-				rest = drop (length prefix) u
-				bits = split "/" rest
-		dropdotgit s
-			| ".git" `isSuffixOf` s = take (length s - length ".git") s
-			| otherwise = s
-		wiki (_, GithubUserRepo _ u) = ".wiki" `isSuffixOf` u
+  where
+	check r@Git.Repo { Git.Types.location = Git.Types.Url u } =
+		headMaybe $ mapMaybe (checkurl r $ show u) gitHubUrlPrefixes
+	check _ = Nothing
+	checkurl r u prefix
+		| prefix `isPrefixOf` u && length bits == 2 =
+			Just (r,
+				GithubUserRepo (bits !! 0)
+					(dropdotgit $ bits !! 1))
+		| otherwise = Nothing
+	  where
+		rest = drop (length prefix) u
+		bits = split "/" rest
+	dropdotgit s
+		| ".git" `isSuffixOf` s = take (length s - length ".git") s
+		| otherwise = s
+	wiki (_, GithubUserRepo _ u) = ".wiki" `isSuffixOf` u
 
 {- All known prefixes for urls to github repos. -}
 gitHubUrlPrefixes :: [String]
@@ -275,26 +274,26 @@ gitHubUrlPrefixes =
 
 onGithubBranch :: Git.Repo -> IO () -> IO ()
 onGithubBranch r a = bracket prep cleanup (const a)
-	where
-		prep = do
-			oldbranch <- Git.Branch.current r
-			when (oldbranch == Just branchref) $
-				error $ "it's not currently safe to run github-backup while the " ++
-					branchname ++ " branch is checked out!"
-			ifM (null <$> Git.Ref.matching branchref r)
-				( checkout [Param "--orphan", Param branchname]
-				, checkout [Param branchname]
-				)
-			return oldbranch
-		cleanup Nothing = noop
-		cleanup (Just oldbranch)
-			| name == branchname = noop
-			| otherwise = checkout [Param "--force", Param name]
-			where
-				name = show $ Git.Ref.base oldbranch
-		checkout params = Git.Command.run "checkout" (Param "-q" : params) r
-		branchname = "github"
-		branchref = Git.Ref $ "refs/heads/" ++ branchname
+  where
+	prep = do
+		oldbranch <- Git.Branch.current r
+		when (oldbranch == Just branchref) $
+			error $ "it's not currently safe to run github-backup while the " ++
+				branchname ++ " branch is checked out!"
+		ifM (null <$> Git.Ref.matching branchref r)
+			( checkout [Param "--orphan", Param branchname]
+			, checkout [Param branchname]
+			)
+		return oldbranch
+	cleanup Nothing = noop
+	cleanup (Just oldbranch)
+		| name == branchname = noop
+		| otherwise = checkout [Param "--force", Param name]
+	  where
+		name = show $ Git.Ref.base oldbranch
+	checkout params = Git.Command.run "checkout" (Param "-q" : params) r
+	branchname = "github"
+	branchref = Git.Ref $ "refs/heads/" ++ branchname
 
 {- Commits all files in the workDir into git, and deletes it. -}
 commitWorkDir :: Backup ()
@@ -321,12 +320,12 @@ updateWiki fork =
 			unlessM (addRemote remote $ repoWikiUrl fork) $
 				removeRemote remote
 		)
-	where
-		fetchwiki = inRepo $ Git.Command.runBool "fetch" [Param remote]
-		remotes = Git.remotes <$> getState gitRepo
-		remote = remoteFor fork
-		remoteFor (GithubUserRepo user repo) =
-			"github_" ++ user ++ "_" ++ repo ++ ".wiki"
+  where
+	fetchwiki = inRepo $ Git.Command.runBool "fetch" [Param remote]
+	remotes = Git.remotes <$> getState gitRepo
+	remote = remoteFor fork
+	remoteFor (GithubUserRepo user repo) =
+		"github_" ++ user ++ "_" ++ repo ++ ".wiki"
 
 addFork :: GithubUserRepo -> Backup Bool
 addFork fork =
@@ -337,9 +336,8 @@ addFork fork =
 			_ <- addRemote (remoteFor fork) (repoUrl fork)
 			return True
 		)
-	where
-		remoteFor (GithubUserRepo user repo) =
-			"github_" ++ user ++ "_" ++ repo
+  where
+	remoteFor (GithubUserRepo user repo) = "github_" ++ user ++ "_" ++ repo
 
 {- Adds a remote, also fetching from it. -}
 addRemote :: String -> String -> Backup Bool
@@ -371,8 +369,8 @@ gatherMetaData :: GithubUserRepo -> Backup ()
 gatherMetaData repo = do
 	liftIO $ putStrLn $ "Gathering metadata for " ++ repoUrl repo ++ " ..."
 	mapM_ call toplevelApi
-	where
-		call name = runRequest $ RequestSimple name repo
+  where
+	call name = runRequest $ RequestSimple name repo
 
 storeRetry :: [Request] -> Git.Repo -> IO ()
 storeRetry [] r = void $ do
@@ -403,11 +401,11 @@ retry = do
 
 summarizeRequests :: [Request] -> [String]
 summarizeRequests = go M.empty
-	where
-		go m [] = map format $ sort $ map swap $ M.toList m
-		go m (r:rs) = go (M.insertWith (+) (requestName r) (1 :: Integer) m) rs
-		format (num, name) = show num ++ "\t" ++ name
-		swap (a, b) = (b, a)
+  where
+	go m [] = map format $ sort $ map swap $ M.toList m
+	go m (r:rs) = go (M.insertWith (+) (requestName r) (1 :: Integer) m) rs
+	format (num, name) = show num ++ "\t" ++ name
+	swap (a, b) = (b, a)
 
 {- Save all backup data. Files that were written to the workDir are committed.
  - Requests that failed are saved for next time. Requests that were retried
@@ -433,16 +431,16 @@ newState = BackupState S.empty S.empty
 
 backupRepo :: Git.Repo -> IO ()
 backupRepo repo = evalStateT (runBackup go) . newState =<< Git.Config.read repo
-	where
-		go = do
-			retriedfailed <- retry
-			remotes <- gitHubPairs <$> getState gitRepo
-			when (null remotes) $
-				error "no github remotes found"
-			forM_ remotes $ \(r, remote) -> do
-				_ <- fetchRepo r
-				gatherMetaData remote
-			save retriedfailed
+  where
+	go = do
+		retriedfailed <- retry
+		remotes <- gitHubPairs <$> getState gitRepo
+		when (null remotes) $
+			error "no github remotes found"
+		forM_ remotes $ \(r, remote) -> do
+			_ <- fetchRepo r
+			gatherMetaData remote
+		save retriedfailed
 
 backupName :: String -> IO ()
 backupName name = do
@@ -473,9 +471,9 @@ usage = "usage: github-backup [username|organization]"
 
 main :: IO ()
 main = getArgs >>= go
-	where
-		go (('-':_):_) = error usage
-		go [] = backupRepo =<< Git.Construct.fromCwd
-		go (name:[]) = backupName name
-		go _= error usage
+  where
+	go (('-':_):_) = error usage
+	go [] = backupRepo =<< Git.Construct.fromCwd
+	go (name:[]) = backupName name
+	go _= error usage
 
