@@ -474,6 +474,8 @@ usage = "usage: github-backup [username|organization]"
 main :: IO ()
 main = getArgs >>= go
 	where
+		go (('-':_):_) = error usage
 		go [] = backupRepo =<< Git.Construct.fromCwd
 		go (name:[]) = backupName name
 		go _= error usage
+
