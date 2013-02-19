@@ -32,11 +32,11 @@ install: all
 	install -m 0644 $(mans) $(DESTDIR)$(PREFIX)/share/man/man1
 
 clean:
-	rm -rf $(bins) tmp
+	rm -rf $(bins) tmp dist
 
 # Upload to hackage.
 hackage: clean
-	@cabal sdist
+	./make-sdist.sh
 	@cabal upload dist/*.tar.gz
 
 .PHONY: $(bins)
