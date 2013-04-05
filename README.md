@@ -9,6 +9,8 @@ pull requests, and watchers.
     cd github-backup
     make
 
+(You will need ghc, hslogger, and MissingH installed first.)
+
 Or use cabal:
 
     cabal install github-backup --bindir=$HOME/bin
