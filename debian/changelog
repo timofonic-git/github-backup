@@ -1,10 +1,12 @@
-github-backup (1.20120628) UNRELEASED; urgency=low
+github-backup (1.20130412) experimental; urgency=low
 
-  * Updated to use haskell-github 0.5.1, which supports pagination of queries
+  * Updated to use haskell-github 0.6.0, which supports pagination of queries
     Thanks to John Wiegley for making those changes.
   * Also backup closed issues. Thanks, John Wiegley.
+  * cabal file no longer tries to list every source file, as that was
+    error-prone, and I left some out.
 
- -- Joey Hess <joeyh@debian.org>  Wed, 13 Feb 2013 20:04:31 -0400
+ -- Joey Hess <joeyh@debian.org>  Fri, 12 Apr 2013 18:33:11 -0400
 
 github-backup (1.20120627) unstable; urgency=low
 
