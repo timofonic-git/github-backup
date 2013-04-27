@@ -6,6 +6,7 @@
  -}
 
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE PackageImports #-}
 
 module Main where
 
@@ -15,7 +16,7 @@ import Data.Either
 import System.Environment
 import Control.Exception (bracket, try, SomeException)
 import Text.Show.Pretty
-import Control.Monad.State.Strict
+import "mtl" Control.Monad.State.Strict
 import qualified Github.Data.Readable as Github
 import qualified Github.Repos as Github
 import qualified Github.Repos.Forks as Github

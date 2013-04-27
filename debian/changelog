@@ -1,3 +1,11 @@
+github-backup (1.20120628.1) unstable; urgency=low
+
+  * Rebuilt with new haskell-github, to deal with a github API change.
+    (See #706187)
+  * Also a minor change to build when haskell-monads-tf is installed.
+
+ -- Joey Hess <joeyh@debian.org>  Sat, 27 Apr 2013 18:37:45 -0400
+
 github-backup (1.20120627) unstable; urgency=low
 
   * Rebuilt with new haskell-github, that works with the new version
