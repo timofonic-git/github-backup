@@ -305,7 +305,7 @@ commitWorkDir = do
 		, Param ("--git-dir=" ++ Git.localGitDir r)
 		] ++ ps
 	liftIO $ whenM (doesDirectoryExist dir) $ onGithubBranch r $ do
-		_ <- git_false_worktree [ Param "add", Param "." ]
+		_ <- git_false_worktree [ Param "add", Param "--ignore-removal", Param "." ]
 		_ <- git_false_worktree [ Param "commit",
 			 Param "-a", Param "-m", Param "github-backup"]
 		removeDirectoryRecursive dir
