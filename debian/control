@@ -18,7 +18,7 @@ Homepage: http://github.com/joeyh/github-backup
 Package: github-backup
 Architecture: any
 Section: utils
-Depends: ${misc:Depends}, ${shlibs:Depends}, git (>= 1:1.8.3)
+Depends: ${misc:Depends}, ${shlibs:Depends}, git
 Description: backs up data from GitHub
  github-backup is a simple tool you run in a git repository you cloned from
  GitHub. It backs up everything GitHub publishes about the repository,
