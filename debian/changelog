@@ -1,4 +1,4 @@
-github-backup (1.20130615) UNRELEASED; urgency=low
+github-backup (1.20130617) unstable; urgency=low
 
   * Build-Depend on libghc-extensible-exceptions-dev. Closes: #712549
   * Various updates to internal git and utility libraries shared with
@@ -6,7 +6,7 @@ github-backup (1.20130615) UNRELEASED; urgency=low
   * Fixed to never touch the git work tree or index file, instead using
     its own to commit to the github branch.
 
- -- Joey Hess <joeyh@debian.org>  Mon, 17 Jun 2013 10:53:25 -0400
+ -- Joey Hess <joeyh@debian.org>  Mon, 17 Jun 2013 12:28:30 -0400
 
 github-backup (1.20130614) unstable; urgency=low
 

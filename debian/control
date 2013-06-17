@@ -11,7 +11,7 @@ Build-Depends:
 	libghc-ifelse-dev,
 	libghc-extensible-exceptions-dev
 Maintainer: Joey Hess <joeyh@debian.org>
-Standards-Version: 3.9.3
+Standards-Version: 3.9.4
 Vcs-Git: git://github.com/joeyh/github-backup.git
 Homepage: http://github.com/joeyh/github-backup
 
