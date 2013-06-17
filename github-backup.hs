@@ -272,15 +272,17 @@ gitHubUrlPrefixes =
 	, "ssh://git@github.com/~/"
 	]
 
-onGithubBranch :: Git.Repo -> IO () -> IO ()
-onGithubBranch r a = bracket prep cleanup (const a)
+{- Runs an action with a Git repo that is modified
+ - to use a different work tree, where the github branch gets checked out. -}
+onGithubBranch :: FilePath -> Git.Repo -> (Git.Repo -> IO ()) -> IO ()
+onGithubBranch dir r a = bracket prep cleanup (const $ a r')
   where
 	prep = do
 		oldbranch <- Git.Branch.current r
 		when (oldbranch == Just branchref) $
 			error $ "it's not currently safe to run github-backup while the " ++
 				branchname ++ " branch is checked out!"
-		ifM (null <$> Git.Ref.matching [branchref] r)
+		ifM (null <$> Git.Ref.matching [branchref] r')
 			( checkout [Param "--orphan", Param branchname]
 			, checkout [Param branchname]
 			)
@@ -291,24 +293,22 @@ onGithubBranch r a = bracket prep cleanup (const a)
 		| otherwise = checkout [Param "--force", Param name]
 	  where
 		name = show $ Git.Ref.base oldbranch
-	checkout params = Git.Command.run (Param "checkout" : Param "-q" : params) r
+	checkout params = Git.Command.run (Param "checkout" : Param "-q" : params) r'
 	branchname = "github"
 	branchref = Git.Ref $ "refs/heads/" ++ branchname
+	r' = r { Git.Types.gitEnv = Just [("GIT_WORK_TREE", dir), ("GIT_INDEX_FILE", Git.localGitDir r </> "github-backup.index" )] }
 
 {- Commits all files in the workDir into git, and deletes it. -}
 commitWorkDir :: Backup ()
 commitWorkDir = do
 	dir <- workDir
-	r <- getState gitRepo
-	let git_false_worktree ps = boolSystem "git" $
-		[ Param ("--work-tree=" ++ dir)
-		, Param ("--git-dir=" ++ Git.localGitDir r)
-		] ++ ps
-	liftIO $ whenM (doesDirectoryExist dir) $ onGithubBranch r $ do
-		_ <- git_false_worktree [ Param "add", Param "--ignore-removal", Param "." ]
-		_ <- git_false_worktree [ Param "commit",
-			 Param "-a", Param "-m", Param "github-backup"]
-		removeDirectoryRecursive dir
+	whenM (liftIO $ doesDirectoryExist dir) $ do
+		r <- getState gitRepo
+		liftIO $ onGithubBranch dir r $ \r' -> do
+			_ <- Git.Command.run [ Param "add", Param "--ignore-removal", Param "." ] r'
+			_ <- Git.Command.run [ Param "commit",
+				 Param "-a", Param "-m", Param "github-backup"] r'
+			removeDirectoryRecursive dir
 
 updateWiki :: GithubUserRepo -> Backup ()
 updateWiki fork =
