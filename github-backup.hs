@@ -15,7 +15,7 @@ import qualified Data.Set as S
 import Data.Either
 import Data.Monoid
 import System.Environment
-import Control.Exception (bracket, try, SomeException)
+import Control.Exception (try, SomeException)
 import Text.Show.Pretty
 import "mtl" Control.Monad.State.Strict
 import qualified Github.Data.Readable as Github
@@ -37,6 +37,9 @@ import qualified Git.Types
 import qualified Git.Command
 import qualified Git.Ref
 import qualified Git.Branch
+import qualified Git.UpdateIndex
+import Git.HashObject
+import Git.FilePath
 
 -- A github user and repo.
 data GithubUserRepo = GithubUserRepo String String
@@ -272,43 +275,77 @@ gitHubUrlPrefixes =
 	, "ssh://git@github.com/~/"
 	]
 
-{- Runs an action with a Git repo that is modified
- - to use a different work tree, where the github branch gets checked out. -}
-onGithubBranch :: FilePath -> Git.Repo -> (Git.Repo -> IO ()) -> IO ()
-onGithubBranch dir r a = bracket prep cleanup (const $ a r')
-  where
-	prep = do
-		oldbranch <- Git.Branch.current r
-		when (oldbranch == Just branchref) $
-			error $ "it's not currently safe to run github-backup while the " ++
-				branchname ++ " branch is checked out!"
-		ifM (null <$> Git.Ref.matching [branchref] r')
-			( checkout [Param "--orphan", Param branchname]
-			, checkout [Param branchname]
-			)
-		return oldbranch
-	cleanup Nothing = noop
-	cleanup (Just oldbranch)
-		| name == branchname = noop
-		| otherwise = checkout [Param "--force", Param name]
-	  where
-		name = show $ Git.Ref.base oldbranch
-	checkout params = Git.Command.run (Param "checkout" : Param "-q" : params) r'
-	branchname = "github"
-	branchref = Git.Ref $ "refs/heads/" ++ branchname
-	r' = r { Git.Types.gitEnv = Just [("GIT_WORK_TREE", dir), ("GIT_INDEX_FILE", Git.localGitDir r </> "github-backup.index" )] }
-
-{- Commits all files in the workDir into git, and deletes it. -}
+{- Commits all files in the workDir into the github branch, and deletes the
+ - workDir.
+ -
+ - The commit is made to the github branch without ever checking it out,
+ - or otherwise disturbing the work tree.
+ -}
 commitWorkDir :: Backup ()
 commitWorkDir = do
 	dir <- workDir
 	whenM (liftIO $ doesDirectoryExist dir) $ do
-		r <- getState gitRepo
-		liftIO $ onGithubBranch dir r $ \r' -> do
-			_ <- Git.Command.run [ Param "add", Param "--ignore-removal", Param "." ] r'
-			_ <- Git.Command.run [ Param "commit",
-				 Param "-a", Param "-m", Param "github-backup"] r'
-			removeDirectoryRecursive dir
+		branchref <- getBranch
+		withIndex $ do
+			r <- getState gitRepo
+			liftIO $ do
+				-- Reset index to current content of github
+				-- branch. Does not touch work tree.
+				Git.Command.run
+					[Param "reset", Param "-q", Param $ show branchref, File "." ] r
+				-- Stage workDir files into the index.
+				h <- hashObjectStart r
+				Git.UpdateIndex.streamUpdateIndex r
+					[genstream r dir h]
+				hashObjectStop h
+				-- Commit
+				void $ Git.Branch.commit "github-backup" fullname [branchref] r
+				removeDirectoryRecursive dir
+  where
+  	genstream r dir h streamer = do
+		fs <- filter (not . dirCruft) <$> dirContentsRecursive dir
+		forM_ fs $ \f -> do
+			sha <- hashFile h f
+			path <- toTopFilePath f r
+			streamer $ Git.UpdateIndex.updateIndexLine
+				sha Git.Types.FileBlob path
+
+{- Returns the ref of the github branch, creating it first if necessary. -}
+getBranch :: Backup Git.Ref
+getBranch = maybe (hasOrigin >>= create) return =<< branchsha
+  where
+  	create True = do
+		inRepo $ Git.Command.run
+			[Param "branch", Param $ show branchname, Param $ show originname]
+		fromMaybe (error $ "failed to create " ++ show branchname)
+			<$> branchsha
+	create False = withIndex $
+		inRepo $ Git.Branch.commit "branch created" fullname []
+	branchsha = inRepo $ Git.Ref.sha fullname
+
+{- Runs an action with a different index file, used for the github branch. -}
+withIndex :: Backup a -> Backup a
+withIndex a = do
+	r <- getState gitRepo
+	let f = Git.localGitDir r </> "github-backup.index"
+	e <- liftIO getEnvironment
+	let r' = r { Git.Types.gitEnv = Just $ ("GIT_INDEX_FILE", f):e }
+	changeState $ \s -> s { gitRepo = r' }
+	v <- a
+	changeState $ \s -> s { gitRepo = (gitRepo s) { Git.Types.gitEnv = Git.Types.gitEnv r } }
+	return v
+
+branchname :: Git.Ref
+branchname = Git.Ref "github"
+
+fullname :: Git.Ref
+fullname = Git.Ref $ "refs/heads/" ++ show branchname
+
+originname :: Git.Ref
+originname = Git.Ref $ "refs/remotes/origin/" ++ show branchname
+
+hasOrigin :: Backup Bool
+hasOrigin = inRepo $ Git.Ref.exists originname
 
 updateWiki :: GithubUserRepo -> Backup ()
 updateWiki fork =
