@@ -55,8 +55,16 @@ safeSystemEnv command params environ = do
 		{ env = environ }
 	waitForProcess pid
 
+{- Wraps a shell command line inside sh -c, allowing it to be run in a
+ - login shell that may not support POSIX shell, eg csh. -}
+shellWrap :: String -> String
+shellWrap cmdline = "sh -c " ++ shellEscape cmdline
+
 {- Escapes a filename or other parameter to be safely able to be exposed to
- - the shell. -}
+ - the shell.
+ -
+ - This method works for POSIX shells, as well as other shells like csh.
+ -}
 shellEscape :: String -> String
 shellEscape f = "'" ++ escaped ++ "'"
   where
@@ -85,3 +93,20 @@ prop_idempotent_shellEscape :: String -> Bool
 prop_idempotent_shellEscape s = [s] == (shellUnEscape . shellEscape) s
 prop_idempotent_shellEscape_multiword :: [String] -> Bool
 prop_idempotent_shellEscape_multiword s = s == (shellUnEscape . unwords . map shellEscape) s
+
+{- Segements a list of filenames into groups that are all below the manximum
+ - command-line length limit. Does not preserve order. -}
+segmentXargs :: [FilePath] -> [[FilePath]]
+segmentXargs l = go l [] 0 []
+  where
+	go [] c _ r = c:r
+	go (f:fs) c accumlen r
+		| len < maxlen && newlen > maxlen = go (f:fs) [] 0 (c:r)
+		| otherwise = go fs (f:c) newlen r
+	  where
+		len = length f
+		newlen = accumlen + len
+
+	{- 10k of filenames per command, well under Linux's 20k limit;
+	 - allows room for other parameters etc. -}
+	maxlen = 10240

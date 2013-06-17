@@ -13,6 +13,7 @@ import Common
 import Git
 import Git.Sha
 import Git.Command
+import Git.Ref (headRef)
 
 {- The currently checked out branch.
  -
@@ -35,7 +36,7 @@ current r = do
 {- The current branch, which may not really exist yet. -}
 currentUnsafe :: Repo -> IO (Maybe Git.Ref)
 currentUnsafe r = parse . firstLine
-	<$> pipeReadStrict [Param "symbolic-ref", Param "HEAD"] r
+	<$> pipeReadStrict [Param "symbolic-ref", Param $ show headRef] r
   where
 	parse l
 		| null l = Nothing
@@ -73,8 +74,7 @@ fastForward branch (first:rest) repo =
   where
 	no_ff = return False
 	do_ff to = do
-		run "update-ref"
-			[Param $ show branch, Param $ show to] repo
+		run [Param "update-ref", Param $ show branch, Param $ show to] repo
 		return True
 	findbest c [] = return $ Just c
 	findbest c (r:rs)
@@ -97,7 +97,7 @@ commit message branch parentrefs repo = do
 	sha <- getSha "commit-tree" $ pipeWriteRead
 		(map Param $ ["commit-tree", show tree] ++ ps)
 		message repo
-	run "update-ref" [Param $ show branch, Param $ show sha] repo
+	run [Param "update-ref", Param $ show branch, Param $ show sha] repo
 	return sha
   where
 	ps = concatMap (\r -> ["-p", show r]) parentrefs

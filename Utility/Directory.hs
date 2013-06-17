@@ -5,10 +5,12 @@
  - Licensed under the GNU GPL version 3 or higher.
  -}
 
+{-# LANGUAGE CPP #-}
+
 module Utility.Directory where
 
 import System.IO.Error
-import System.Posix.Files
+import System.PosixCompat.Files
 import System.Directory
 import Control.Exception (throw)
 import Control.Monad
@@ -18,7 +20,7 @@ import Control.Applicative
 import System.IO.Unsafe (unsafeInterleaveIO)
 
 import Utility.SafeCommand
-import Utility.TempFile
+import Utility.Tmp
 import Utility.Exception
 import Utility.Monad
 
@@ -85,9 +87,16 @@ moveFile src dest = tryIO (rename src dest) >>= onrename
 			(Left _) -> return False
 			(Right s) -> return $ isDirectory s
 
-{- Removes a file, which may or may not exist.
+{- Removes a file, which may or may not exist, and does not have to
+ - be a regular file.
  -
  - Note that an exception is thrown if the file exists but
  - cannot be removed. -}
 nukeFile :: FilePath -> IO ()
-nukeFile file = whenM (doesFileExist file) $ removeFile file
+nukeFile file = void $ tryWhenExists go
+  where
+#ifndef mingw32_HOST_OS
+	go = removeLink file
+#else
+	go = removeFile file
+#endif

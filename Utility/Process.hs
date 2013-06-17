@@ -6,7 +6,7 @@
  - Licensed under the GNU GPL version 3 or higher.
  -}
 
-{-# LANGUAGE Rank2Types #-}
+{-# LANGUAGE CPP, Rank2Types #-}
 
 module Utility.Process (
 	module X,
@@ -26,7 +26,7 @@ module Utility.Process (
 	withBothHandles,
 	withQuietOutput,
 	createProcess,
-	runInteractiveProcess,
+	startInteractiveProcess,
 	stdinHandle,
 	stdoutHandle,
 	stderrHandle,
@@ -34,7 +34,7 @@ module Utility.Process (
 
 import qualified System.Process
 import System.Process as X hiding (CreateProcess(..), createProcess, runInteractiveProcess, readProcess, readProcessWithExitCode, system, rawSystem, runInteractiveCommand, runProcess)
-import System.Process hiding (createProcess, runInteractiveProcess, readProcess)
+import System.Process hiding (createProcess, readProcess)
 import System.Exit
 import System.IO
 import System.Log.Logger
@@ -42,9 +42,12 @@ import Control.Concurrent
 import qualified Control.Exception as E
 import Control.Monad
 import Data.Maybe
+#ifndef mingw32_HOST_OS
 import System.Posix.IO
+#endif
 
 import Utility.Misc
+import Utility.Exception
 
 type CreateProcessRunner = forall a. CreateProcess -> ((Maybe Handle, Maybe Handle, Maybe Handle, ProcessHandle) -> IO a) -> IO a
 
@@ -139,13 +142,13 @@ createProcessSuccess :: CreateProcessRunner
 createProcessSuccess p a = createProcessChecked (forceSuccessProcess p) p a
 
 {- Runs createProcess, then an action on its handles, and then
- - an action on its exit code. -}
+ - a checker action on its exit code, which must wait for the process. -}
 createProcessChecked :: (ProcessHandle -> IO b) -> CreateProcessRunner
 createProcessChecked checker p a = do
 	t@(_, _, _, pid) <- createProcess p
-	r <- a t
+	r <- tryNonAsync $ a t
 	_ <- checker pid
-	return r
+	either E.throw return r
 
 {- Leaves the process running, suitable for lazy streaming.
  - Note: Zombies will result, and must be waited on. -}
@@ -156,6 +159,7 @@ createBackgroundProcess p a = a =<< createProcess p
  - returns a transcript combining its stdout and stderr, and
  - whether it succeeded or failed. -}
 processTranscript :: String -> [String] -> (Maybe String) -> IO (String, Bool)
+#ifndef mingw32_HOST_OS
 processTranscript cmd opts input = do
 	(readf, writef) <- createPipe
 	readh <- fdToHandle readf
@@ -189,7 +193,9 @@ processTranscript cmd opts input = do
 
 	ok <- checkSuccessProcess pid
 	return (transcript, ok)
-
+#else
+processTranscript = error "processTranscript TODO"
+#endif
 
 {- Runs a CreateProcessRunner, on a CreateProcess structure, that
  - is adjusted to pipe only from/to a single StdHandle, and passes
@@ -294,17 +300,19 @@ createProcess p = do
 	debugProcess p
 	System.Process.createProcess p
 
-runInteractiveProcess
-	:: FilePath	
-	-> [String]	
-	-> Maybe FilePath	
-	-> Maybe [(String, String)]	
-	-> IO (Handle, Handle, Handle, ProcessHandle)
-runInteractiveProcess f args c e = do
-	debugProcess $ (proc f args)
-			{ std_in = CreatePipe
-			, std_out = CreatePipe
-			, std_err = CreatePipe
-			, env = e
-			}
-	System.Process.runInteractiveProcess f args c e
+{- Starts an interactive process. Unlike runInteractiveProcess in
+ - System.Process, stderr is inherited. -}
+startInteractiveProcess
+	:: FilePath
+	-> [String]
+	-> Maybe [(String, String)]
+	-> IO (ProcessHandle, Handle, Handle)
+startInteractiveProcess cmd args environ = do
+	let p = (proc cmd args)
+		{ std_in = CreatePipe
+		, std_out = CreatePipe
+		, std_err = Inherit
+		, env = environ
+		}
+	(Just from, Just to, _, pid) <- createProcess p
+	return (pid, to, from)

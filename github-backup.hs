@@ -280,7 +280,7 @@ onGithubBranch r a = bracket prep cleanup (const a)
 		when (oldbranch == Just branchref) $
 			error $ "it's not currently safe to run github-backup while the " ++
 				branchname ++ " branch is checked out!"
-		ifM (null <$> Git.Ref.matching branchref r)
+		ifM (null <$> Git.Ref.matching [branchref] r)
 			( checkout [Param "--orphan", Param branchname]
 			, checkout [Param branchname]
 			)
@@ -291,7 +291,7 @@ onGithubBranch r a = bracket prep cleanup (const a)
 		| otherwise = checkout [Param "--force", Param name]
 	  where
 		name = show $ Git.Ref.base oldbranch
-	checkout params = Git.Command.run "checkout" (Param "-q" : params) r
+	checkout params = Git.Command.run (Param "checkout" : Param "-q" : params) r
 	branchname = "github"
 	branchref = Git.Ref $ "refs/heads/" ++ branchname
 
@@ -321,7 +321,7 @@ updateWiki fork =
 				removeRemote remote
 		)
   where
-	fetchwiki = inRepo $ Git.Command.runBool "fetch" [Param remote]
+	fetchwiki = inRepo $ Git.Command.runBool [Param "fetch", Param remote]
 	remotes = Git.remotes <$> getState gitRepo
 	remote = remoteFor fork
 	remoteFor (GithubUserRepo user repo) =
@@ -342,16 +342,18 @@ addFork fork =
 {- Adds a remote, also fetching from it. -}
 addRemote :: String -> String -> Backup Bool
 addRemote remotename remoteurl =
-	inRepo $ Git.Command.runBool "remote"
-		[ Param "add"
+	inRepo $ Git.Command.runBool
+		[ Param "remote"
+		, Param "add"
 		, Param "-f"
 		, Param remotename
 		, Param remoteurl
 		]
 
 removeRemote :: String -> Backup ()
-removeRemote remotename = void $ inRepo $ Git.Command.runBool "remote"
-	[ Param "rm"
+removeRemote remotename = void $ inRepo $ Git.Command.runBool
+	[ Param "remote"
+	, Param "rm"
 	, Param remotename
 	]
 
@@ -359,9 +361,8 @@ removeRemote remotename = void $ inRepo $ Git.Command.runBool "remote"
  - it would be weird for a backup to not fetch all available data.
  - Even though its real focus is on metadata not stored in git. -}
 fetchRepo :: Git.Repo -> Backup Bool
-fetchRepo repo = inRepo $
-	Git.Command.runBool "fetch"
-		[Param $ fromJust $ Git.Types.remoteName repo]
+fetchRepo repo = inRepo $ Git.Command.runBool
+	[Param "fetch", Param $ fromJust $ Git.Types.remoteName repo]
 
 {- Gathers metadata for the repo. Retuns a list of files written
  - and a list that may contain requests that need to be retried later. -}
@@ -429,8 +430,9 @@ save retriedfailed = do
 newState :: Git.Repo -> BackupState
 newState = BackupState S.empty S.empty
 
-backupRepo :: Git.Repo -> IO ()
-backupRepo repo = evalStateT (runBackup go) . newState =<< Git.Config.read repo
+backupRepo :: (Maybe Git.Repo) -> IO ()
+backupRepo Nothing = error "not in a git repository, and nothing specified to back up"
+backupRepo (Just repo) = evalStateT (runBackup go) . newState =<< Git.Config.read repo
   where
 	go = do
 		retriedfailed <- retry
@@ -461,7 +463,7 @@ backupName name = do
 				, Param dir
 				]
 			unless ok $ error "clone failed"
-		try (backupRepo =<< Git.Construct.fromPath dir)
+		try (backupRepo . Just =<< Git.Construct.fromPath dir)
 			:: IO (Either SomeException ())
 	unless (null $ lefts status) $
 		error "Failed to successfully back everything up. Run again later."

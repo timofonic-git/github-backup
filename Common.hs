@@ -1,4 +1,4 @@
-{-# LANGUAGE PackageImports #-}
+{-# LANGUAGE PackageImports, CPP #-}
 
 module Common (module X) where
 
@@ -12,13 +12,15 @@ import Data.Maybe as X
 import Data.List as X hiding (head, tail, init, last)
 import Data.String.Utils as X
 
-import System.Path as X
+import System.Path as X hiding (absNormPath)
 import System.FilePath as X
 import System.Directory as X
 import System.Cmd.Utils as X hiding (safeSystem)
 import System.IO as X hiding (FilePath)
-import System.Posix.Files as X
+import System.PosixCompat.Files as X
+#ifndef mingw32_HOST_OS
 import System.Posix.IO as X
+#endif
 import System.Posix.Process as X hiding (executeFile)
 import System.Exit as X
 

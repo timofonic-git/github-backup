@@ -1,31 +1,60 @@
 {- path manipulation
  -
- - Copyright 2010-2011 Joey Hess <joey@kitenet.net>
+ - Copyright 2010-2013 Joey Hess <joey@kitenet.net>
  -
  - Licensed under the GNU GPL version 3 or higher.
  -}
 
+{-# LANGUAGE PackageImports, CPP #-}
+
 module Utility.Path where
 
 import Data.String.Utils
-import System.Path
 import System.FilePath
 import System.Directory
 import Data.List
 import Data.Maybe
 import Control.Applicative
 
+#ifdef __WINDOWS__
+import Data.Char
+import qualified System.FilePath.Posix as Posix
+#else
+import qualified "MissingH" System.Path as MissingH
+#endif
+
 import Utility.Monad
 import Utility.UserInfo
 
-{- Returns the parent directory of a path. Parent of / is "" -}
+{- Makes a path absolute if it's not already.
+ - The first parameter is a base directory (ie, the cwd) to use if the path
+ - is not already absolute.
+ -
+ - On Unix, collapses and normalizes ".." etc in the path. May return Nothing
+ - if the path cannot be normalized.
+ -
+ - MissingH's absNormPath does not work on Windows, so on Windows
+ - no normalization is done.
+ -}
+absNormPath :: FilePath -> FilePath -> Maybe FilePath
+#ifndef __WINDOWS__
+absNormPath dir path = MissingH.absNormPath dir path
+#else
+absNormPath dir path = Just $ combine dir path
+#endif
+
+{- Returns the parent directory of a path.
+ -
+ - To allow this to be easily used in loops, which terminate upon reaching the
+ - top, the parent of / is "" -}
 parentDir :: FilePath -> FilePath
 parentDir dir
-	| not $ null dirs = slash ++ join s (init dirs)
-	| otherwise = ""
+	| null dirs = ""
+	| otherwise = joinDrive drive (join s $ init dirs)
   where
-	dirs = filter (not . null) $ split s dir
-	slash = if isAbsolute dir then s else ""
+	-- on Unix, the drive will be "/" when the dir is absolute, otherwise ""
+	(drive, path) = splitDrive dir
+	dirs = filter (not . null) $ split s path
 	s = [pathSeparator]
 
 prop_parentDir_basics :: FilePath -> Bool
@@ -41,7 +70,7 @@ prop_parentDir_basics dir
  - are all equivilant.
  -}
 dirContains :: FilePath -> FilePath -> Bool
-dirContains a b = a == b || a' == b' || (a'++"/") `isPrefixOf` b'
+dirContains a b = a == b || a' == b' || (a'++[pathSeparator]) `isPrefixOf` b'
   where
 	norm p = fromMaybe "" $ absNormPath p "."
 	a' = norm a
@@ -106,7 +135,7 @@ prop_relPathDirToFile_regressionTest = same_dir_shortcurcuits_at_difference
 
 {- Given an original list of paths, and an expanded list derived from it,
  - generates a list of lists, where each sublist corresponds to one of the
- - original paths. When the original path is a direcotry, any items
+ - original paths. When the original path is a directory, any items
  - in the expanded list that are contained in that directory will appear in
  - its segment.
  -}
@@ -162,3 +191,22 @@ dotfile file
 	| otherwise = "." `isPrefixOf` f || dotfile (takeDirectory file)
   where
 	f = takeFileName file
+
+{- Converts a DOS style path to a Cygwin style path. Only on Windows.
+ - Any trailing '\' is preserved as a trailing '/' -}
+toCygPath :: FilePath -> FilePath
+#ifndef __WINDOWS__
+toCygPath = id
+#else
+toCygPath p
+	| null drive = recombine parts
+	| otherwise = recombine $ "/cygdrive" : driveletter drive : parts
+  where
+  	(drive, p') = splitDrive p
+	parts = splitDirectories p'
+  	driveletter = map toLower . takeWhile (/= ':')
+	recombine = fixtrailing . Posix.joinPath
+  	fixtrailing s
+		| hasTrailingPathSeparator p = Posix.addTrailingPathSeparator s
+		| otherwise = s
+#endif

@@ -5,14 +5,19 @@
  - Licensed under the GNU GPL version 3 or higher.
  -}
 
+{-# LANGUAGE CPP #-}
+
 module Utility.Misc where
 
 import System.IO
 import Control.Monad
 import Foreign
 import Data.Char
+import Data.List
 import Control.Applicative
+#ifndef mingw32_HOST_OS
 import System.Posix.Process (getAnyProcessStatus)
+#endif
 
 import Utility.Exception
 
@@ -70,6 +75,23 @@ segmentDelim p l = map reverse $ go [] [] l
 		| p i = go [] ([i]:c:r) is
 		| otherwise = go (i:c) r is
 
+{- Replaces multiple values in a string.
+ -
+ - Takes care to skip over just-replaced values, so that they are not
+ - mangled. For example, massReplace [("foo", "new foo")] does not
+ - replace the "new foo" with "new new foo".
+ -}
+massReplace :: [(String, String)] -> String -> String
+massReplace vs = go [] vs
+  where
+
+	go acc _ [] = concat $ reverse acc
+	go acc [] (c:cs) = go ([c]:acc) vs cs
+	go acc ((val, replacement):rest) s
+		| val `isPrefixOf` s =
+			go (replacement:acc) vs (drop (length val) s)
+		| otherwise = go acc rest s
+
 {- Given two orderings, returns the second if the first is EQ and returns
  - the first otherwise.
  -
@@ -106,7 +128,12 @@ hGetSomeString h sz = do
  - on a process and get back an exit status is going to be confused
  - if this reap gets there first. -}
 reapZombies :: IO ()
+#ifndef mingw32_HOST_OS
 reapZombies = do
 	-- throws an exception when there are no child processes
 	catchDefaultIO Nothing (getAnyProcessStatus False True)
 		>>= maybe (return ()) (const reapZombies)
+
+#else
+reapZombies = return ()
+#endif

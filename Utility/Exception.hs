@@ -9,9 +9,11 @@
 
 module Utility.Exception where
 
-import Prelude hiding (catch)
 import Control.Exception
+import qualified Control.Exception as E
 import Control.Applicative
+import Control.Monad
+import System.IO.Error (isDoesNotExistError)
 
 {- Catches IO errors and returns a Bool -}
 catchBoolIO :: IO Bool -> IO Bool
@@ -31,7 +33,7 @@ catchMsgIO a = either (Left . show) Right <$> tryIO a
 
 {- catch specialized for IO errors only -}
 catchIO :: IO a -> (IOException -> IO a) -> IO a
-catchIO = catch
+catchIO = E.catch
 
 {- try specialized for IO errors only -}
 tryIO :: IO a -> IO (Either IOException a)
@@ -49,3 +51,8 @@ catchNonAsync a onerr = a `catches`
 
 tryNonAsync :: IO a -> IO (Either SomeException a)
 tryNonAsync a = (Right <$> a) `catchNonAsync` (return . Left)
+
+{- Catches only DoesNotExist exceptions, and lets all others through. -}
+tryWhenExists :: IO a -> IO (Maybe a)
+tryWhenExists a = either (const Nothing) Just <$>
+	tryJust (guard . isDoesNotExistError) a

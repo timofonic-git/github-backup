@@ -5,6 +5,8 @@
  - Licensed under the GNU GPL version 3 or higher.
  -}
 
+{-# LANGUAGE CPP #-}
+
 module Git.Construct (
 	fromCwd,
 	fromAbsPath,
@@ -17,9 +19,17 @@ module Git.Construct (
 	fromRemotes,
 	fromRemoteLocation,
 	repoAbsPath,
+	newFrom,
+	checkForRepo,
 ) where
 
+{-# LANGUAGE CPP #-}
+
+#ifndef __WINDOWS__
 import System.Posix.User
+#else
+import Git.FilePath
+#endif
 import qualified Data.Map as M hiding (map, split)
 import Network.URI
 
@@ -31,17 +41,16 @@ import Utility.UserInfo
 
 {- Finds the git repository used for the cwd, which may be in a parent
  - directory. -}
-fromCwd :: IO Repo
-fromCwd = getCurrentDirectory >>= seekUp checkForRepo
+fromCwd :: IO (Maybe Repo)
+fromCwd = getCurrentDirectory >>= seekUp
   where
-	norepo = error "Not in a git repository."
-	seekUp check dir = do
-		r <- check dir
+	seekUp dir = do
+		r <- checkForRepo dir
 		case r of
 			Nothing -> case parentDir dir of
-				"" -> norepo
-				d -> seekUp check d
-			Just loc -> newFrom loc
+				"" -> return Nothing
+				d -> seekUp d
+			Just loc -> Just <$> newFrom loc
 
 {- Local Repo constructor, accepts a relative or absolute path. -}
 fromPath :: FilePath -> IO Repo
@@ -51,8 +60,7 @@ fromPath dir = fromAbsPath =<< absPath dir
  - specified. -}
 fromAbsPath :: FilePath -> IO Repo
 fromAbsPath dir
-	| "/" `isPrefixOf` dir =
-		ifM (doesDirectoryExist dir') ( ret dir' , hunt )
+	| isAbsolute dir = ifM (doesDirectoryExist dir') ( ret dir' , hunt )
 	| otherwise =
 		error $ "internal error, " ++ dir ++ " is not absolute"
   where
@@ -64,7 +72,7 @@ fromAbsPath dir
 	{- When dir == "foo/.git", git looks for "foo/.git/.git",
 	 - and failing that, uses "foo" as the repository. -}
 	hunt
-		| "/.git" `isSuffixOf` canondir =
+		| (pathSeparator:".git") `isSuffixOf` canondir =
 			ifM (doesDirectoryExist $ dir </> ".git")
 				( ret dir
 				, ret $ takeDirectory canondir
@@ -129,7 +137,8 @@ remoteNamed n constructor = do
 remoteNamedFromKey :: String -> IO Repo -> IO Repo
 remoteNamedFromKey k = remoteNamed basename
   where
-	basename = join "." $ reverse $ drop 1 $ reverse $ drop 1 $ split "." k
+	basename = intercalate "." $ 
+		reverse $ drop 1 $ reverse $ drop 1 $ split "." k
 
 {- Constructs a new Repo for one of a Repo's remotes using a given
  - location (ie, an url). -}
@@ -137,6 +146,9 @@ fromRemoteLocation :: String -> Repo -> IO Repo
 fromRemoteLocation s repo = gen $ calcloc s
   where
 	gen v	
+#ifdef __WINDOWS__
+		| dosstyle v = fromRemotePath (dospath v) repo
+#endif
 		| scpstyle v = fromUrl $ scptourl v
 		| urlstyle v = fromUrl v
 		| otherwise = fromRemotePath v repo
@@ -170,6 +182,12 @@ fromRemoteLocation s repo = gen $ calcloc s
 			| "/" `isPrefixOf` d = d
 			| "~" `isPrefixOf` d = '/':d
 			| otherwise = "/~/" ++ d
+#ifdef __WINDOWS__
+	-- git on Windows will write a path to .git/config with "drive:",
+	-- which is not to be confused with a "host:"
+	dosstyle = hasDrive
+	dospath = fromInternalGitPath
+#endif
 
 {- Constructs a Repo from the path specified in the git remotes of
  - another Repo. -}
@@ -190,6 +208,9 @@ repoAbsPath d = do
 	return $ h </> d'
 
 expandTilde :: FilePath -> IO FilePath
+#ifdef __WINDOWS__
+expandTilde = return
+#else
 expandTilde = expandt True
   where
 	expandt _ [] = return ""
@@ -210,7 +231,10 @@ expandTilde = expandt True
 	findname n (c:cs)
 		| c == '/' = (n, cs)
 		| otherwise = findname (n++[c]) cs
+#endif
 
+{- Checks if a git repository exists in a directory. Does not find
+ - git repositories in parent directories. -}
 checkForRepo :: FilePath -> IO (Maybe RepoLocation)
 checkForRepo dir = 
 	check isRepo $

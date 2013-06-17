@@ -5,12 +5,17 @@
  - Licensed under the GNU GPL version 3 or higher.
  -}
 
+{-# LANGUAGE CPP #-}
+
 module Utility.FileMode where
 
 import Common
 
 import Control.Exception (bracket)
-import System.Posix.Types
+import System.PosixCompat.Types
+#ifndef __WINDOWS__
+import System.Posix.Files
+#endif
 import Foreign (complement)
 
 {- Applies a conversion function to a file's mode. -}
@@ -71,7 +76,11 @@ checkMode checkfor mode = checkfor `intersectFileModes` mode == checkfor
 
 {- Checks if a file mode indicates it's a symlink. -}
 isSymLink :: FileMode -> Bool
+#ifdef __WINDOWS__
+isSymLink _ = False
+#else
 isSymLink = checkMode symbolicLinkMode
+#endif
 
 {- Checks if a file has any executable bits set. -}
 isExecutable :: FileMode -> Bool
@@ -80,6 +89,7 @@ isExecutable mode = combineModes executeModes `intersectFileModes` mode /= 0
 {- Runs an action without that pesky umask influencing it, unless the
  - passed FileMode is the standard one. -}
 noUmask :: FileMode -> IO a -> IO a
+#ifndef __WINDOWS__
 noUmask mode a
 	| mode == stdFileMode = a
 	| otherwise = bracket setup cleanup go
@@ -87,26 +97,39 @@ noUmask mode a
 	setup = setFileCreationMask nullFileMode
 	cleanup = setFileCreationMask
 	go _ = a
+#else
+noUmask _ a = a
+#endif
 
 combineModes :: [FileMode] -> FileMode
 combineModes [] = undefined
 combineModes [m] = m
 combineModes (m:ms) = foldl unionFileModes m ms
 
+isSticky :: FileMode -> Bool
+#ifdef __WINDOWS__
+isSticky _ = False
+#else
+isSticky = checkMode stickyMode
+
 stickyMode :: FileMode
 stickyMode = 512
 
-isSticky :: FileMode -> Bool
-isSticky = checkMode stickyMode
-
 setSticky :: FilePath -> IO ()
 setSticky f = modifyFileMode f $ addModes [stickyMode]
+#endif
 
 {- Writes a file, ensuring that its modes do not allow it to be read
- - by anyone other than the current user, before any content is written. -}
+ - by anyone other than the current user, before any content is written.
+ -
+ - On a filesystem that does not support file permissions, this is the same
+ - as writeFile.
+ -}
 writeFileProtected :: FilePath -> String -> IO ()
 writeFileProtected file content = do
 	h <- openFile file WriteMode
-	modifyFileMode file $ removeModes [groupReadMode, otherReadMode]
+	void $ tryIO $
+		modifyFileMode file $
+			removeModes [groupReadMode, otherReadMode]
 	hPutStr h content
 	hClose h
