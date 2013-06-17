@@ -9,6 +9,7 @@ Build-Depends:
 	libghc-hslogger-dev,
 	libghc-pretty-show-dev,
 	libghc-ifelse-dev,
+	libghc-extensible-exceptions-dev
 Maintainer: Joey Hess <joeyh@debian.org>
 Standards-Version: 3.9.3
 Vcs-Git: git://github.com/joeyh/github-backup.git

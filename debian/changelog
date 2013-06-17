@@ -1,3 +1,9 @@
+github-backup (1.20130615) UNRELEASED; urgency=low
+
+  * Build-Depend on libghc-extensible-exceptions-dev. Closes: #712549
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 17 Jun 2013 10:53:25 -0400
+
 github-backup (1.20130614) unstable; urgency=low
 
   * Pass --ignore-removal to git-add, in preparation for a future change
