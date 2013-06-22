@@ -21,7 +21,6 @@ import System.PosixCompat.Files as X
 #ifndef mingw32_HOST_OS
 import System.Posix.IO as X
 #endif
-import System.Posix.Process as X hiding (executeFile)
 import System.Exit as X
 
 import Utility.Misc as X
