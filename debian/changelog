@@ -1,3 +1,9 @@
+github-backup (1.20130619) UNRELEASED; urgency=low
+
+  * Add missing unix-compat build dependency. Closes: #713279
+
+ -- Joey Hess <joeyh@debian.org>  Sat, 22 Jun 2013 13:08:22 -0400
+
 github-backup (1.20130618) unstable; urgency=low
 
   * Much better creation and committing to the github branch. 
