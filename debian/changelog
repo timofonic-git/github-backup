@@ -1,0 +1,52 @@
+github-backup (1.20130622) unstable; urgency=low
+
+  * Add missing unix-compat build dependency. Closes: #713279
+
+ -- Joey Hess <joeyh@debian.org>  Sat, 22 Jun 2013 13:08:57 -0400
+
+github-backup (1.20130618) unstable; urgency=low
+
+  * Much better creation and committing to the github branch. 
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 17 Jun 2013 17:40:02 -0400
+
+github-backup (1.20130617) unstable; urgency=low
+
+  * Build-Depend on libghc-extensible-exceptions-dev. Closes: #712549
+  * Various updates to internal git and utility libraries shared with
+    git-annex, including some Windows portability.
+  * Fixed to never touch the git work tree or index file, instead using
+    its own to commit to the github branch.
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 17 Jun 2013 12:28:30 -0400
+
+github-backup (1.20130614) unstable; urgency=low
+
+  * Pass --ignore-removal to git-add, in preparation for a future change
+    to its default behavior. Requires git 1.8.3. Closes: #711287
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 14 Jun 2013 15:50:49 -0400
+
+github-backup (1.20130414) experimental; urgency=low
+
+  * Updated to use haskell-github 0.6.0, which supports pagination of queries
+    Thanks to John Wiegley for making those changes.
+  * Also backup closed issues. Thanks, John Wiegley.
+  * cabal file no longer tries to list every source file, as that was
+    error-prone, and I left some out.
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 12 Apr 2013 18:33:11 -0400
+
+github-backup (1.20120627) unstable; urgency=low
+
+  * Rebuilt with new haskell-github, that works with the new version
+    of http-conduit in Debian. Closes: #678787
+  * Various updates to internal git and utility libraries shared with git-annex.
+
+ -- Joey Hess <joeyh@debian.org>  Wed, 27 Jun 2012 22:21:01 -0400
+
+github-backup (1.20120314) unstable; urgency=low
+
+  * First release.
+
+ -- Joey Hess <joeyh@debian.org>  Tue, 13 Mar 2012 20:22:43 -0400

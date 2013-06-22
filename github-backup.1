@@ -1,0 +1,18 @@
+.\" -*- nroff -*-
+.TH github-backup 1 "Commands"
+.SH NAME
+github-backup \- backs up data from GitHub
+.SH SYNOPSIS
+.B github-backup [\fIusername\fP|\fIorganization\fP]
+.SH DESCRIPTION
+.I github-backup
+is a simple tool you run in a git repository you cloned from
+GitHub. It backs up everything GitHub publishes about the repository,
+including other branches, tags, forks, issues, comments, wikis,
+milestones, pull requests, and watchers.
+.PP
+Alternately, if you pass it the username of a GitHub user, it will check
+out, and back up, all that user's repositories. (Also works to pass
+the name of an organization using GitHub.)
+.SH AUTHOR 
+Joey Hess <joey@kitenet.net>
