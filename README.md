@@ -15,6 +15,8 @@ Or use cabal:
 
     cabal install github-backup --bindir=$HOME/bin
 
+(Cabal is bundled with the [Haskell Platform Installer](http://www.haskell.org/platform/).)
+
 ## Use
 
   Run `github-backup` with no parameters, inside a git repository cloned
