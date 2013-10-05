@@ -15,7 +15,7 @@ Or use cabal:
 
     cabal install github-backup --bindir=$HOME/bin
 
-(Cabal is bundled with the [Haskell Platform Installer](http://www.haskell.org/platform/).)
+(Cabal is bundled with the [Haskell Platform](http://www.haskell.org/platform/).)
 
 ## Use
 
