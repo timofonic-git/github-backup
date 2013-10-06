@@ -3,6 +3,8 @@ github-backup (1.20130623) UNRELEASED; urgency=low
   * Ported to Windows.
   * Improve error message when it fails to query github for repositories
     belonging to a user. Closes: #705084
+  * Various updates to internal git and utility libraries shared with git-annex.
+  * Makefile now uses cabal to build.
 
  -- Joey Hess <joeyh@debian.org>  Sat, 22 Jun 2013 14:39:05 -0400
 

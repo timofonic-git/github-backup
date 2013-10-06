@@ -7,7 +7,7 @@ Author: Joey Hess
 Stability: Stable
 Copyright: 2012 Joey Hess
 License-File: GPL
-Build-Type: Simple
+Build-Type: Custom
 Homepage: https://github.com/joeyh/github-backup
 Category: Utility
 Synopsis: backs up everything github knows about a repository, to the repository
@@ -22,9 +22,7 @@ Executable github-backup
    network, extensible-exceptions, unix-compat, bytestring,
    base >= 4.5, base < 5, IfElse, pretty-show, text, process, github >= 0.6.0
 
-  if os(windows)
-    CPP-Options: -D__WINDOWS__
-  else
+  if (! os(windows))
     Build-Depends: unix
 
 source-repository head
