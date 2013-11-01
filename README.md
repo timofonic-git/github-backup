@@ -1,7 +1,7 @@
 github-backup is a simple tool you run in a git repository you cloned from
 GitHub. It backs up everything GitHub publishes about the repository,
 including branches, tags, other forks, issues, comments, wikis, milestones,
-pull requests, and watchers.
+pull requests, watchers, and stars.
 
 ## Installation
 
@@ -23,8 +23,8 @@ Or use cabal:
   from GitHub to back up that repository.
 
   Or, run `github-backup username` to clone and back up all of a GitHub
-  user's repositories, as well as all the repositories watched by that
-  user.  
+  user's repositories, as well as all the repositories watched and starred
+  by that user.  
   (Also works for organization names.)
 
 ## Why backup GitHub repositories
@@ -37,7 +37,7 @@ There are a couple of reasons to want to back this stuff up:
 
 * In case someone takes down a repository that you were interested in.
   If you run github-backup with your username, it will back up all 
-  the repositories you have watched.
+  the repositories you have watched and starred.
 
 * So you can keep working on your repository while on a plane, or
   on a remote beach or mountaintop. Just like Linus intended.
