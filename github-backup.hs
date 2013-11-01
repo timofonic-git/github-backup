@@ -25,6 +25,7 @@ import qualified Github.Repos as Github
 import qualified Github.Repos.Forks as Github
 import qualified Github.PullRequests as Github
 import qualified Github.Repos.Watching as Github
+import qualified Github.Repos.Starring as Github
 import qualified Github.Data.Definitions as Github ()
 import qualified Github.Issues as Github
 import qualified Github.Issues.Comments
@@ -118,6 +119,7 @@ apiList :: [ApiListItem]
 apiList = 
 	[ ApiListItem "userrepo" userrepoStore True
 	, ApiListItem "watchers" watchersStore True
+	, ApiListItem "stargazers" stargazersStore True
 	, ApiListItem "pullrequests" pullrequestsStore True
 	, ApiListItem "pullrequest" pullrequestStore False
 	, ApiListItem "milestones" milestonesStore True
@@ -151,6 +153,10 @@ userrepoStore = simpleHelper (noAuth Github.userRepo) $ \req r -> do
 watchersStore :: Storer
 watchersStore = simpleHelper (noAuth Github.watchersFor) $
 	storeSorted "watchers"
+
+stargazersStore :: Storer
+stargazersStore = simpleHelper Github.stargazersFor $
+	storeSorted "stargazers"
 
 pullrequestsStore :: Storer
 pullrequestsStore = simpleHelper Github.pullRequestsFor' $
@@ -480,15 +486,17 @@ newState r = BackupState
 	<$> pure S.empty
 	<*> pure S.empty
 	<*> pure r
-	<*> getauth
+	<*> getAuth
+
+getAuth :: IO (Maybe Github.GithubAuth)
+getAuth = do
+	user <- getEnv "GITHUB_USER"
+	password <- getEnv "GITHUB_PASSWORD"
+	return $ case (user, password) of
+		(Just u, Just p) -> Just $ 
+			Github.GithubBasicAuth (tobs u) (tobs p)
+		_ -> Nothing
   where
-	getauth = do
-		user <- getEnv "GITHUB_USER"
-		password <- getEnv "GITHUB_PASSWORD"
-		return $ case (user, password) of
-			(Just u, Just p) -> Just $ 
-				Github.GithubBasicAuth (tobs u) (tobs p)
-			_ -> Nothing
 	tobs = encodeUtf8 . T.pack
 
 backupRepo :: (Maybe Git.Repo) -> IO ()
@@ -507,9 +515,11 @@ backupRepo (Just repo) = evalStateT (runBackup go) =<< newState =<< Git.Config.r
 
 backupName :: String -> IO ()
 backupName name = do
+	auth <- getAuth
 	l <- sequence
 	 	[ Github.userRepos name Github.All
 		, Github.reposWatchedBy name
+		, Github.reposStarredBy auth name
 		, Github.organizationRepos name
 		]
 	let repos = concat $ rights l
