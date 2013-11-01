@@ -11,3 +11,4 @@ import Github.Data.Definitions
 deriving instance Read GithubDate
 deriving instance Read GithubOwner
 deriving instance Read Repo
+deriving instance Read RepoRef

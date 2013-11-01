@@ -69,12 +69,6 @@ users who are following you, is not backed up.
 github-backup does not log into GitHub, so it cannot backup private
 repositories.
 
-github-backup will find and backup forks of a repository, and all forks
-of those forks, etc. However, it cannot go *up* the fork tree. So if
-your GitHub repositoriy is a fork of something else, the something else
-won't be backed up. There is an easy solution though. Just add the
-parent as a git remote. Then github-backup will find it, and back it up.
-
 Notes added to commits and lines of code don't get backed up yet.
 There is only recently API support for this.
 

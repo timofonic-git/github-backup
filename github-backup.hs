@@ -48,10 +48,17 @@ import Utility.Env
 data GithubUserRepo = GithubUserRepo String String
 	deriving (Eq, Show, Read, Ord)
 
-toGithubUserRepo :: Github.Repo -> GithubUserRepo
-toGithubUserRepo r = GithubUserRepo 
-	(Github.githubOwnerLogin $ Github.repoOwner r)
-	(Github.repoName r)
+class ToGithubUserRepo a where
+	toGithubUserRepo :: a -> GithubUserRepo
+
+instance ToGithubUserRepo Github.Repo where
+	toGithubUserRepo r = GithubUserRepo 
+		(Github.githubOwnerLogin $ Github.repoOwner r)
+		(Github.repoName r)
+
+instance ToGithubUserRepo Github.RepoRef where
+	toGithubUserRepo (Github.RepoRef owner name) = 
+		GithubUserRepo (Github.githubOwnerLogin owner) name
 
 repoUrl :: GithubUserRepo -> String
 repoUrl (GithubUserRepo user remote) =
@@ -116,14 +123,14 @@ type Storer = Request -> Backup ()
 data ApiListItem = ApiListItem ApiName Storer Bool
 apiList :: [ApiListItem]
 apiList = 
-	[ ApiListItem "userrepo" userrepoStore True
-	, ApiListItem "watchers" watchersStore True
+	[ ApiListItem "watchers" watchersStore True
 	, ApiListItem "pullrequests" pullrequestsStore True
 	, ApiListItem "pullrequest" pullrequestStore False
 	, ApiListItem "milestones" milestonesStore True
 	, ApiListItem "issues" issuesStore True
 	, ApiListItem "issuecomments" issuecommentsStore False
-	-- comes last because it recurses on to the forks
+	-- comes last because they recurse on to the parent and forks
+	, ApiListItem "userrepo" userrepoStore True
 	, ApiListItem "forks" forksStore True
 	]
 
@@ -141,12 +148,6 @@ lookupApi req = fromMaybe bad $ M.lookup name api
   where
 	name = requestName req
 	bad = error $ "internal error: bad api call: " ++ name
-
-userrepoStore :: Storer
-userrepoStore = simpleHelper (noAuth Github.userRepo) $ \req r -> do
-	when (Github.repoHasWiki r == Just True) $
-		updateWiki $ toGithubUserRepo r
-	store "repo" req r
 
 watchersStore :: Storer
 watchersStore = simpleHelper (noAuth Github.watchersFor) $
@@ -191,13 +192,18 @@ issuecommentsStore = numHelper Github.Issues.Comments.comments' $ \n ->
 		let i = Github.issueCommentId c
 		store ("issue" </> show n ++ "_comment" </> show i) req c
 
+userrepoStore :: Storer
+userrepoStore = simpleHelper (noAuth Github.userRepo) $ \req r -> do
+	store "repo" req r
+	when (Github.repoHasWiki r == Just True) $
+		updateWiki $ toGithubUserRepo r
+	maybe noop addFork $ Github.repoParent r
+	maybe noop addFork $ Github.repoSource r
+
 forksStore :: Storer
 forksStore = simpleHelper (noAuth Github.forksFor) $ \req fs -> do
 	storeSorted "forks" req fs
-	mapM_ (traverse . toGithubUserRepo) fs
-  where
-	traverse fork = whenM (addFork fork) $
-		gatherMetaData fork
+	mapM_ addFork fs
 
 forValues :: (Request -> v -> Backup ()) -> Request -> [v] -> Backup ()
 forValues handle req vs = forM_ vs (handle req)
@@ -375,16 +381,13 @@ updateWiki fork =
 	remoteFor (GithubUserRepo user repo) =
 		"github_" ++ user ++ "_" ++ repo ++ ".wiki"
 
-addFork :: GithubUserRepo -> Backup Bool
-addFork fork =
-	ifM (elem fork <$> gitHubRemotes)
-		( return False
-		, do
-			liftIO $ putStrLn $ "New fork: " ++ repoUrl fork
-			_ <- addRemote (remoteFor fork) (repoUrl fork)
-			return True
-		)
+addFork :: ToGithubUserRepo a => a -> Backup ()
+addFork forksource = unlessM (elem fork <$> gitHubRemotes) $ do
+	liftIO $ putStrLn $ "New fork: " ++ repoUrl fork
+	void $ addRemote (remoteFor fork) (repoUrl fork)
+	gatherMetaData fork
   where
+  	fork = toGithubUserRepo forksource
 	remoteFor (GithubUserRepo user repo) = "github_" ++ user ++ "_" ++ repo
 
 {- Adds a remote, also fetching from it. -}
@@ -412,7 +415,7 @@ fetchRepo :: Git.Repo -> Backup Bool
 fetchRepo repo = inRepo $ Git.Command.runBool
 	[Param "fetch", Param $ fromJust $ Git.Types.remoteName repo]
 
-{- Gathers metadata for the repo. Retuns a list of files written
+{- Gathers metadata for the repo. Returns a list of files written
  - and a list that may contain requests that need to be retried later. -}
 gatherMetaData :: GithubUserRepo -> Backup ()
 gatherMetaData repo = do
