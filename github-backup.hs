@@ -305,9 +305,8 @@ commitWorkDir = do
   	genstream r dir h streamer = do
 		fs <- filter (not . dirCruft) <$> dirContentsRecursive dir
 		forM_ fs $ \f -> do
-			let basefile = joinPath $ drop 1 $ splitPath f
 			sha <- hashFile h f
-			path <- toTopFilePath basefile r
+			let path = asTopFilePath (relPathDirToFile dir f)
 			streamer $ Git.UpdateIndex.updateIndexLine
 				sha Git.Types.FileBlob path
 
