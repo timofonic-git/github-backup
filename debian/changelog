@@ -1,6 +1,7 @@
 github-backup (1.20131007) UNRELEASED; urgency=low
 
   * Build-Depend on git. Closes: #728481
+  * Don't include tmp directory in files stored in the github branch.
 
  -- Joey Hess <joeyh@debian.org>  Fri, 01 Nov 2013 15:51:34 -0400
 
