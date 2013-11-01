@@ -15,5 +15,10 @@ Alternately, if you pass it the username of a GitHub user, it will check
 out, and back up, all that user's repositories, as well as all the
 repositories that user is watching. (Also works to pass
 the name of an organization using GitHub.)
+.PP
+By default it runs without logging in to GitHub. To log in, set
+GITHUB_USER and GITHUB_PASSWORD environment variables. However note that
+this only works around API rate limiting, it does not allow private
+repositories to be downloaded.
 .SH AUTHOR 
 Joey Hess <joey@kitenet.net>

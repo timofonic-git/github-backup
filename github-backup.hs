@@ -1,6 +1,6 @@
 {- github-backup
  -
- - Copyright 2012 Joey Hess <joey@kitenet.net>
+ - Copyright 2012-2013 Joey Hess <joey@kitenet.net>
  -
  - Licensed under the GNU GPL version 3 or higher.
  -}
@@ -12,9 +12,11 @@ module Main where
 
 import qualified Data.Map as M
 import qualified Data.Set as S
+import qualified Data.Text as T
+import Data.Text.Encoding (encodeUtf8)
 import Data.Either
 import Data.Monoid
-import System.Environment
+import System.Environment (getArgs)
 import Control.Exception (try, SomeException)
 import Text.Show.Pretty
 import "mtl" Control.Monad.State.Strict
@@ -40,6 +42,7 @@ import qualified Git.Branch
 import qualified Git.UpdateIndex
 import Git.HashObject
 import Git.FilePath
+import Utility.Env
 
 -- A github user and repo.
 data GithubUserRepo = GithubUserRepo String String
@@ -78,6 +81,7 @@ data BackupState = BackupState
 	{ failedRequests :: S.Set Request
 	, retriedRequests :: S.Set Request
 	, gitRepo :: Git.Repo
+	, gitHubAuth :: Maybe Github.GithubAuth
 	}
 
 {- Our monad. -}
@@ -139,36 +143,37 @@ lookupApi req = fromMaybe bad $ M.lookup name api
 	bad = error $ "internal error: bad api call: " ++ name
 
 userrepoStore :: Storer
-userrepoStore = simpleHelper Github.userRepo $ \req r -> do
+userrepoStore = simpleHelper (noAuth Github.userRepo) $ \req r -> do
 	when (Github.repoHasWiki r == Just True) $
 		updateWiki $ toGithubUserRepo r
 	store "repo" req r
 
 watchersStore :: Storer
-watchersStore = simpleHelper Github.watchersFor $ storeSorted "watchers"
+watchersStore = simpleHelper (noAuth Github.watchersFor) $
+	storeSorted "watchers"
 
 pullrequestsStore :: Storer
-pullrequestsStore = simpleHelper Github.pullRequestsFor $
+pullrequestsStore = simpleHelper Github.pullRequestsFor' $
 	forValues $ \req r -> do
 		let repo = requestRepo req
 		let n = Github.pullRequestNumber r
 		runRequest $ RequestNum "pullrequest" repo n
 
 pullrequestStore :: Storer
-pullrequestStore = numHelper Github.pullRequest $ \n ->
+pullrequestStore = numHelper Github.pullRequest' $ \n ->
 	store ("pullrequest" </> show n)
 
 milestonesStore :: Storer
-milestonesStore = simpleHelper Github.Issues.Milestones.milestones $
+milestonesStore = simpleHelper Github.Issues.Milestones.milestones' $
 	forValues $ \req m -> do
 		let n = Github.milestoneNumber m
 		store ("milestone" </> show n) req m
 
 issuesStore :: Storer
-issuesStore = withHelper (\u r y ->
-	Github.issuesForRepo u r (y <> [Github.Open])
+issuesStore = withHelper (\a u r y ->
+	Github.issuesForRepo' a u r (y <> [Github.Open])
 		>>= either (return . Left)
-			(\xs -> Github.issuesForRepo u r
+			(\xs -> Github.issuesForRepo' a u r
 				(y <> [Github.OnlyClosed])
 					>>= either (return . Left)
 						(\ys -> return (Right (xs <> ys)))))
@@ -181,13 +186,13 @@ issuesStore = withHelper (\u r y ->
 		runRequest (RequestNum "issuecomments" repo n)
 
 issuecommentsStore :: Storer
-issuecommentsStore = numHelper Github.Issues.Comments.comments $ \n ->
+issuecommentsStore = numHelper Github.Issues.Comments.comments' $ \n ->
 	forValues $ \req c -> do
 		let i = Github.issueCommentId c
 		store ("issue" </> show n ++ "_comment" </> show i) req c
 
 forksStore :: Storer
-forksStore = simpleHelper Github.forksFor $ \req fs -> do
+forksStore = simpleHelper (noAuth Github.forksFor) $ \req fs -> do
 	storeSorted "forks" req fs
 	mapM_ (traverse . toGithubUserRepo) fs
   where
@@ -197,25 +202,31 @@ forksStore = simpleHelper Github.forksFor $ \req fs -> do
 forValues :: (Request -> v -> Backup ()) -> Request -> [v] -> Backup ()
 forValues handle req vs = forM_ vs (handle req)
 
-type ApiCall v = String -> String -> IO (Either Github.Error v)
-type ApiWith v b = String -> String -> b -> IO (Either Github.Error v)
+type ApiCall v = Maybe Github.GithubAuth -> String -> String -> IO (Either Github.Error v)
+type ApiWith v b = Maybe Github.GithubAuth -> String -> String -> b -> IO (Either Github.Error v)
 type ApiNum v = ApiWith v Int
 type Handler v = Request -> v -> Backup ()
 type Helper = Request -> Backup ()
 
+noAuth :: (String -> String -> IO a) -> Maybe Github.GithubAuth -> String -> String -> IO a
+noAuth a _auth user repo = a user repo
+
 simpleHelper :: ApiCall v -> Handler v -> Helper
-simpleHelper call handle req@(RequestSimple _ (GithubUserRepo user repo)) =
-	either (failedRequest req) (handle req) =<< liftIO (call user repo)
+simpleHelper call handle req@(RequestSimple _ (GithubUserRepo user repo)) = do
+	auth <- getState gitHubAuth
+	either (failedRequest req) (handle req) =<< liftIO (call auth user repo)
 simpleHelper _ _ r = badRequest r
 
 withHelper :: ApiWith v b -> b -> Handler v -> Helper
-withHelper call b handle req@(RequestSimple _ (GithubUserRepo user repo)) =
-	either (failedRequest req) (handle req) =<< liftIO (call user repo b)
+withHelper call b handle req@(RequestSimple _ (GithubUserRepo user repo)) = do
+	auth <- getState gitHubAuth
+	either (failedRequest req) (handle req) =<< liftIO (call auth user repo b)
 withHelper _ _ _ r = badRequest r
 
 numHelper :: ApiNum v -> (Int -> Handler v) -> Helper
-numHelper call handle req@(RequestNum _ (GithubUserRepo user repo) num) =
-	either (failedRequest req) (handle num req) =<< liftIO (call user repo num)
+numHelper call handle req@(RequestNum _ (GithubUserRepo user repo) num) = do
+	auth <- getState gitHubAuth
+	either (failedRequest req) (handle num req) =<< liftIO (call auth user repo num)
 numHelper _ _ r = badRequest r
 
 badRequest :: Request -> a
@@ -464,12 +475,25 @@ save retriedfailed = do
 			[ "Run again later."
 			]
 
-newState :: Git.Repo -> BackupState
-newState = BackupState S.empty S.empty
+newState :: Git.Repo -> IO BackupState
+newState r = BackupState
+	<$> pure S.empty
+	<*> pure S.empty
+	<*> pure r
+	<*> getauth
+  where
+	getauth = do
+		user <- getEnv "GITHUB_USER"
+		password <- getEnv "GITHUB_PASSWORD"
+		return $ case (user, password) of
+			(Just u, Just p) -> Just $ 
+				Github.GithubBasicAuth (tobs u) (tobs p)
+			_ -> Nothing
+	tobs = encodeUtf8 . T.pack
 
 backupRepo :: (Maybe Git.Repo) -> IO ()
 backupRepo Nothing = error "not in a git repository, and nothing specified to back up"
-backupRepo (Just repo) = evalStateT (runBackup go) . newState =<< Git.Config.read repo
+backupRepo (Just repo) = evalStateT (runBackup go) =<< newState =<< Git.Config.read repo
   where
 	go = do
 		retriedfailed <- retry
