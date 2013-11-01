@@ -1,4 +1,4 @@
-github-backup (1.20131007) UNRELEASED; urgency=low
+github-backup (1.20131101) unstable; urgency=low
 
   * Now also backs up the repos a user is watching, when run with a user's
     name. Useful if you want to back up repositories that you have not forked;
@@ -10,7 +10,7 @@ github-backup (1.20131007) UNRELEASED; urgency=low
   * Build-Depend on git. Closes: #728481
   * Don't include tmp directory in files stored in the github branch.
 
- -- Joey Hess <joeyh@debian.org>  Fri, 01 Nov 2013 15:51:34 -0400
+ -- Joey Hess <joeyh@debian.org>  Fri, 01 Nov 2013 18:00:16 -0400
 
 github-backup (1.20131006) unstable; urgency=low
 
