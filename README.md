@@ -23,7 +23,9 @@ Or use cabal:
   from GitHub to back up that repository.
 
   Or, run `github-backup username` to clone and back up all of a GitHub
-  user's repositories. (Also works for organization names.)
+  user's repositories, as well as all the repositories watched by that
+  user.  
+  (Also works for organization names.)
 
 ## Why backup GitHub repositories
 
@@ -32,6 +34,10 @@ There are a couple of reasons to want to back this stuff up:
 * In case something happens to GitHub. More generally because
   keeping your data in the cloud *and* relying on the cloud to
   back it up is foolish.
+
+* In case someone takes down a repository that you were interested in.
+  If you run github-backup with your username, it will back up all 
+  the repositories you have watched.
 
 * So you can keep working on your repository while on a plane, or
   on a remote beach or mountaintop. Just like Linus intended.
@@ -60,7 +66,7 @@ github-backup is repository-focused. It does not try to back up other
 information from GitHub. In particular, social network stuff, like
 users who are following you, is not backed up.
 
-github-backup does not log into git, so it cannot backup private
+github-backup does not log into GitHub, so it cannot backup private
 repositories.
 
 github-backup will find and backup forks of a repository, and all forks

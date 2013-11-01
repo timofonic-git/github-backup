@@ -486,6 +486,7 @@ backupName :: String -> IO ()
 backupName name = do
 	l <- sequence
 	 	[ Github.userRepos name Github.All
+		, Github.reposWatchedBy name
 		, Github.organizationRepos name
 		]
 	let repos = concat $ rights l

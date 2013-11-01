@@ -1,5 +1,8 @@
 github-backup (1.20131007) UNRELEASED; urgency=low
 
+  * Now also backs up the repos a user is watching, when run with a user's
+    name. Useful if you want to back up repositories that you have not forked;
+    just watch them and run github-backup.
   * Build-Depend on git. Closes: #728481
   * Don't include tmp directory in files stored in the github branch.
 
