@@ -215,9 +215,6 @@ forksStore = simpleHelper "forks" Github.forksFor' $ \req fs -> do
 	storeSorted "forks" req fs
 	mapM_ addFork fs
 
-toFile _ a = a
-toDirectory _ a = a
-
 forValues :: (Request -> v -> Backup ()) -> Request -> [v] -> Backup ()
 forValues handle req vs = forM_ vs (handle req)
 
@@ -353,13 +350,13 @@ commitWorkDir = do
 				-- Stage workDir files into the index.
 				h <- hashObjectStart r
 				Git.UpdateIndex.streamUpdateIndex r
-					[genstream r dir h]
+					[genstream dir h]
 				hashObjectStop h
 				-- Commit
 				void $ Git.Branch.commit "github-backup" fullname [branchref] r
 				removeDirectoryRecursive dir
   where
-  	genstream r dir h streamer = do
+  	genstream dir h streamer = do
 		fs <- filter (not . dirCruft) <$> dirContentsRecursive dir
 		forM_ fs $ \f -> do
 			sha <- hashFile h f

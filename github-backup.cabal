@@ -18,6 +18,7 @@ Description:
 
 Executable github-backup
   Main-Is: github-backup.hs
+  GHC-Options: -Wall
   Build-Depends: MissingH, hslogger, directory, filepath, containers, mtl,
    network, extensible-exceptions, unix-compat, bytestring,
    base >= 4.5, base < 5, IfElse, pretty-show, text, process, github >= 0.7.1
