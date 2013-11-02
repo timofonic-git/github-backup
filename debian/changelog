@@ -8,6 +8,7 @@ github-backup (1.20131102) UNRELEASED; urgency=low
   * Fairer ordering of requests when backing up many repositories at once.
   * Avoid making requests for data that has already been backed up until
     after new data has been backed up. Handles API rate limiting much better.
+    Closes: #723859
 
  -- Joey Hess <joeyh@debian.org>  Fri, 01 Nov 2013 20:30:12 -0400
 
