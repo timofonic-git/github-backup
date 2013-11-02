@@ -503,21 +503,27 @@ summarizeRequests = go M.empty
  - Requests that failed are saved for next time. Requests that were retried
  - this time and failed are ordered last, to ensure that we don't get stuck
  - retrying the same requests and not making progress when run again.
+ -
+ - Returns any requests that failed.
  -}
-save :: Backup ()
+save :: Backup [Request]
 save = do
 	commitWorkDir
 	failed <- getState failedRequests
 	retriedfailed <- getState retriedFailed
 	let toretry = S.toList failed ++ S.toList retriedfailed
 	inRepo $ storeRetry toretry
-	unless (null toretry) $
-		error $ unlines $
-			["Backup may be incomplete; " ++ 
-				show (length toretry) ++ " requests failed:"
-			] ++ map ("  " ++) (summarizeRequests toretry) ++ 
-			[ "Run again later."
-			]
+	endState
+	return toretry
+
+showFailures :: [Request] -> IO ()
+showFailures [] = noop
+showFailures l = error $ unlines $
+	["Backup may be incomplete; " ++ 
+		show (length l) ++ " requests failed:"
+	] ++ map ("  " ++) (summarizeRequests l) ++ 
+	[ "Run again later."
+	]
 
 newState :: Git.Repo -> IO BackupState
 newState r = BackupState
@@ -548,14 +554,14 @@ genBackupState repo = newState =<< Git.Config.read repo
 
 backupRepo :: (Maybe Git.Repo) -> IO ()
 backupRepo Nothing = error "not in a git repository, and nothing specified to back up"
-backupRepo (Just repo) = evalStateT (runBackup go) =<< genBackupState repo
+backupRepo (Just repo) = 
+	genBackupState repo >>= evalStateT (runBackup go) >>= showFailures
   where
 	go = do
 		retry
 		mainBackup
 		runDeferred
 		save
-		endState
 
 mainBackup :: Backup ()
 mainBackup = do
@@ -586,7 +592,7 @@ backupName name = do
 		, Github.reposStarredBy auth name
 		, Github.organizationRepos' auth name
 		]
-	let repos = concat $ rights l
+	let repos = nub $ concat $ rights l
 	when (null repos) $
 		if (null $ rights l)
 			then error $ unlines $ "Failed to query github for repos:" : map show (lefts l)
@@ -607,19 +613,10 @@ backupName name = do
 	-- First pass only retries things that failed before, so the
 	-- retried actions will run in each repo before too much API is
 	-- used up.
-	states' <- forM states $
-		runstate retry
-	states'' <- forM states' $
-		runstate mainBackup
-	-- Saving will throw an exception if there was a problem.
-	status <- forM states'' $ \state ->
-		try (runstate (runDeferred >> save) state) :: IO (Either SomeException BackupState)
-	forM_ states'' $
-		runstate endState
-	unless (null $ lefts status) $
-		error "Failed to successfully back up all data. Run again later."
-  where
-  	runstate = execStateT . runBackup
+	states' <- forM states (execStateT . runBackup $ retry)
+	states'' <- forM states' (execStateT . runBackup $ mainBackup)
+	forM states'' (evalStateT . runBackup $ runDeferred >> save)
+		>>= showFailures . concat
 
 usage :: String
 usage = "usage: github-backup [username|organization]"
