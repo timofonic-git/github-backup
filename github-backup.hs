@@ -425,7 +425,7 @@ addFork :: ToGithubUserRepo a => a -> Backup ()
 addFork forksource = unlessM (elem fork <$> gitHubRemotes) $ do
 	liftIO $ putStrLn $ "New fork: " ++ repoUrl fork
 	void $ addRemote (remoteFor fork) (repoUrl fork)
-	gitRepo' <- inRepo $ Git.Config.read
+	gitRepo' <- inRepo $ Git.Config.reRead
 	changeState $ \s -> s { gitRepo = gitRepo' }
 
 	gatherMetaData fork
@@ -592,20 +592,19 @@ backupName name = do
 		, Github.reposStarredBy auth name
 		, Github.organizationRepos' auth name
 		]
-	let repos = nub $ concat $ rights l
-	when (null repos) $
+	let nameurls = nub $ map (\repo -> (Github.repoName repo, Github.repoGitUrl repo)) $ concat $ rights l
+	when (null nameurls) $
 		if (null $ rights l)
 			then error $ unlines $ "Failed to query github for repos:" : map show (lefts l)
 			else error $ "No GitHub repositories found for " ++ name
 	-- Clone any missing repos, and get a BackupState for each repo
 	-- that is to be backed up.
-	states <- forM repos $ \repo -> do
-		let dir = Github.repoName repo
+	states <- forM nameurls $ \(dir, url) -> do
 		unlessM (doesDirectoryExist dir) $ do
 			putStrLn $ "New repository: " ++ dir
 			ok <- boolSystem "git"
 				[ Param "clone"
-				, Param (Github.repoGitUrl repo)
+				, Param url
 				, Param dir
 				]
 			unless ok $ error "clone failed"
