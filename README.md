@@ -22,10 +22,9 @@ Or use cabal:
   Run `github-backup` with no parameters, inside a git repository cloned
   from GitHub to back up that repository.
 
-  Or, run `github-backup username` to clone and back up all of a GitHub
-  user's repositories, as well as all the repositories watched and starred
-  by that user.  
-  (Also works for organization names.)
+  Or, if you have a GitHub account, run `github-backup username`
+  to clone and back up your account's repositories, as well
+  as the repositories you're watching and have starred.
 
 ## Why backup GitHub repositories
 
