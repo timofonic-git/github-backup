@@ -88,6 +88,7 @@ requestName (RequestNum name _ _) = name
 data BackupState = BackupState
 	{ failedRequests :: S.Set Request
 	, retriedRequests :: S.Set Request
+	, retriedFailed :: S.Set Request
 	, gitRepo :: Git.Repo
 	, gitHubAuth :: Maybe Github.GithubAuth
 	}
@@ -105,7 +106,7 @@ newtype Backup a = Backup { runBackup :: StateT BackupState IO a }
 inRepo :: (Git.Repo -> IO a) -> Backup a
 inRepo a = liftIO . a =<< getState gitRepo
 
-failedRequest :: Request -> Github.Error-> Backup ()
+failedRequest :: Request -> Github.Error -> Backup ()
 failedRequest req e = unless ignorable $ do
 	set <- getState failedRequests
 	changeState $ \s -> s { failedRequests = S.insert req set }
@@ -123,7 +124,7 @@ runRequest req = do
 type Storer = Request -> Backup ()
 data ApiListItem = ApiListItem ApiName Storer Bool
 apiList :: [ApiListItem]
-apiList = 
+apiList =
 	[ ApiListItem "watchers" watchersStore True
 	, ApiListItem "stargazers" stargazersStore True
 	, ApiListItem "pullrequests" pullrequestsStore True
@@ -131,7 +132,7 @@ apiList =
 	, ApiListItem "milestones" milestonesStore True
 	, ApiListItem "issues" issuesStore True
 	, ApiListItem "issuecomments" issuecommentsStore False
-	-- comes last because they recurse on to the parent and forks
+	-- Recursive things last.
 	, ApiListItem "userrepo" userrepoStore True
 	, ApiListItem "forks" forksStore True
 	]
@@ -140,7 +141,7 @@ apiList =
 api :: M.Map ApiName Storer
 api = M.fromList $ map (\(ApiListItem n s _) -> (n, s)) apiList
 
-{- List of toplevel api calls that are followed to get all data. -}
+{- List of toplevel api calls that are followed to get data. -}
 toplevelApi :: [ApiName]
 toplevelApi = map (\(ApiListItem n _ _) -> n) $
 	filter (\(ApiListItem _ _ toplevel) -> toplevel) apiList
@@ -418,8 +419,6 @@ fetchRepo :: Git.Repo -> Backup Bool
 fetchRepo repo = inRepo $ Git.Command.runBool
 	[Param "fetch", Param $ fromJust $ Git.Types.remoteName repo]
 
-{- Gathers metadata for the repo. Returns a list of files written
- - and a list that may contain requests that need to be retried later. -}
 gatherMetaData :: GithubUserRepo -> Backup ()
 gatherMetaData repo = do
 	liftIO $ putStrLn $ "Gathering metadata for " ++ repoUrl repo ++ " ..."
@@ -439,7 +438,7 @@ loadRetry r = maybe [] (fromMaybe [] . readish)
 retryFile :: Git.Repo -> FilePath
 retryFile r = Git.localGitDir r </> "github-backup.todo"
 
-retry :: Backup (S.Set Request)
+retry :: Backup ()
 retry = do
 	todo <- inRepo loadRetry
 	unless (null todo) $ do
@@ -447,12 +446,11 @@ retry = do
 			"Retrying " ++ show (length todo) ++
 			" requests that failed last time..."
 		mapM_ runRequest todo
-	retriedfailed <- getState failedRequests
 	changeState $ \s -> s
-		{ failedRequests = S.empty
+		{ retriedFailed = failedRequests s
+		, failedRequests = S.empty
 		, retriedRequests = S.fromList todo
 		}
-	return retriedfailed
 
 summarizeRequests :: [Request] -> [String]
 summarizeRequests = go M.empty
@@ -467,10 +465,11 @@ summarizeRequests = go M.empty
  - this time and failed are ordered last, to ensure that we don't get stuck
  - retrying the same requests and not making progress when run again.
  -}
-save :: S.Set Request -> Backup ()
-save retriedfailed = do
+save :: Backup ()
+save = do
 	commitWorkDir
 	failed <- getState failedRequests
+	retriedfailed <- getState retriedFailed
 	let toretry = S.toList failed ++ S.toList retriedfailed
 	inRepo $ storeRetry toretry
 	unless (null toretry) $
@@ -484,6 +483,7 @@ save retriedfailed = do
 newState :: Git.Repo -> IO BackupState
 newState r = BackupState
 	<$> pure S.empty
+	<*> pure S.empty
 	<*> pure S.empty
 	<*> pure r
 	<*> getAuth
@@ -499,19 +499,23 @@ getAuth = do
   where
 	tobs = encodeUtf8 . T.pack
 
+genBackupState :: Git.Repo -> IO BackupState
+genBackupState repo = newState =<< Git.Config.read repo
+
 backupRepo :: (Maybe Git.Repo) -> IO ()
 backupRepo Nothing = error "not in a git repository, and nothing specified to back up"
-backupRepo (Just repo) = evalStateT (runBackup go) =<< newState =<< Git.Config.read repo
-  where
-	go = do
-		retriedfailed <- retry
-		remotes <- gitHubPairs <$> getState gitRepo
-		when (null remotes) $
-			error "no github remotes found"
-		forM_ remotes $ \(r, remote) -> do
-			_ <- fetchRepo r
-			gatherMetaData remote
-		save retriedfailed
+backupRepo (Just repo) = 
+	evalStateT (runBackup $ retry >> backupRepo' >> save)
+		=<< genBackupState repo
+
+backupRepo' :: Backup ()
+backupRepo' = do
+	remotes <- gitHubPairs <$> getState gitRepo
+	when (null remotes) $
+		error "no github remotes found"
+	forM_ remotes $ \(r, remote) -> do
+		void $ fetchRepo r
+		gatherMetaData remote
 
 backupName :: String -> IO ()
 backupName name = do
@@ -527,7 +531,9 @@ backupName name = do
 		if (null $ rights l)
 			then error $ unlines $ "Failed to query github for repos:" : map show (lefts l)
 			else error $ "No GitHub repositories found for " ++ name
-	status <- forM repos $ \repo -> do
+	-- Clone any missing repos, and get a BackupState for each repo
+	-- that is to be backed up.
+	states <- forM repos $ \repo -> do
 		let dir = Github.repoName repo
 		unlessM (doesDirectoryExist dir) $ do
 			putStrLn $ "New repository: " ++ dir
@@ -537,10 +543,19 @@ backupName name = do
 				, Param dir
 				]
 			unless ok $ error "clone failed"
-		try (backupRepo . Just =<< Git.Construct.fromPath dir)
-			:: IO (Either SomeException ())
+		genBackupState =<< Git.Construct.fromPath dir
+	-- First pass only retries things that failed before, so the
+	-- retried actions will run in each repo before too much API is
+	-- used up.
+	states' <- forM states $
+		runstate $ retry
+	-- Saving will throw an exception if there was a problem.
+	status <- forM states' $ \state ->
+		try (runstate (backupRepo' >> save) state) :: IO (Either SomeException BackupState)
 	unless (null $ lefts status) $
-		error "Failed to successfully back everything up. Run again later."
+		error "Failed to successfully back up all data. Run again later."
+  where
+  	runstate = execStateT . runBackup
 
 usage :: String
 usage = "usage: github-backup [username|organization]"
