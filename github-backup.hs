@@ -43,6 +43,7 @@ import qualified Git.Branch
 import qualified Git.UpdateIndex
 import Git.HashObject
 import Git.FilePath
+import Git.CatFile
 import Utility.Env
 
 -- A github user and repo.
@@ -91,6 +92,8 @@ data BackupState = BackupState
 	, retriedFailed :: S.Set Request
 	, gitRepo :: Git.Repo
 	, gitHubAuth :: Maybe Github.GithubAuth
+	, deferredBackups :: [Backup ()]
+	, catFileHandle :: Maybe CatFileHandle
 	}
 
 {- Our monad. -}
@@ -153,32 +156,32 @@ lookupApi req = fromMaybe bad $ M.lookup name api
 	bad = error $ "internal error: bad api call: " ++ name
 
 watchersStore :: Storer
-watchersStore = simpleHelper Github.watchersFor' $
+watchersStore = simpleHelper "watchers" Github.watchersFor' $
 	storeSorted "watchers"
 
 stargazersStore :: Storer
-stargazersStore = simpleHelper Github.stargazersFor $
+stargazersStore = simpleHelper "stargazers" Github.stargazersFor $
 	storeSorted "stargazers"
 
 pullrequestsStore :: Storer
-pullrequestsStore = simpleHelper Github.pullRequestsFor' $
+pullrequestsStore = simpleHelper "pullrequest" Github.pullRequestsFor' $
 	forValues $ \req r -> do
 		let repo = requestRepo req
 		let n = Github.pullRequestNumber r
 		runRequest $ RequestNum "pullrequest" repo n
 
 pullrequestStore :: Storer
-pullrequestStore = numHelper Github.pullRequest' $ \n ->
+pullrequestStore = numHelper "pullrequest" Github.pullRequest' $ \n ->
 	store ("pullrequest" </> show n)
 
 milestonesStore :: Storer
-milestonesStore = simpleHelper Github.Issues.Milestones.milestones' $
+milestonesStore = simpleHelper "milestone" Github.Issues.Milestones.milestones' $
 	forValues $ \req m -> do
 		let n = Github.milestoneNumber m
 		store ("milestone" </> show n) req m
 
 issuesStore :: Storer
-issuesStore = withHelper (\a u r y ->
+issuesStore = withHelper "issue" (\a u r y ->
 	Github.issuesForRepo' a u r (y <> [Github.Open])
 		>>= either (return . Left)
 			(\xs -> Github.issuesForRepo' a u r
@@ -194,13 +197,13 @@ issuesStore = withHelper (\a u r y ->
 		runRequest (RequestNum "issuecomments" repo n)
 
 issuecommentsStore :: Storer
-issuecommentsStore = numHelper Github.Issues.Comments.comments' $ \n ->
+issuecommentsStore = numHelper "issuecomments" Github.Issues.Comments.comments' $ \n ->
 	forValues $ \req c -> do
 		let i = Github.issueCommentId c
 		store ("issue" </> show n ++ "_comment" </> show i) req c
 
 userrepoStore :: Storer
-userrepoStore = simpleHelper Github.userRepo' $ \req r -> do
+userrepoStore = simpleHelper "repo" Github.userRepo' $ \req r -> do
 	store "repo" req r
 	when (Github.repoHasWiki r == Just True) $
 		updateWiki $ toGithubUserRepo r
@@ -208,9 +211,12 @@ userrepoStore = simpleHelper Github.userRepo' $ \req r -> do
 	maybe noop addFork $ Github.repoSource r
 
 forksStore :: Storer
-forksStore = simpleHelper Github.forksFor' $ \req fs -> do
+forksStore = simpleHelper "forks" Github.forksFor' $ \req fs -> do
 	storeSorted "forks" req fs
 	mapM_ addFork fs
+
+toFile _ a = a
+toDirectory _ a = a
 
 forValues :: (Request -> v -> Backup ()) -> Request -> [v] -> Backup ()
 forValues handle req vs = forM_ vs (handle req)
@@ -221,36 +227,66 @@ type ApiNum v = ApiWith v Int
 type Handler v = Request -> v -> Backup ()
 type Helper = Request -> Backup ()
 
-simpleHelper :: ApiCall v -> Handler v -> Helper
-simpleHelper call handle req@(RequestSimple _ (GithubUserRepo user repo)) = do
-	auth <- getState gitHubAuth
-	either (failedRequest req) (handle req) =<< liftIO (call auth user repo)
-simpleHelper _ _ r = badRequest r
+simpleHelper :: FilePath -> ApiCall v -> Handler v -> Helper
+simpleHelper dest call handle req@(RequestSimple _ (GithubUserRepo user repo)) =
+	deferOn dest req $ do
+		auth <- getState gitHubAuth
+		either (failedRequest req) (handle req) =<< liftIO (call auth user repo)
+simpleHelper _ _ _ r = badRequest r
 
-withHelper :: ApiWith v b -> b -> Handler v -> Helper
-withHelper call b handle req@(RequestSimple _ (GithubUserRepo user repo)) = do
-	auth <- getState gitHubAuth
-	either (failedRequest req) (handle req) =<< liftIO (call auth user repo b)
-withHelper _ _ _ r = badRequest r
+withHelper :: FilePath -> ApiWith v b -> b -> Handler v -> Helper
+withHelper dest call b handle req@(RequestSimple _ (GithubUserRepo user repo)) =
+	deferOn dest req $ do
+		auth <- getState gitHubAuth
+		either (failedRequest req) (handle req) =<< liftIO (call auth user repo b)
+withHelper _ _ _ _ r = badRequest r
 
-numHelper :: ApiNum v -> (Int -> Handler v) -> Helper
-numHelper call handle req@(RequestNum _ (GithubUserRepo user repo) num) = do
-	auth <- getState gitHubAuth
-	either (failedRequest req) (handle num req) =<< liftIO (call auth user repo num)
-numHelper _ _ r = badRequest r
+numHelper :: FilePath -> ApiNum v -> (Int -> Handler v) -> Helper
+numHelper dest call handle req@(RequestNum _ (GithubUserRepo user repo) num) =
+	deferOn dest req $ do
+		auth <- getState gitHubAuth
+		either (failedRequest req) (handle num req) =<< liftIO (call auth user repo num)
+numHelper _ _ _ r = badRequest r
 
 badRequest :: Request -> a
 badRequest r = error $ "internal error: bad request type " ++ show r
 
+{- When the specified file or directory already exists in git, the action
+ - is deferred until later. -}
+deferOn :: FilePath -> Request -> Backup () -> Backup ()
+deferOn f req a = ifM (ingit $ storeLocation f req)
+	( changeState $ \s -> s { deferredBackups = a : deferredBackups s }
+	, a
+	)
+  where
+	ingit f' = do
+		h <- getCatFileHandle
+		liftIO $ isJust <$> catObjectDetails h
+			(Git.Types.Ref $ show branchname ++ ":" ++ f')
+
+getCatFileHandle :: Backup CatFileHandle
+getCatFileHandle = go =<< getState catFileHandle
+  where
+  	go (Just h) = return h
+	go Nothing = do
+		h <- withIndex $ inRepo catFileStart
+		changeState $ \s -> s { catFileHandle = Just h }
+		return h
+
 store :: Show a => FilePath -> Request -> a -> Backup ()
 store filebase req val = do
-	file <- location (requestRepo req) <$> workDir
+	file <- (</>)
+		<$> workDir
+		<*> pure (storeLocation filebase req)
 	liftIO $ do
 		createDirectoryIfMissing True (parentDir file)
 		writeFile file (ppShow val)
+
+storeLocation :: FilePath -> Request -> FilePath
+storeLocation filebase = location . requestRepo
   where
-	location (GithubUserRepo user repo) workdir =
-		workdir </> user ++ "_" ++ repo </> filebase
+	location (GithubUserRepo user repo) =
+		user ++ "_" ++ repo </> filebase
 
 workDir :: Backup FilePath
 workDir = (</>)
@@ -487,6 +523,11 @@ newState r = BackupState
 	<*> pure S.empty
 	<*> pure r
 	<*> getAuth
+	<*> pure []
+	<*> pure Nothing
+
+endState :: Backup ()
+endState = liftIO . maybe noop catFileStop =<< getState catFileHandle
 
 getAuth :: IO (Maybe Github.GithubAuth)
 getAuth = do
@@ -504,18 +545,34 @@ genBackupState repo = newState =<< Git.Config.read repo
 
 backupRepo :: (Maybe Git.Repo) -> IO ()
 backupRepo Nothing = error "not in a git repository, and nothing specified to back up"
-backupRepo (Just repo) = 
-	evalStateT (runBackup $ retry >> backupRepo' >> save)
-		=<< genBackupState repo
+backupRepo (Just repo) = evalStateT (runBackup go) =<< genBackupState repo
+  where
+	go = do
+		retry
+		mainBackup
+		runDeferred
+		save
+		endState
 
-backupRepo' :: Backup ()
-backupRepo' = do
+mainBackup :: Backup ()
+mainBackup = do
 	remotes <- gitHubPairs <$> getState gitRepo
 	when (null remotes) $
 		error "no github remotes found"
 	forM_ remotes $ \(r, remote) -> do
 		void $ fetchRepo r
 		gatherMetaData remote
+
+runDeferred :: Backup ()
+runDeferred = go =<< getState deferredBackups
+  where
+	go [] = noop
+	go l = do
+		changeState $ \s -> s { deferredBackups = [] }
+		void $ sequence l
+		-- Running the deferred actions could cause
+		-- more actions to be deferred; run them too.
+		runDeferred
 
 backupName :: String -> IO ()
 backupName name = do
@@ -548,10 +605,14 @@ backupName name = do
 	-- retried actions will run in each repo before too much API is
 	-- used up.
 	states' <- forM states $
-		runstate $ retry
+		runstate retry
+	states'' <- forM states' $
+		runstate mainBackup
 	-- Saving will throw an exception if there was a problem.
-	status <- forM states' $ \state ->
-		try (runstate (backupRepo' >> save) state) :: IO (Either SomeException BackupState)
+	status <- forM states'' $ \state ->
+		try (runstate (runDeferred >> save) state) :: IO (Either SomeException BackupState)
+	forM_ states'' $
+		runstate endState
 	unless (null $ lefts status) $
 		error "Failed to successfully back up all data. Run again later."
   where
