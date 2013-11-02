@@ -1,3 +1,13 @@
+github-backup (1.20131102) UNRELEASED; urgency=low
+
+  * Now also backs up the repos a user has starred, when run with a user's
+    name.
+  * Uses authentication for all API calls.
+  * Now finds and backs up the parent repository that a repository got forked
+    from.
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 01 Nov 2013 20:30:12 -0400
+
 github-backup (1.20131101) unstable; urgency=low
 
   * Now also backs up the repos a user is watching, when run with a user's
