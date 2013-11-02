@@ -425,7 +425,7 @@ addFork :: ToGithubUserRepo a => a -> Backup ()
 addFork forksource = unlessM (elem fork <$> gitHubRemotes) $ do
 	liftIO $ putStrLn $ "New fork: " ++ repoUrl fork
 	void $ addRemote (remoteFor fork) (repoUrl fork)
-	gitRepo' <- inRepo $ Git.Config.read
+	gitRepo' <- inRepo $ Git.Config.reRead
 	changeState $ \s -> s { gitRepo = gitRepo' }
 
 	gatherMetaData fork
