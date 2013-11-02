@@ -152,7 +152,7 @@ lookupApi req = fromMaybe bad $ M.lookup name api
 	bad = error $ "internal error: bad api call: " ++ name
 
 watchersStore :: Storer
-watchersStore = simpleHelper (noAuth Github.watchersFor) $
+watchersStore = simpleHelper Github.watchersFor' $
 	storeSorted "watchers"
 
 stargazersStore :: Storer
@@ -199,7 +199,7 @@ issuecommentsStore = numHelper Github.Issues.Comments.comments' $ \n ->
 		store ("issue" </> show n ++ "_comment" </> show i) req c
 
 userrepoStore :: Storer
-userrepoStore = simpleHelper (noAuth Github.userRepo) $ \req r -> do
+userrepoStore = simpleHelper Github.userRepo' $ \req r -> do
 	store "repo" req r
 	when (Github.repoHasWiki r == Just True) $
 		updateWiki $ toGithubUserRepo r
@@ -207,7 +207,7 @@ userrepoStore = simpleHelper (noAuth Github.userRepo) $ \req r -> do
 	maybe noop addFork $ Github.repoSource r
 
 forksStore :: Storer
-forksStore = simpleHelper (noAuth Github.forksFor) $ \req fs -> do
+forksStore = simpleHelper Github.forksFor' $ \req fs -> do
 	storeSorted "forks" req fs
 	mapM_ addFork fs
 
@@ -219,9 +219,6 @@ type ApiWith v b = Maybe Github.GithubAuth -> String -> String -> b -> IO (Eithe
 type ApiNum v = ApiWith v Int
 type Handler v = Request -> v -> Backup ()
 type Helper = Request -> Backup ()
-
-noAuth :: (String -> String -> IO a) -> Maybe Github.GithubAuth -> String -> String -> IO a
-noAuth a _auth user repo = a user repo
 
 simpleHelper :: ApiCall v -> Handler v -> Helper
 simpleHelper call handle req@(RequestSimple _ (GithubUserRepo user repo)) = do
@@ -520,10 +517,10 @@ backupName :: String -> IO ()
 backupName name = do
 	auth <- getAuth
 	l <- sequence
-	 	[ Github.userRepos name Github.All
-		, Github.reposWatchedBy name
+	 	[ Github.userRepos' auth name Github.All
+		, Github.reposWatchedBy' auth name
 		, Github.reposStarredBy auth name
-		, Github.organizationRepos name
+		, Github.organizationRepos' auth name
 		]
 	let repos = concat $ rights l
 	when (null repos) $
