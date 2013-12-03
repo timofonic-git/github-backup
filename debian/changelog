@@ -1,4 +1,4 @@
-github-backup (1.20131102) UNRELEASED; urgency=low
+github-backup (1.20131203) unstable; urgency=low
 
   * Now also backs up the repos a user has starred, when run with a user's
     name.
@@ -10,7 +10,7 @@ github-backup (1.20131102) UNRELEASED; urgency=low
     after new data has been backed up. Handles API rate limiting much better.
     Closes: #723859
 
- -- Joey Hess <joeyh@debian.org>  Fri, 01 Nov 2013 20:30:12 -0400
+ -- Joey Hess <joeyh@debian.org>  Tue, 03 Dec 2013 12:45:18 -0400
 
 github-backup (1.20131101) unstable; urgency=low
 
