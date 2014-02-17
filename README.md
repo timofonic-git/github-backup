@@ -9,7 +9,7 @@ pull requests, watchers, and stars.
     cd github-backup
     make
 
-(You will need ghc, hslogger, and MissingH installed first.)
+(You will need ghc and several haskell libraries installed first.)
 
 Or use cabal:
 
