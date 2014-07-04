@@ -353,7 +353,7 @@ commitWorkDir = do
 					[genstream dir h]
 				hashObjectStop h
 				-- Commit
-				void $ Git.Branch.commit "github-backup" fullname [branchref] r
+				void $ Git.Branch.commit Git.Branch.AutomaticCommit False "github-backup" fullname [branchref] r
 				removeDirectoryRecursive dir
   where
   	genstream dir h streamer = do
@@ -374,7 +374,7 @@ getBranch = maybe (hasOrigin >>= create) return =<< branchsha
 		fromMaybe (error $ "failed to create " ++ show branchname)
 			<$> branchsha
 	create False = withIndex $
-		inRepo $ Git.Branch.commit "branch created" fullname []
+		inRepo $ Git.Branch.commitAlways Git.Branch.AutomaticCommit "branch created" fullname []
 	branchsha = inRepo $ Git.Ref.sha fullname
 
 {- Runs an action with a different index file, used for the github branch. -}

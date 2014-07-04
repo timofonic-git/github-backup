@@ -1,3 +1,12 @@
+github-backup (1.20140704) unstable; urgency=medium
+
+  * Avoid making signed commits when committing to the github-backup branch
+    and the user has commit.gpgsign=true.
+    Closes: #753720
+  * Various updates to internal git and utility libraries shared with git-annex.
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 04 Jul 2014 12:01:11 -0400
+
 github-backup (1.20131203) unstable; urgency=low
 
   * Now also backs up the repos a user has starred, when run with a user's
