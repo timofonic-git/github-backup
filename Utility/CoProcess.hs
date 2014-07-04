@@ -3,7 +3,7 @@
  -
  - Copyright 2012-2013 Joey Hess <joey@kitenet.net>
  -
- - Licensed under the GNU GPL version 3 or higher.
+ - License: BSD-2-clause
  -}
 
 {-# LANGUAGE CPP #-}
@@ -30,15 +30,15 @@ data CoProcessState = CoProcessState
 	}
 
 data CoProcessSpec = CoProcessSpec
-	{ coProcessRestartable :: Bool
+	{ coProcessNumRestarts :: Int
 	, coProcessCmd :: FilePath
 	, coProcessParams :: [String]
 	, coProcessEnv :: Maybe [(String, String)]
 	}
 
-start :: Bool -> FilePath -> [String] -> Maybe [(String, String)] -> IO CoProcessHandle
-start restartable cmd params env = do
-	s <- start' $ CoProcessSpec restartable cmd params env
+start :: Int -> FilePath -> [String] -> Maybe [(String, String)] -> IO CoProcessHandle
+start numrestarts cmd params environ = do
+	s <- start' $ CoProcessSpec numrestarts cmd params environ
 	newMVar s
 
 start' :: CoProcessSpec -> IO CoProcessState
@@ -62,11 +62,11 @@ query ch send receive = do
 	s <- readMVar ch
 	restartable s (send $ coProcessTo s) $ const $
 		restartable s (hFlush $ coProcessTo s) $ const $
-			restartable s (receive $ coProcessFrom s) $
+			restartable s (receive $ coProcessFrom s)
 				return
   where
   	restartable s a cont
-		| coProcessRestartable (coProcessSpec s) =
+		| coProcessNumRestarts (coProcessSpec s) > 0 =
 			maybe restart cont =<< catchMaybeIO a
 		| otherwise = cont =<< a
 	restart = do
@@ -75,7 +75,8 @@ query ch send receive = do
 			hClose $ coProcessTo s
 			hClose $ coProcessFrom s
 		void $ waitForProcess $ coProcessPid s
-		s' <- start' (coProcessSpec s)
+		s' <- start' $ (coProcessSpec s)
+			{ coProcessNumRestarts = coProcessNumRestarts (coProcessSpec s) - 1 }
 		putMVar ch s'
 		query ch send receive
 

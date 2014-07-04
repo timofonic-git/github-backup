@@ -14,19 +14,28 @@
 
 module Git.FilePath (
 	TopFilePath,
+	fromTopFilePath,
 	getTopFilePath,
 	toTopFilePath,
 	asTopFilePath,
 	InternalGitPath,
 	toInternalGitPath,
-	fromInternalGitPath
+	fromInternalGitPath,
+	absoluteGitPath
 ) where
 
 import Common
 import Git
 
+import qualified System.FilePath.Posix
+
 {- A FilePath, relative to the top of the git repository. -}
 newtype TopFilePath = TopFilePath { getTopFilePath :: FilePath }
+	deriving (Show)
+
+{- Returns an absolute FilePath. -}
+fromTopFilePath :: TopFilePath -> Git.Repo -> FilePath
+fromTopFilePath p repo = absPathFrom (repoPath repo) (getTopFilePath p)
 
 {- The input FilePath can be absolute, or relative to the CWD. -}
 toTopFilePath :: FilePath -> Git.Repo -> IO TopFilePath
@@ -39,8 +48,12 @@ asTopFilePath :: FilePath -> TopFilePath
 asTopFilePath file = TopFilePath file
 
 {- Git may use a different representation of a path when storing
- - it internally. For example, on Windows, git uses '/' to separate paths
- - stored in the repository, despite Windows using '\' -}
+ - it internally. 
+ -
+ - On Windows, git uses '/' to separate paths stored in the repository,
+ - despite Windows using '\'.
+ -
+ -}
 type InternalGitPath = String
 
 toInternalGitPath :: FilePath -> InternalGitPath
@@ -56,3 +69,10 @@ fromInternalGitPath = id
 #else
 fromInternalGitPath = replace "/" "\\"
 #endif
+
+{- isAbsolute on Windows does not think "/foo" or "\foo" is absolute,
+ - so try posix paths.
+ -}
+absoluteGitPath :: FilePath -> Bool
+absoluteGitPath p = isAbsolute p ||
+	System.FilePath.Posix.isAbsolute (toInternalGitPath p)

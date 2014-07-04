@@ -13,7 +13,7 @@ import Common
 import Git
 import Git.Sha
 import Git.Command
-import Git.Ref (headRef)
+import qualified Git.Ref
 
 {- The currently checked out branch.
  -
@@ -28,7 +28,7 @@ current r = do
 	case v of
 		Nothing -> return Nothing
 		Just branch -> 
-			ifM (null <$> pipeReadStrict [Param "show-ref", Param $ show branch] r)
+			ifM (null <$> pipeReadStrict [Param "show-ref", Param $ fromRef branch] r)
 				( return Nothing
 				, return v
 				)
@@ -36,7 +36,7 @@ current r = do
 {- The current branch, which may not really exist yet. -}
 currentUnsafe :: Repo -> IO (Maybe Git.Ref)
 currentUnsafe r = parse . firstLine
-	<$> pipeReadStrict [Param "symbolic-ref", Param $ show headRef] r
+	<$> pipeReadStrict [Param "symbolic-ref", Param $ fromRef Git.Ref.headRef] r
   where
 	parse l
 		| null l = Nothing
@@ -51,8 +51,23 @@ changed origbranch newbranch repo
   where
 	diffs = pipeReadStrict
 		[ Param "log"
-		, Param (show origbranch ++ ".." ++ show newbranch)
-		, Params "--oneline -n1"
+		, Param (fromRef origbranch ++ ".." ++ fromRef newbranch)
+		, Param "-n1"
+		, Param "--pretty=%H"
+		] repo
+
+{- Check if it's possible to fast-forward from the old
+ - ref to the new ref.
+ -
+ - This requires there to be a path from the old to the new. -}
+fastForwardable :: Ref -> Ref -> Repo -> IO Bool
+fastForwardable old new repo = not . null <$>
+	pipeReadStrict
+		[ Param "log"
+		, Param $ fromRef old ++ ".." ++ fromRef new
+		, Param "-n1"
+		, Param "--pretty=%H"
+		, Param "--ancestry-path"
 		] repo
 
 {- Given a set of refs that are all known to have commits not
@@ -74,7 +89,7 @@ fastForward branch (first:rest) repo =
   where
 	no_ff = return False
 	do_ff to = do
-		run [Param "update-ref", Param $ show branch, Param $ show to] repo
+		update branch to repo
 		return True
 	findbest c [] = return $ Just c
 	findbest c (r:rs)
@@ -88,20 +103,90 @@ fastForward branch (first:rest) repo =
 			(False, True) -> findbest c rs -- worse
 			(False, False) -> findbest c rs -- same
 
+{- The user may have set commit.gpgsign, indending all their manual
+ - commits to be signed. But signing automatic/background commits could
+ - easily lead to unwanted gpg prompts or failures.
+ -}
+data CommitMode = ManualCommit | AutomaticCommit
+	deriving (Eq)
+
+{- Commit via the usual git command. -}
+commitCommand :: CommitMode -> [CommandParam] -> Repo -> IO Bool
+commitCommand = commitCommand' runBool
+
+{- Commit will fail when the tree is clean. This suppresses that error. -}
+commitQuiet :: CommitMode -> [CommandParam] -> Repo -> IO ()
+commitQuiet commitmode ps = void . tryIO . commitCommand' runQuiet commitmode ps
+
+commitCommand' :: ([CommandParam] -> Repo -> IO a) -> CommitMode -> [CommandParam] -> Repo -> IO a
+commitCommand' runner commitmode ps = runner (Param "commit" : ps')
+  where
+	ps'
+		| commitmode == AutomaticCommit = Param "--no-gpg-sign" : ps
+		| otherwise = ps
+
 {- Commits the index into the specified branch (or other ref), 
- - with the specified parent refs, and returns the committed sha -}
-commit :: String -> Branch -> [Ref] -> Repo -> IO Sha
-commit message branch parentrefs repo = do
+ - with the specified parent refs, and returns the committed sha.
+ -
+ - Without allowempy set, avoids making a commit if there is exactly
+ - one parent, and it has the same tree that would be committed.
+ -
+ - Unlike git-commit, does not run any hooks, or examine the work tree
+ - in any way.
+ -}
+commit :: CommitMode -> Bool -> String -> Branch -> [Ref] -> Repo -> IO (Maybe Sha)
+commit commitmode allowempty message branch parentrefs repo = do
 	tree <- getSha "write-tree" $
 		pipeReadStrict [Param "write-tree"] repo
-	sha <- getSha "commit-tree" $ pipeWriteRead
-		(map Param $ ["commit-tree", show tree] ++ ps)
-		message repo
-	run [Param "update-ref", Param $ show branch, Param $ show sha] repo
-	return sha
+	ifM (cancommit tree)
+		( do
+			sha <- getSha "commit-tree" $ pipeWriteRead
+				(map Param $ ["commit-tree", fromRef tree] ++ ps)
+				(Just $ flip hPutStr message) repo
+			update branch sha repo
+			return $ Just sha
+		, return Nothing
+		)
   where
-	ps = concatMap (\r -> ["-p", show r]) parentrefs
+	ps = 
+		(if commitmode == AutomaticCommit then ["--no-gpg-sign"] else [])
+		++ concatMap (\r -> ["-p", fromRef r]) parentrefs
+	cancommit tree
+		| allowempty = return True
+		| otherwise = case parentrefs of
+			[p] -> maybe False (tree /=) <$> Git.Ref.tree p repo
+			_ -> return True
+
+commitAlways :: CommitMode -> String -> Branch -> [Ref] -> Repo -> IO Sha
+commitAlways commitmode message branch parentrefs repo = fromJust
+	<$> commit commitmode True message branch parentrefs repo
 
 {- A leading + makes git-push force pushing a branch. -}
 forcePush :: String -> String
 forcePush b = "+" ++ b
+
+{- Updates a branch (or other ref) to a new Sha. -}
+update :: Branch -> Sha -> Repo -> IO ()
+update branch sha = run 
+	[ Param "update-ref"
+	, Param $ fromRef branch
+	, Param $ fromRef sha
+	]
+
+{- Checks out a branch, creating it if necessary. -}
+checkout :: Branch -> Repo -> IO ()
+checkout branch = run
+	[ Param "checkout"
+	, Param "-q"
+	, Param "-B"
+	, Param $ fromRef $ Git.Ref.base branch
+	]
+
+{- Removes a branch. -}
+delete :: Branch -> Repo -> IO ()
+delete branch = run
+	[ Param "branch"
+	, Param "-q"
+	, Param "-D"
+	, Param $ fromRef $ Git.Ref.base branch
+	]

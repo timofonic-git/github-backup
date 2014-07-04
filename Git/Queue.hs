@@ -5,7 +5,7 @@
  - Licensed under the GNU GPL version 3 or higher.
  -}
 
-{-# LANGUAGE BangPatterns #-}
+{-# LANGUAGE CPP, BangPatterns #-}
 
 module Git.Queue (
 	Queue,
@@ -17,16 +17,14 @@ module Git.Queue (
 	flush,
 ) where
 
-import qualified Data.Map as M
-import System.IO
-import System.Process
-
 import Utility.SafeCommand
 import Common
 import Git
 import Git.Command
 import qualified Git.UpdateIndex
-	
+
+import qualified Data.Map as M
+
 {- Queable actions that can be performed in a git repository.
  -}
 data Action
@@ -84,16 +82,16 @@ new lim = Queue 0 (fromMaybe defaultLimit lim) M.empty
  -}
 addCommand :: String -> [CommandParam] -> [FilePath] -> Queue -> Repo -> IO Queue
 addCommand subcommand params files q repo =
-	updateQueue action different (length newfiles) q repo
+	updateQueue action different (length files) q repo
   where
 	key = actionKey action
 	action = CommandAction
 		{ getSubcommand = subcommand
 		, getParams = params
-		, getFiles = newfiles
+		, getFiles = allfiles
 		}
-	newfiles = map File files ++ maybe [] getFiles (M.lookup key $ items q)
-		
+	allfiles = map File files ++ maybe [] getFiles (M.lookup key $ items q)
+	
 	different (CommandAction { getSubcommand = s }) = s /= subcommand
 	different _ = True
 
@@ -147,13 +145,21 @@ runAction :: Repo -> Action -> IO ()
 runAction repo (UpdateIndexAction streamers) =
 	-- list is stored in reverse order
 	Git.UpdateIndex.streamUpdateIndex repo $ reverse streamers
-runAction repo action@(CommandAction {}) =
+runAction repo action@(CommandAction {}) = do
+#ifndef mingw32_HOST_OS
+	let p = (proc "xargs" $ "-0":"git":toCommand gitparams) { env = gitEnv repo }
 	withHandle StdinHandle createProcessSuccess p $ \h -> do
 		fileEncoding h
 		hPutStr h $ intercalate "\0" $ toCommand $ getFiles action
 		hClose h
+#else
+	-- Using xargs on Windows is problimatic, so just run the command
+	-- once per file (not as efficient.)
+	if null (getFiles action)
+		then void $ boolSystemEnv "git" gitparams (gitEnv repo)
+		else forM_ (getFiles action) $ \f ->
+			void $ boolSystemEnv "git" (gitparams ++ [f]) (gitEnv repo)
+#endif
   where
-	p = (proc "xargs" params) { env = gitEnv repo }
-	params = "-0":"git":baseparams
-	baseparams = toCommand $ gitCommandLine
+	gitparams = gitCommandLine
 		(Param (getSubcommand action):getParams action) repo

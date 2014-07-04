@@ -2,21 +2,24 @@
  -
  - Copyright 2010-2012 Joey Hess <joey@kitenet.net>
  -
- - Licensed under the GNU GPL version 3 or higher.
+ - License: BSD-2-clause
  -}
 
 {-# LANGUAGE CPP #-}
 
 module Utility.FileMode where
 
-import Common
-
+import System.IO
+import Control.Monad
 import Control.Exception (bracket)
 import System.PosixCompat.Types
+import Utility.PosixFiles
 #ifndef mingw32_HOST_OS
 import System.Posix.Files
 #endif
 import Foreign (complement)
+
+import Utility.Exception
 
 {- Applies a conversion function to a file's mode. -}
 modifyFileMode :: FilePath -> (FileMode -> FileMode) -> IO ()
@@ -56,6 +59,12 @@ readModes = [ownerReadMode, groupReadMode, otherReadMode]
 executeModes :: [FileMode]
 executeModes = [ownerExecuteMode, groupExecuteMode, otherExecuteMode]
 
+otherGroupModes :: [FileMode]
+otherGroupModes = 
+	[ groupReadMode, otherReadMode
+	, groupWriteMode, otherWriteMode
+	]
+
 {- Removes the write bits from a file. -}
 preventWrite :: FilePath -> IO ()
 preventWrite f = modifyFileMode f $ removeModes writeModes
@@ -64,12 +73,19 @@ preventWrite f = modifyFileMode f $ removeModes writeModes
 allowWrite :: FilePath -> IO ()
 allowWrite f = modifyFileMode f $ addModes [ownerWriteMode]
 
+{- Turns a file's owner read bit back on. -}
+allowRead :: FilePath -> IO ()
+allowRead f = modifyFileMode f $ addModes [ownerReadMode]
+
 {- Allows owner and group to read and write to a file. -}
-groupWriteRead :: FilePath -> IO ()
-groupWriteRead f = modifyFileMode f $ addModes
+groupSharedModes :: [FileMode]
+groupSharedModes =
 	[ ownerWriteMode, groupWriteMode
 	, ownerReadMode, groupReadMode
 	]
+
+groupWriteRead :: FilePath -> IO ()
+groupWriteRead f = modifyFileMode f $ addModes groupSharedModes
 
 checkMode :: FileMode -> FileMode -> Bool
 checkMode checkfor mode = checkfor `intersectFileModes` mode == checkfor
@@ -92,13 +108,20 @@ noUmask :: FileMode -> IO a -> IO a
 #ifndef mingw32_HOST_OS
 noUmask mode a
 	| mode == stdFileMode = a
-	| otherwise = bracket setup cleanup go
+	| otherwise = withUmask nullFileMode a
+#else
+noUmask _ a = a
+#endif
+
+withUmask :: FileMode -> IO a -> IO a
+#ifndef mingw32_HOST_OS
+withUmask umask a = bracket setup cleanup go
   where
-	setup = setFileCreationMask nullFileMode
+	setup = setFileCreationMask umask
 	cleanup = setFileCreationMask
 	go _ = a
 #else
-noUmask _ a = a
+withUmask _ a = a
 #endif
 
 combineModes :: [FileMode] -> FileMode
@@ -120,16 +143,16 @@ setSticky f = modifyFileMode f $ addModes [stickyMode]
 #endif
 
 {- Writes a file, ensuring that its modes do not allow it to be read
- - by anyone other than the current user, before any content is written.
+ - or written by anyone other than the current user,
+ - before any content is written.
+ -
+ - When possible, this is done using the umask.
  -
  - On a filesystem that does not support file permissions, this is the same
  - as writeFile.
  -}
 writeFileProtected :: FilePath -> String -> IO ()
-writeFileProtected file content = do
-	h <- openFile file WriteMode
-	void $ tryIO $
-		modifyFileMode file $
-			removeModes [groupReadMode, otherReadMode]
-	hPutStr h content
-	hClose h
+writeFileProtected file content = withUmask 0o0077 $
+	withFile file WriteMode $ \h -> do
+		void $ tryIO $ modifyFileMode file $ removeModes otherGroupModes
+		hPutStr h content

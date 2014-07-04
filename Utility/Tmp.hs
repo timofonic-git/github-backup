@@ -2,8 +2,10 @@
  -
  - Copyright 2010-2013 Joey Hess <joey@kitenet.net>
  -
- - Licensed under the GNU GPL version 3 or higher.
+ - License: BSD-2-clause
  -}
+
+{-# LANGUAGE CPP #-}
 
 module Utility.Tmp where
 
@@ -11,10 +13,11 @@ import Control.Exception (bracket)
 import System.IO
 import System.Directory
 import Control.Monad.IfElse
+import System.FilePath
 
 import Utility.Exception
-import System.FilePath
 import Utility.FileSystemEncoding
+import Utility.PosixFiles
 
 type Template = String
 
@@ -22,13 +25,20 @@ type Template = String
  - then moving it into place. The temp file is stored in the same
  - directory as the final file to avoid cross-device renames. -}
 viaTmp :: (FilePath -> String -> IO ()) -> FilePath -> String -> IO ()
-viaTmp a file content = do
-	let (dir, base) = splitFileName file
-	createDirectoryIfMissing True dir
-	(tmpfile, handle) <- openTempFile dir (base ++ ".tmp")
-	hClose handle
-	a tmpfile content
-	renameFile tmpfile file
+viaTmp a file content = bracket setup cleanup use
+  where
+	(dir, base) = splitFileName file
+	template = base ++ ".tmp"
+	setup = do
+		createDirectoryIfMissing True dir
+		openTempFile dir template
+	cleanup (tmpfile, handle) = do
+		_ <- tryIO $ hClose handle
+		tryIO $ removeFile tmpfile
+	use (tmpfile, handle) = do
+		hClose handle
+		a tmpfile content
+		rename tmpfile file
 
 {- Runs an action with a tmp file located in the system's tmp directory
  - (or in "." if there is none) then removes the file. -}
@@ -61,8 +71,17 @@ withTmpDir template a = do
 withTmpDirIn :: FilePath -> Template -> (FilePath -> IO a) -> IO a
 withTmpDirIn tmpdir template = bracket create remove
   where
-	remove d = whenM (doesDirectoryExist d) $
+	remove d = whenM (doesDirectoryExist d) $ do
+#if mingw32_HOST_OS
+		-- Windows will often refuse to delete a file
+		-- after a process has just written to it and exited.
+		-- Because it's crap, presumably. So, ignore failure
+		-- to delete the temp directory.
+		_ <- tryIO $ removeDirectoryRecursive d
+		return ()
+#else
 		removeDirectoryRecursive d
+#endif
 	create = do
 		createDirectoryIfMissing True tmpdir
 		makenewdir (tmpdir </> template) (0 :: Int)

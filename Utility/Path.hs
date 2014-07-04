@@ -1,8 +1,8 @@
 {- path manipulation
  -
- - Copyright 2010-2013 Joey Hess <joey@kitenet.net>
+ - Copyright 2010-2014 Joey Hess <joey@kitenet.net>
  -
- - Licensed under the GNU GPL version 3 or higher.
+ - License: BSD-2-clause
  -}
 
 {-# LANGUAGE PackageImports, CPP #-}
@@ -18,31 +18,62 @@ import Data.Char
 import Control.Applicative
 
 #ifdef mingw32_HOST_OS
-import Data.Char
 import qualified System.FilePath.Posix as Posix
 #else
-import qualified "MissingH" System.Path as MissingH
 import System.Posix.Files
 #endif
 
+import qualified "MissingH" System.Path as MissingH
 import Utility.Monad
 import Utility.UserInfo
 
-{- Makes a path absolute if it's not already.
+{- Simplifies a path, removing any ".." or ".", and removing the trailing
+ - path separator.
+ -
+ - On Windows, preserves whichever style of path separator might be used in
+ - the input FilePaths. This is done because some programs in Windows
+ - demand a particular path separator -- and which one actually varies!
+ -
+ - This does not guarantee that two paths that refer to the same location,
+ - and are both relative to the same location (or both absolute) will
+ - yeild the same result. Run both through normalise from System.FilePath
+ - to ensure that.
+ -}
+simplifyPath :: FilePath -> FilePath
+simplifyPath path = dropTrailingPathSeparator $ 
+	joinDrive drive $ joinPath $ norm [] $ splitPath path'
+  where
+	(drive, path') = splitDrive path
+
+	norm c [] = reverse c
+	norm c (p:ps)
+		| p' == ".." = norm (drop 1 c) ps
+		| p' == "." = norm c ps
+		| otherwise = norm (p:c) ps
+	  where
+		p' = dropTrailingPathSeparator p
+
+{- Makes a path absolute.
+ -
  - The first parameter is a base directory (ie, the cwd) to use if the path
  - is not already absolute.
  -
- - On Unix, collapses and normalizes ".." etc in the path. May return Nothing
- - if the path cannot be normalized.
- -
- - MissingH's absNormPath does not work on Windows, so on Windows
- - no normalization is done.
+ - Does not attempt to deal with edge cases or ensure security with
+ - untrusted inputs.
  -}
-absNormPath :: FilePath -> FilePath -> Maybe FilePath
+absPathFrom :: FilePath -> FilePath -> FilePath
+absPathFrom dir path = simplifyPath (combine dir path)
+
+{- On Windows, this converts the paths to unix-style, in order to run
+ - MissingH's absNormPath on them. Resulting path will use / separators. -}
+absNormPathUnix :: FilePath -> FilePath -> Maybe FilePath
 #ifndef mingw32_HOST_OS
-absNormPath dir path = MissingH.absNormPath dir path
+absNormPathUnix dir path = MissingH.absNormPath dir path
 #else
-absNormPath dir path = Just $ combine dir path
+absNormPathUnix dir path = todos <$> MissingH.absNormPath (fromdos dir) (fromdos path)
+  where
+	fromdos = replace "\\" "/"
+	todos = replace "/" "\\"
 #endif
 
 {- Returns the parent directory of a path.
@@ -72,13 +103,13 @@ prop_parentDir_basics dir
  - are all equivilant.
  -}
 dirContains :: FilePath -> FilePath -> Bool
-dirContains a b = a == b || a' == b' || (a'++[pathSeparator]) `isPrefixOf` b'
+dirContains a b = a == b || a' == b' || (addTrailingPathSeparator a') `isPrefixOf` b'
   where
-	norm p = fromMaybe "" $ absNormPath p "."
 	a' = norm a
 	b' = norm b
+	norm = normalise . simplifyPath
 
-{- Converts a filename into a normalized, absolute path.
+{- Converts a filename into an absolute path.
  -
  - Unlike Directory.canonicalizePath, this does not require the path
  - already exists. -}
@@ -86,13 +117,6 @@ absPath :: FilePath -> IO FilePath
 absPath file = do
 	cwd <- getCurrentDirectory
 	return $ absPathFrom cwd file
-
-{- Converts a filename into a normalized, absolute path
- - from the specified cwd. -}
-absPathFrom :: FilePath -> FilePath -> FilePath
-absPathFrom cwd file = fromMaybe bad $ absNormPath cwd file
-  where
-	bad = error $ "unable to normalize " ++ file
 
 {- Constructs a relative path from the CWD to a file.
  -
@@ -105,7 +129,7 @@ relPathCwdToFile f = relPathDirToFile <$> getCurrentDirectory <*> absPath f
 
 {- Constructs a relative path from a directory to a file.
  -
- - Both must be absolute, and normalized (eg with absNormpath).
+ - Both must be absolute, and cannot contain .. etc. (eg use absPath first).
  -}
 relPathDirToFile :: FilePath -> FilePath -> FilePath
 relPathDirToFile from to = join s $ dotdots ++ uncommon
@@ -242,13 +266,28 @@ fileNameLengthLimit dir = do
  - was provided by a third party and is not to be trusted, returns the closest
  - sane FilePath.
  -
- - All spaces and punctuation are replaced with '_', except for '.'
- - "../" will thus turn into ".._", which is safe.
+ - All spaces and punctuation and other wacky stuff are replaced
+ - with '_', except for '.' "../" will thus turn into ".._", which is safe.
  -}
 sanitizeFilePath :: String -> FilePath
 sanitizeFilePath = map sanitize
   where
   	sanitize c
 		| c == '.' = c
-		| isSpace c || isPunctuation c || c == '/' = '_'
+		| isSpace c || isPunctuation c || isSymbol c || isControl c || c == '/' = '_'
 		| otherwise = c
+
+{- Similar to splitExtensions, but knows that some things in FilePaths
+ - after a dot are too long to be extensions. -}
+splitShortExtensions :: FilePath -> (FilePath, [String])
+splitShortExtensions = splitShortExtensions' 5 -- enough for ".jpeg"
+splitShortExtensions' :: Int -> FilePath -> (FilePath, [String])
+splitShortExtensions' maxextension = go []
+  where
+	go c f
+		| len > 0 && len <= maxextension && not (null base) = 
+			go (ext:c) base
+		| otherwise = (f, c)
+	  where
+		(base, ext) = splitExtension f
+		len = length ext
