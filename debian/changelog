@@ -1,3 +1,13 @@
+github-backup (1.20140707) UNRELEASED; urgency=medium
+
+  * Add --exclude to skip backing up a specific repository
+    when backing up a user or organization's repositories.
+    Closes: #754072
+  * Converted to using optparse-applicative.
+  * Multiple usernames can now be specified to back up at once.
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 07 Jul 2014 21:40:47 -0400
+
 github-backup (1.20140704) unstable; urgency=medium
 
   * Avoid making signed commits when committing to the github-backup branch

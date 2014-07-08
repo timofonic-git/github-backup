@@ -16,11 +16,10 @@ import qualified Data.Text as T
 import Data.Text.Encoding (encodeUtf8)
 import Data.Either
 import Data.Monoid
-import System.Environment (getArgs)
+import Options.Applicative
 import Control.Exception (try, SomeException)
 import Text.Show.Pretty
 import "mtl" Control.Monad.State.Strict
-import qualified Github.Data.Readable as Github
 import qualified Github.Repos as Github
 import qualified Github.Repos.Forks as Github
 import qualified Github.PullRequests as Github
@@ -580,8 +579,8 @@ runDeferred = go =<< getState deferredBackups
 		-- more actions to be deferred; run them too.
 		runDeferred
 
-backupName :: String -> IO ()
-backupName name = do
+backupOwner :: [GithubUserRepo] -> Owner -> IO ()
+backupOwner exclude (Owner name) = do
 	auth <- getAuth
 	l <- sequence
 	 	[ Github.userRepos' auth name Github.All
@@ -596,16 +595,7 @@ backupName name = do
 			else error $ "No GitHub repositories found for " ++ name
 	-- Clone any missing repos, and get a BackupState for each repo
 	-- that is to be backed up.
-	states <- forM nameurls $ \(dir, url) -> do
-		unlessM (doesDirectoryExist dir) $ do
-			putStrLn $ "New repository: " ++ dir
-			ok <- boolSystem "git"
-				[ Param "clone"
-				, Param url
-				, Param dir
-				]
-			unless ok $ error "clone failed"
-		genBackupState =<< Git.Construct.fromPath dir
+	states <- catMaybes <$> forM nameurls prepare
 	-- First pass only retries things that failed before, so the
 	-- retried actions will run in each repo before too much API is
 	-- used up.
@@ -613,15 +603,62 @@ backupName name = do
 	states'' <- forM states' (execStateT . runBackup $ mainBackup)
 	forM states'' (evalStateT . runBackup $ runDeferred >> save)
 		>>= showFailures . concat
+  where
+	excludeurls = map repoUrl exclude
+	prepare (dir, url)
+		| url `elem` excludeurls = return Nothing
+		| otherwise = do
+			print url
+			unlessM (doesDirectoryExist dir) $ do
+				putStrLn $ "New repository: " ++ dir
+				ok <- boolSystem "git"
+					[ Param "clone"
+					, Param url
+					, Param dir
+					]
+				unless ok $ error "clone failed"
+			Just <$> (genBackupState =<< Git.Construct.fromPath dir)
 
-usage :: String
-usage = "usage: github-backup [username|organization]"
+data Options = Options
+	{ includeOwner :: [Owner]
+	, excludeRepo :: [GithubUserRepo]
+	}
+	deriving (Show)
+
+data Owner = Owner String
+	deriving (Show)
+
+options :: Parser Options
+options = Options <$> many owneropt <*> many excludeopt
+  where
+	owneropt = (argument (Just . Owner))
+		( metavar "USERNAME|ORGANIZATION"
+		<> help "Back up repositories owned by this entity."
+		)
+	excludeopt = parseUserRepo <$> (strOption
+		( long "exclude"
+		<> metavar "USERNAME/REPOSITORY"
+		<> help "Skip backing up a repository."
+		))
+
+parseUserRepo :: String -> GithubUserRepo
+parseUserRepo s =
+	let (user, repo) = separate (== '/') s
+	in GithubUserRepo user repo
 
 main :: IO ()
-main = getArgs >>= go
+main = execParser opts >>= go
   where
-	go (('-':_):_) = error usage
-	go [] = backupRepo =<< Git.Construct.fromCwd
-	go (name:[]) = backupName name
-	go _= error usage
-
+	opts = info (helper <*> options)
+		( fullDesc
+		<> progDesc desc
+		<> header "github-backup - backs up data from GitHub"
+		)
+	desc = unlines
+		[ "Backs up all forks, issues, etc of a GitHub repository."
+		, "Run without any parameters inside a clone of a repository to back it up."
+		, "Or, specify whose repositories to back up."
+		]
+	go (Options owner exclude)
+		| null owner = backupRepo =<< Git.Construct.fromCwd
+		| otherwise = mapM_ (backupOwner exclude) owner
