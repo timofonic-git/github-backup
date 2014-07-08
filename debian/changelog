@@ -1,4 +1,4 @@
-github-backup (1.20140707) UNRELEASED; urgency=medium
+github-backup (1.20140707) unstable; urgency=medium
 
   * Add --exclude to skip backing up a specific repository
     when backing up a user or organization's repositories.
@@ -6,7 +6,7 @@ github-backup (1.20140707) UNRELEASED; urgency=medium
   * Converted to using optparse-applicative.
   * Multiple usernames can now be specified to back up at once.
 
- -- Joey Hess <joeyh@debian.org>  Mon, 07 Jul 2014 21:40:47 -0400
+ -- Joey Hess <joeyh@debian.org>  Mon, 07 Jul 2014 23:01:03 -0400
 
 github-backup (1.20140704) unstable; urgency=medium
 

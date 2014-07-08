@@ -14,7 +14,7 @@ Build-Depends:
 	libghc-unix-compat-dev,
 	libghc-optparse-applicative-dev
 Maintainer: Joey Hess <joeyh@debian.org>
-Standards-Version: 3.9.4
+Standards-Version: 3.9.5
 Vcs-Git: git://github.com/joeyh/github-backup.git
 Homepage: http://github.com/joeyh/github-backup
 
