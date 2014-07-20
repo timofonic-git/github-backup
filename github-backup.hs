@@ -258,7 +258,7 @@ deferOn f req a = ifM (ingit $ storeLocation f req)
 	ingit f' = do
 		h <- getCatFileHandle
 		liftIO $ isJust <$> catObjectDetails h
-			(Git.Types.Ref $ show branchname ++ ":" ++ f')
+			(Git.Types.Ref $ Git.Types.fromRef branchname ++ ":" ++ f')
 
 getCatFileHandle :: Backup CatFileHandle
 getCatFileHandle = go =<< getState catFileHandle
@@ -345,7 +345,7 @@ commitWorkDir = do
 				-- Reset index to current content of github
 				-- branch. Does not touch work tree.
 				Git.Command.run
-					[Param "reset", Param "-q", Param $ show branchref, File "." ] r
+					[Param "reset", Param "-q", Param $ Git.Types.fromRef branchref, File "." ] r
 				-- Stage workDir files into the index.
 				h <- hashObjectStart r
 				Git.UpdateIndex.streamUpdateIndex r
@@ -369,8 +369,8 @@ getBranch = maybe (hasOrigin >>= create) return =<< branchsha
   where
   	create True = do
 		inRepo $ Git.Command.run
-			[Param "branch", Param $ show branchname, Param $ show originname]
-		fromMaybe (error $ "failed to create " ++ show branchname)
+			[Param "branch", Param $ Git.Types.fromRef branchname, Param $ Git.Types.fromRef originname]
+		fromMaybe (error $ "failed to create " ++ Git.Types.fromRef branchname)
 			<$> branchsha
 	create False = withIndex $
 		inRepo $ Git.Branch.commitAlways Git.Branch.AutomaticCommit "branch created" fullname []
@@ -392,10 +392,10 @@ branchname :: Git.Ref
 branchname = Git.Ref "github"
 
 fullname :: Git.Ref
-fullname = Git.Ref $ "refs/heads/" ++ show branchname
+fullname = Git.Ref $ "refs/heads/github" ++ Git.Types.fromRef branchname
 
 originname :: Git.Ref
-originname = Git.Ref $ "refs/remotes/origin/" ++ show branchname
+originname = Git.Ref $ "refs/remotes/origin/" ++ Git.Types.fromRef branchname
 
 hasOrigin :: Backup Bool
 hasOrigin = inRepo $ Git.Ref.exists originname

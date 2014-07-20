@@ -1,6 +1,7 @@
 github-backup (1.20140708) UNRELEASED; urgency=medium
 
   * Deal with trailing slashes on github repo urls. Closes: #755261
+  * Fix bug introduced by change to embedded git libraries. Closes: #755262
 
  -- Joey Hess <joeyh@debian.org>  Sun, 20 Jul 2014 17:10:09 -0400
 
