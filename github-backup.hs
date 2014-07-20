@@ -312,7 +312,7 @@ gitHubPairs = filter (not . wiki ) . mapMaybe check . Git.Types.remotes
 		| otherwise = Nothing
 	  where
 		rest = drop (length prefix) u
-		bits = split "/" rest
+		bits = dropWhile (not . null) $ split "/" rest
 	dropdotgit s
 		| ".git" `isSuffixOf` s = take (length s - length ".git") s
 		| otherwise = s
