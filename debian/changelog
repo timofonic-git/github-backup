@@ -1,0 +1,123 @@
+github-backup (1.20140721) unstable; urgency=medium
+
+  * Fix typo in fix for url parsing. Closes: #755261
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 21 Jul 2014 13:10:49 -0400
+
+github-backup (1.20140720) unstable; urgency=medium
+
+  * Deal with trailing slashes on github repo urls. Closes: #755261
+  * Fix bug introduced by change to embedded git libraries
+    in last release. Closes: #755262
+
+ -- Joey Hess <joeyh@debian.org>  Sun, 20 Jul 2014 17:20:26 -0400
+
+github-backup (1.20140707) unstable; urgency=medium
+
+  * Add --exclude to skip backing up a specific repository
+    when backing up a user or organization's repositories.
+    Closes: #754072
+  * Converted to using optparse-applicative.
+  * Multiple usernames can now be specified to back up at once.
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 07 Jul 2014 23:01:03 -0400
+
+github-backup (1.20140704) unstable; urgency=medium
+
+  * Avoid making signed commits when committing to the github-backup branch
+    and the user has commit.gpgsign=true.
+    Closes: #753720
+  * Various updates to internal git and utility libraries shared with git-annex.
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 04 Jul 2014 12:01:11 -0400
+
+github-backup (1.20131203) unstable; urgency=low
+
+  * Now also backs up the repos a user has starred, when run with a user's
+    name.
+  * Now finds and backs up the parent repository that a repository got forked
+    from.
+  * Uses authentication for all API calls.
+  * Fairer ordering of requests when backing up many repositories at once.
+  * Avoid making requests for data that has already been backed up until
+    after new data has been backed up. Handles API rate limiting much better.
+    Closes: #723859
+
+ -- Joey Hess <joeyh@debian.org>  Tue, 03 Dec 2013 12:45:18 -0400
+
+github-backup (1.20131101) unstable; urgency=low
+
+  * Now also backs up the repos a user is watching, when run with a user's
+    name. Useful if you want to back up repositories that you have not forked;
+    just watch them and run github-backup.
+  * Can now log in to github, to avoid increasingly small API rate limits.
+    Set GITHUB_USER and GITHUB_PASSWORD environment to enable.
+    Note that a few api calls don't use authentication; see
+    https://github.com/fpco/github/issues/40
+  * Build-Depend on git. Closes: #728481
+  * Don't include tmp directory in files stored in the github branch.
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 01 Nov 2013 18:00:16 -0400
+
+github-backup (1.20131006) unstable; urgency=low
+
+  * Ported to Windows.
+  * Improve error message when it fails to query github for repositories
+    belonging to a user. Closes: #705084
+  * Various updates to internal git and utility libraries shared with git-annex.
+  * Makefile now uses cabal to build.
+
+ -- Joey Hess <joeyh@debian.org>  Sun, 06 Oct 2013 18:04:56 -0400
+
+github-backup (1.20130622) unstable; urgency=low
+
+  * Add missing unix-compat build dependency. Closes: #713279
+
+ -- Joey Hess <joeyh@debian.org>  Sat, 22 Jun 2013 13:08:57 -0400
+
+github-backup (1.20130618) unstable; urgency=low
+
+  * Much better creation and committing to the github branch. 
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 17 Jun 2013 17:40:02 -0400
+
+github-backup (1.20130617) unstable; urgency=low
+
+  * Build-Depend on libghc-extensible-exceptions-dev. Closes: #712549
+  * Various updates to internal git and utility libraries shared with
+    git-annex, including some Windows portability.
+  * Fixed to never touch the git work tree or index file, instead using
+    its own to commit to the github branch.
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 17 Jun 2013 12:28:30 -0400
+
+github-backup (1.20130614) unstable; urgency=low
+
+  * Pass --ignore-removal to git-add, in preparation for a future change
+    to its default behavior. Requires git 1.8.3. Closes: #711287
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 14 Jun 2013 15:50:49 -0400
+
+github-backup (1.20130414) experimental; urgency=low
+
+  * Updated to use haskell-github 0.6.0, which supports pagination of queries
+    Thanks to John Wiegley for making those changes.
+  * Also backup closed issues. Thanks, John Wiegley.
+  * cabal file no longer tries to list every source file, as that was
+    error-prone, and I left some out.
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 12 Apr 2013 18:33:11 -0400
+
+github-backup (1.20120627) unstable; urgency=low
+
+  * Rebuilt with new haskell-github, that works with the new version
+    of http-conduit in Debian. Closes: #678787
+  * Various updates to internal git and utility libraries shared with git-annex.
+
+ -- Joey Hess <joeyh@debian.org>  Wed, 27 Jun 2012 22:21:01 -0400
+
+github-backup (1.20120314) unstable; urgency=low
+
+  * First release.
+
+ -- Joey Hess <joeyh@debian.org>  Tue, 13 Mar 2012 20:22:43 -0400
