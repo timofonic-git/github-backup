@@ -1,3 +1,36 @@
+github-backup (1.20140721) unstable; urgency=medium
+
+  * Fix typo in fix for url parsing. Closes: #755261
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 21 Jul 2014 13:10:49 -0400
+
+github-backup (1.20140720) unstable; urgency=medium
+
+  * Deal with trailing slashes on github repo urls. Closes: #755261
+  * Fix bug introduced by change to embedded git libraries
+    in last release. Closes: #755262
+
+ -- Joey Hess <joeyh@debian.org>  Sun, 20 Jul 2014 17:20:26 -0400
+
+github-backup (1.20140707) unstable; urgency=medium
+
+  * Add --exclude to skip backing up a specific repository
+    when backing up a user or organization's repositories.
+    Closes: #754072
+  * Converted to using optparse-applicative.
+  * Multiple usernames can now be specified to back up at once.
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 07 Jul 2014 23:01:03 -0400
+
+github-backup (1.20140704) unstable; urgency=medium
+
+  * Avoid making signed commits when committing to the github-backup branch
+    and the user has commit.gpgsign=true.
+    Closes: #753720
+  * Various updates to internal git and utility libraries shared with git-annex.
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 04 Jul 2014 12:01:11 -0400
+
 github-backup (1.20131203) unstable; urgency=low
 
   * Now also backs up the repos a user has starred, when run with a user's

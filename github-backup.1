@@ -3,7 +3,7 @@
 .SH NAME
 github-backup \- backs up data from GitHub
 .SH SYNOPSIS
-.B github-backup [\fIusername\fP|\fIorganization\fP]
+.B github-backup [\fIusername\fP|\fIorganization\fP ...] [--exclude=username/repository ...]
 .SH DESCRIPTION
 .I github-backup
 is a simple tool you run in a git repository you cloned from
@@ -18,7 +18,7 @@ the name of an organization using GitHub.)
 .PP
 By default it runs without logging in to GitHub. To log in, set
 GITHUB_USER and GITHUB_PASSWORD environment variables. However note that
-this only works around API rate limiting, it does not allow private
+this only works around API rate limiting; it does not allow private
 repositories to be downloaded.
 .SH AUTHOR 
 Joey Hess <joey@kitenet.net>

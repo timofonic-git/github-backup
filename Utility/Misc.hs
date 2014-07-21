@@ -2,7 +2,7 @@
  -
  - Copyright 2010-2011 Joey Hess <joey@kitenet.net>
  -
- - Licensed under the GNU GPL version 3 or higher.
+ - License: BSD-2-clause
  -}
 
 {-# LANGUAGE CPP #-}
@@ -15,10 +15,14 @@ import Foreign
 import Data.Char
 import Data.List
 import Control.Applicative
+import System.Exit
 #ifndef mingw32_HOST_OS
 import System.Posix.Process (getAnyProcessStatus)
 import Utility.Exception
 #endif
+
+import Utility.FileSystemEncoding
+import Utility.Monad
 
 {- A version of hgetContents that is not lazy. Ensures file is 
  - all read before it gets closed. -}
@@ -29,7 +33,21 @@ hGetContentsStrict = hGetContents >=> \s -> length s `seq` return s
 readFileStrict :: FilePath -> IO String
 readFileStrict = readFile >=> \s -> length s `seq` return s
 
-{- Like break, but the character matching the condition is not included
+{-  Reads a file strictly, and using the FileSystemEncoding, so it will
+ -  never crash on a badly encoded file. -}
+readFileStrictAnyEncoding :: FilePath -> IO String
+readFileStrictAnyEncoding f = withFile f ReadMode $ \h -> do
+	fileEncoding h
+	hClose h `after` hGetContentsStrict h
+
+{- Writes a file, using the FileSystemEncoding so it will never crash
+ - on a badly encoded content string. -}
+writeFileAnyEncoding :: FilePath -> String -> IO ()
+writeFileAnyEncoding f content = withFile f WriteMode $ \h -> do
+	fileEncoding h
+	hPutStr h content
+
+{- Like break, but the item matching the condition is not included
  - in the second result list.
  -
  - separate (== ':') "foo:bar" = ("foo", "bar")
@@ -91,18 +109,6 @@ massReplace vs = go [] vs
 			go (replacement:acc) vs (drop (length val) s)
 		| otherwise = go acc rest s
 
-{- Given two orderings, returns the second if the first is EQ and returns
- - the first otherwise.
- -
- - Example use:
- -
- - compare lname1 lname2 `thenOrd` compare fname1 fname2
- -}
-thenOrd :: Ordering -> Ordering -> Ordering
-thenOrd EQ x = x
-thenOrd x _ = x
-{-# INLINE thenOrd #-}
-
 {- Wrapper around hGetBufSome that returns a String.
  -
  - The null string is returned on eof, otherwise returns whatever
@@ -136,3 +142,7 @@ reapZombies = do
 #else
 reapZombies = return ()
 #endif
+
+exitBool :: Bool -> IO a
+exitBool False = exitFailure
+exitBool True = exitSuccess

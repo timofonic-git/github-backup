@@ -1,13 +1,13 @@
 {- running git commands
  -
- - Copyright 2010-2012 Joey Hess <joey@kitenet.net>
+ - Copyright 2010-2013 Joey Hess <joey@kitenet.net>
  -
  - Licensed under the GNU GPL version 3 or higher.
  -}
 
-module Git.Command where
+{-# LANGUAGE CPP #-}
 
-import System.Process (std_out, env)
+module Git.Command where
 
 import Common
 import Git
@@ -16,7 +16,8 @@ import qualified Utility.CoProcess as CoProcess
 
 {- Constructs a git command line operating on the specified repo. -}
 gitCommandLine :: [CommandParam] -> Repo -> [CommandParam]
-gitCommandLine params Repo { location = l@(Local _ _ ) } = setdir : settree ++ params
+gitCommandLine params r@(Repo { location = l@(Local _ _ ) }) =
+	setdir : settree ++ gitGlobalOpts r ++ params
   where
 	setdir = Param $ "--git-dir=" ++ gitdir l
 	settree = case worktree l of
@@ -27,9 +28,7 @@ gitCommandLine _ repo = assertLocal repo $ error "internal"
 {- Runs git in the specified repo. -}
 runBool :: [CommandParam] -> Repo -> IO Bool
 runBool params repo = assertLocal repo $
-	boolSystemEnv "git"
-		(gitCommandLine params repo)
-		(gitEnv repo)
+	boolSystemEnv "git" (gitCommandLine params repo) (gitEnv repo)
 
 {- Runs git in the specified repo, throwing an error if it fails. -}
 run :: [CommandParam] -> Repo -> IO ()
@@ -72,13 +71,13 @@ pipeReadStrict params repo = assertLocal repo $
   where
 	p  = gitCreateProcess params repo
 
-{- Runs a git command, feeding it input, and returning its output,
+{- Runs a git command, feeding it an input, and returning its output,
  - which is expected to be fairly small, since it's all read into memory
  - strictly. -}
-pipeWriteRead :: [CommandParam] -> String -> Repo -> IO String
-pipeWriteRead params s repo = assertLocal repo $
+pipeWriteRead :: [CommandParam] -> Maybe (Handle -> IO ()) -> Repo -> IO String
+pipeWriteRead params writer repo = assertLocal repo $
 	writeReadProcessEnv "git" (toCommand $ gitCommandLine params repo) 
-		(gitEnv repo) s (Just adjusthandle)
+		(gitEnv repo) writer (Just adjusthandle)
   where
   	adjusthandle h = do
 		fileEncoding h
@@ -114,9 +113,14 @@ leaveZombie = fst
 
 {- Runs a git command as a coprocess. -}
 gitCoProcessStart :: Bool -> [CommandParam] -> Repo -> IO CoProcess.CoProcessHandle
-gitCoProcessStart restartable params repo = CoProcess.start restartable "git"
+gitCoProcessStart restartable params repo = CoProcess.start numrestarts "git"
 	(toCommand $ gitCommandLine params repo)
 	(gitEnv repo)
+  where
+  	{- If a long-running git command like cat-file --batch
+	 - crashes, it will likely start up again ok. If it keeps crashing
+	 - 10 times, something is badly wrong. -}
+	numrestarts = if restartable then 10 else 0
 
 gitCreateProcess :: [CommandParam] -> Repo -> CreateProcess
 gitCreateProcess params repo =

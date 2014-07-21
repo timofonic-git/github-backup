@@ -1,8 +1,8 @@
 {- directory manipulation
  -
- - Copyright 2011 Joey Hess <joey@kitenet.net>
+ - Copyright 2011-2014 Joey Hess <joey@kitenet.net>
  -
- - Licensed under the GNU GPL version 3 or higher.
+ - License: BSD-2-clause
  -}
 
 {-# LANGUAGE CPP #-}
@@ -10,7 +10,6 @@
 module Utility.Directory where
 
 import System.IO.Error
-import System.PosixCompat.Files
 import System.Directory
 import Control.Exception (throw)
 import Control.Monad
@@ -19,10 +18,12 @@ import System.FilePath
 import Control.Applicative
 import System.IO.Unsafe (unsafeInterleaveIO)
 
+import Utility.PosixFiles
 import Utility.SafeCommand
 import Utility.Tmp
 import Utility.Exception
 import Utility.Monad
+import Utility.Applicative
 
 dirCruft :: FilePath -> Bool
 dirCruft "." = True
@@ -35,17 +36,22 @@ dirContents :: FilePath -> IO [FilePath]
 dirContents d = map (d </>) . filter (not . dirCruft) <$> getDirectoryContents d
 
 {- Gets files in a directory, and then its subdirectories, recursively,
- - and lazily. If the directory does not exist, no exception is thrown,
+ - and lazily.
+ -
+ - Does not follow symlinks to other subdirectories.
+ -
+ - When the directory does not exist, no exception is thrown,
  - instead, [] is returned. -}
 dirContentsRecursive :: FilePath -> IO [FilePath]
-dirContentsRecursive topdir = dirContentsRecursiveSkipping (const False) topdir
+dirContentsRecursive = dirContentsRecursiveSkipping (const False) True
 
-dirContentsRecursiveSkipping :: (FilePath -> Bool) -> FilePath -> IO [FilePath]
-dirContentsRecursiveSkipping skipdir topdir = go [topdir]
+{- Skips directories whose basenames match the skipdir. -}
+dirContentsRecursiveSkipping :: (FilePath -> Bool) -> Bool -> FilePath -> IO [FilePath]
+dirContentsRecursiveSkipping skipdir followsubdirsymlinks topdir = go [topdir]
   where
   	go [] = return []
 	go (dir:dirs)
-		| skipdir dir = go dirs
+		| skipdir (takeFileName dir) = go dirs
 		| otherwise = unsafeInterleaveIO $ do
 			(files, dirs') <- collect [] []
 				=<< catchDefaultIO [] (dirContents dir)
@@ -55,10 +61,33 @@ dirContentsRecursiveSkipping skipdir topdir = go [topdir]
 	collect files dirs' (entry:entries)
 		| dirCruft entry = collect files dirs' entries
 		| otherwise = do
-			ifM (doesDirectoryExist entry)
-				( collect files (entry:dirs') entries
-				, collect (entry:files) dirs' entries
-				)			
+			let skip = collect (entry:files) dirs' entries
+			let recurse = collect files (entry:dirs') entries
+			ms <- catchMaybeIO $ getSymbolicLinkStatus entry
+			case ms of
+				(Just s) 
+					| isDirectory s -> recurse
+					| isSymbolicLink s && followsubdirsymlinks ->
+						ifM (doesDirectoryExist entry)
+							( recurse
+							, skip
+							)
+				_ -> skip
+
+{- Gets the directory tree from a point, recursively and lazily,
+ - with leaf directories **first**, skipping any whose basenames
+ - match the skipdir. Does not follow symlinks. -}
+dirTreeRecursiveSkipping :: (FilePath -> Bool) -> FilePath -> IO [FilePath]
+dirTreeRecursiveSkipping skipdir topdir = go [] [topdir]
+  where
+  	go c [] = return c
+	go c (dir:dirs)
+		| skipdir (takeFileName dir) = go c dirs
+		| otherwise = unsafeInterleaveIO $ do
+			subdirs <- go c
+				=<< filterM (isDirectory <$$> getSymbolicLinkStatus)
+				=<< catchDefaultIO [] (dirContents dir)
+			go (subdirs++[dir]) dirs
 
 {- Moves one filename to another.
  - First tries a rename, but falls back to moving across devices if needed. -}
