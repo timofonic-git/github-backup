@@ -1,3 +1,9 @@
+github-backup (1.20140721) unstable; urgency=medium
+
+  * Fix typo in fix for url parsing. Closes: #755261
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 21 Jul 2014 13:10:49 -0400
+
 github-backup (1.20140720) unstable; urgency=medium
 
   * Deal with trailing slashes on github repo urls. Closes: #755261
