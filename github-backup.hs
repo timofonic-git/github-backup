@@ -17,7 +17,6 @@ import Data.Text.Encoding (encodeUtf8)
 import Data.Either
 import Data.Monoid
 import Options.Applicative
-import Control.Exception (try, SomeException)
 import Text.Show.Pretty
 import "mtl" Control.Monad.State.Strict
 import qualified Github.Repos as Github
@@ -215,7 +214,7 @@ forksStore = simpleHelper "forks" Github.forksFor' $ \req fs -> do
 	mapM_ addFork fs
 
 forValues :: (Request -> v -> Backup ()) -> Request -> [v] -> Backup ()
-forValues handle req vs = forM_ vs (handle req)
+forValues a req vs = forM_ vs (a req)
 
 type ApiCall v = Maybe Github.GithubAuth -> String -> String -> IO (Either Github.Error v)
 type ApiWith v b = Maybe Github.GithubAuth -> String -> String -> b -> IO (Either Github.Error v)
@@ -224,24 +223,24 @@ type Handler v = Request -> v -> Backup ()
 type Helper = Request -> Backup ()
 
 simpleHelper :: FilePath -> ApiCall v -> Handler v -> Helper
-simpleHelper dest call handle req@(RequestSimple _ (GithubUserRepo user repo)) =
+simpleHelper dest call handler req@(RequestSimple _ (GithubUserRepo user repo)) =
 	deferOn dest req $ do
 		auth <- getState gitHubAuth
-		either (failedRequest req) (handle req) =<< liftIO (call auth user repo)
+		either (failedRequest req) (handler req) =<< liftIO (call auth user repo)
 simpleHelper _ _ _ r = badRequest r
 
 withHelper :: FilePath -> ApiWith v b -> b -> Handler v -> Helper
-withHelper dest call b handle req@(RequestSimple _ (GithubUserRepo user repo)) =
+withHelper dest call b handler req@(RequestSimple _ (GithubUserRepo user repo)) =
 	deferOn dest req $ do
 		auth <- getState gitHubAuth
-		either (failedRequest req) (handle req) =<< liftIO (call auth user repo b)
+		either (failedRequest req) (handler req) =<< liftIO (call auth user repo b)
 withHelper _ _ _ _ r = badRequest r
 
 numHelper :: FilePath -> ApiNum v -> (Int -> Handler v) -> Helper
-numHelper dest call handle req@(RequestNum _ (GithubUserRepo user repo) num) =
+numHelper dest call handler req@(RequestNum _ (GithubUserRepo user repo) num) =
 	deferOn dest req $ do
 		auth <- getState gitHubAuth
-		either (failedRequest req) (handle num req) =<< liftIO (call auth user repo num)
+		either (failedRequest req) (handler num req) =<< liftIO (call auth user repo num)
 numHelper _ _ _ r = badRequest r
 
 badRequest :: Request -> a

@@ -10,7 +10,8 @@ Build-Depends:
 	libghc-hslogger-dev,
 	libghc-pretty-show-dev,
 	libghc-ifelse-dev,
-	libghc-extensible-exceptions-dev,
+	libghc-exceptions-dev,
+	libghc-transformers-dev,
 	libghc-unix-compat-dev,
 	libghc-optparse-applicative-dev
 Maintainer: Joey Hess <joeyh@debian.org>
