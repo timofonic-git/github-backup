@@ -1,6 +1,7 @@
 github-backup (1.20140807) unstable; urgency=medium
 
   * Fix build with github 0.9.
+  * Fix creation of github branch.
 
  -- Joey Hess <joeyh@debian.org>  Thu, 07 Aug 2014 22:17:22 -0400
 
