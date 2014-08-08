@@ -395,7 +395,7 @@ branchname :: Git.Ref
 branchname = Git.Ref "github"
 
 fullname :: Git.Ref
-fullname = Git.Ref $ "refs/heads/github/" ++ Git.Types.fromRef branchname
+fullname = Git.Ref $ "refs/heads/" ++ Git.Types.fromRef branchname
 
 originname :: Git.Ref
 originname = Git.Ref $ "refs/remotes/origin/" ++ Git.Types.fromRef branchname
