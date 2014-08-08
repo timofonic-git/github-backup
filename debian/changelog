@@ -1,6 +1,6 @@
-github-backup (1.20140722) UNRELEASED; urgency=medium
+github-backup (1.20140807) UNRELEASED; urgency=medium
 
-  * 
+  * Fix build with github 0.9.
 
  -- Joey Hess <joeyh@debian.org>  Thu, 07 Aug 2014 22:10:14 -0400
 

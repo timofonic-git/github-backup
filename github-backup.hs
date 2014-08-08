@@ -5,6 +5,7 @@
  - Licensed under the GNU GPL version 3 or higher.
  -}
 
+{-# LANGUAGE CPP #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE PackageImports #-}
 
@@ -20,6 +21,9 @@ import Options.Applicative
 import Text.Show.Pretty
 import "mtl" Control.Monad.State.Strict
 import qualified Github.Repos as Github
+#if MIN_VERSION_github(0,9,0)
+import qualified Github.Auth as Github
+#endif
 import qualified Github.Repos.Forks as Github
 import qualified Github.PullRequests as Github
 import qualified Github.Repos.Watching as Github
