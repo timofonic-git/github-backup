@@ -5,14 +5,6 @@ pull requests, watchers, and stars.
 
 ## Installation
 
-    git clone git://github.com/joeyh/github-backup
-    cd github-backup
-    make
-
-(You will need ghc and several haskell libraries installed first.)
-
-Or use cabal:
-
     cabal install github-backup --bindir=$HOME/bin
 
 (Cabal is bundled with the [Haskell Platform](http://www.haskell.org/platform/).)
