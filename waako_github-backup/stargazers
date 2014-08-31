@@ -1,0 +1,17 @@
+[ GithubUser
+    { githubOwnerAvatarUrl =
+        "https://avatars.githubusercontent.com/u/1449512?v=2"
+    , githubOwnerLogin = "dufferzafar"
+    , githubOwnerUrl = "https://api.github.com/users/dufferzafar"
+    , githubOwnerId = 1449512
+    , githubOwnerGravatarId = Just "e1c1886c8d7f5b713e26cb5c040b2ce8"
+    }
+, GithubUser
+    { githubOwnerAvatarUrl =
+        "https://avatars.githubusercontent.com/u/70727?v=2"
+    , githubOwnerLogin = "waako"
+    , githubOwnerUrl = "https://api.github.com/users/waako"
+    , githubOwnerId = 70727
+    , githubOwnerGravatarId = Just "a20bacd99dc49bd9cce86b147f275802"
+    }
+]
