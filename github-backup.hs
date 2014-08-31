@@ -591,7 +591,7 @@ backupOwner exclude (Owner name) = do
 		, Github.reposStarredBy auth name
 		, Github.organizationRepos' auth name
 		]
-	let nameurls = nub $ map (\repo -> (Github.repoName repo, Github.repoGitUrl repo)) $ concat $ rights l
+	let nameurls = nub $ mapMaybe makenameurl $ concat $ rights l
 	when (null nameurls) $
 		if (null $ rights l)
 			then error $ unlines $ "Failed to query github for repos:" : map show (lefts l)
@@ -608,6 +608,16 @@ backupOwner exclude (Owner name) = do
 		>>= showFailures . concat
   where
 	excludeurls = map repoUrl exclude
+	
+	makenameurl repo = 
+#if MIN_VERSION_github(0,10,0)
+		case Github.repoGitUrl repo of
+			Just url -> Just (Github.repoName repo, url)
+			Nothing -> Nothing
+#else
+		Just (Github.repoName repo, Github.repoGitUrl repo)
+#endif
+
 	prepare (dir, url)
 		| url `elem` excludeurls = return Nothing
 		| otherwise = do
