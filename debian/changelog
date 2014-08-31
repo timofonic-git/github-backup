@@ -1,8 +1,8 @@
-github-backup (1.20140831) UNRELEASED; urgency=medium
+github-backup (1.20140831) unstable; urgency=medium
 
   * Fix build with github 0.10.
 
- -- Joey Hess <joeyh@debian.org>  Sun, 31 Aug 2014 15:30:52 -0700
+ -- Joey Hess <joeyh@debian.org>  Sun, 31 Aug 2014 15:31:26 -0700
 
 github-backup (1.20140807) unstable; urgency=medium
 
