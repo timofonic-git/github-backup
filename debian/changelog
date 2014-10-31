@@ -1,3 +1,9 @@
+github-backup (1.20140832) UNRELEASED; urgency=medium
+
+  * Adjust cabal file for network-uri split.
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 31 Oct 2014 10:43:31 -0400
+
 github-backup (1.20140831) unstable; urgency=medium
 
   * Fix build with github 0.10.

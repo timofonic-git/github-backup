@@ -16,6 +16,10 @@ Description:
  Github. It backs up everything Github knows about the repository, including
  other forks, issues, comments, milestones, pull requests, and watchers.
 
+Flag network-uri
+  Description: Get Network.URI from the network-uri package
+  Default: True
+
 Executable github-backup
   Main-Is: github-backup.hs
   GHC-Options: -Wall
@@ -27,6 +31,11 @@ Executable github-backup
 
   if (! os(windows))
     Build-Depends: unix
+  
+  if flag(network-uri)
+    Build-Depends: network-uri (>= 2.6), network (>= 2.6)
+  else
+    Build-Depends: network (< 2.6), network (>= 2.0)
 
 source-repository head
   type: git
