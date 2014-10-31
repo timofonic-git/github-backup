@@ -1,10 +1,12 @@
-github-backup (1.20140832) UNRELEASED; urgency=medium
+github-backup (1.20141031) unstable; urgency=medium
 
   * Adjust cabal file for network-uri split.
   * Avoid using optparse-applicate's argument combinator, so it will build
     with 0.11 and older too.
+  * Various updates to internal git and utility libraries shared with
+    git-annex.
 
- -- Joey Hess <joeyh@debian.org>  Fri, 31 Oct 2014 10:43:31 -0400
+ -- Joey Hess <joeyh@debian.org>  Fri, 31 Oct 2014 11:17:49 -0400
 
 github-backup (1.20140831) unstable; urgency=medium
 
