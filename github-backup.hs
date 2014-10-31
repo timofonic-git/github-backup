@@ -642,12 +642,14 @@ data Owner = Owner String
 	deriving (Show)
 
 options :: Parser Options
-options = Options <$> many owneropt <*> many excludeopt
+options = Options
+	<$> many owneropt
+	<*> many excludeopt
   where
-	owneropt = (argument (Just . Owner))
+	owneropt = Owner <$> (strOption
 		( metavar "USERNAME|ORGANIZATION"
 		<> help "Back up repositories owned by this entity."
-		)
+		))
 	excludeopt = parseUserRepo <$> (strOption
 		( long "exclude"
 		<> metavar "USERNAME/REPOSITORY"

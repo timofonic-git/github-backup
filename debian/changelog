@@ -1,6 +1,8 @@
 github-backup (1.20140832) UNRELEASED; urgency=medium
 
   * Adjust cabal file for network-uri split.
+  * Avoid using optparse-applicate's argument combinator, so it will build
+    with 0.11 and older too.
 
  -- Joey Hess <joeyh@debian.org>  Fri, 31 Oct 2014 10:43:31 -0400
 
