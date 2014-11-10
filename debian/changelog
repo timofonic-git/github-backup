@@ -1,9 +1,9 @@
-github-backup (1.20141032) UNRELEASED; urgency=medium
+github-backup (1.20141110) unstable; urgency=medium
 
   * Orphaned the Debian package.
     (I continue to maintain github-backup upstream.)
 
- -- Joey Hess <joeyh@debian.org>  Mon, 10 Nov 2014 12:04:29 -0400
+ -- Joey Hess <joeyh@debian.org>  Mon, 10 Nov 2014 12:19:59 -0400
 
 github-backup (1.20141031) unstable; urgency=medium
 
