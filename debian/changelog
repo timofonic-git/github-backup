@@ -1,3 +1,10 @@
+github-backup (1.20141032) UNRELEASED; urgency=medium
+
+  * Orphaned the Debian package.
+    (I continue to maintain github-backup upstream.)
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 10 Nov 2014 12:04:29 -0400
+
 github-backup (1.20141031) unstable; urgency=medium
 
   * Adjust cabal file for network-uri split.
