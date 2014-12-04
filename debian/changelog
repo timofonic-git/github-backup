@@ -1,3 +1,10 @@
+github-backup (1.20141204) unstable; urgency=high
+
+  * Fix broken argument parser for the username|organization parameter.
+    Closes: #772043
+
+ -- Joey Hess <id@joeyh.name>  Thu, 04 Dec 2014 12:29:06 -0400
+
 github-backup (1.20141110) unstable; urgency=medium
 
   * Orphaned the Debian package.
