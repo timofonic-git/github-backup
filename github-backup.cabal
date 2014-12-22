@@ -43,7 +43,7 @@ Executable github-backup
 Executable gitriddance
   Main-Is: gitriddance.hs
   GHC-Options: -Wall
-  Build-Depends: github >= 0.7.2, base >= 4.5, base < 5, text, filepath,
+  Build-Depends: github >= 0.13.1, base >= 4.5, base < 5, text, filepath,
     MissingH, exceptions, transformers, bytestring, hslogger, process,
     containers, unix-compat, IfElse, directory, mtl
   
