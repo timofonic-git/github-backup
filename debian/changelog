@@ -1,12 +1,13 @@
-github-backup (1.20141205) UNRELEASED; urgency=medium
+github-backup (1.20141222) unstable; urgency=medium
 
   * Added gitriddance(1), a utility to close all issues and pull requests,
     for repos that don't want to be bothered with GitHub's proprietary
     issue tracker.
   * gitriddance depends on github 0.13.1, which has bug fixes
     for posting comments.
+  * Various updates to internal git and utility libraries shared with git-annex.
 
- -- Joey Hess <id@joeyh.name>  Mon, 22 Dec 2014 13:47:01 -0400
+ -- Joey Hess <id@joeyh.name>  Mon, 22 Dec 2014 15:30:08 -0400
 
 github-backup (1.20141204) unstable; urgency=high
 
