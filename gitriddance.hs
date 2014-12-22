@@ -15,11 +15,9 @@ import qualified Github.Auth as Github
 #endif
 import qualified Github.Issues as Github
 import qualified Github.Issues.Comments as Github
-import Data.Maybe
-import Control.Applicative
 import System.Environment
 
-import Utility.PartialPrelude
+import Common
 import qualified Git
 import qualified Git.Construct
 import qualified Git.Config
