@@ -3,7 +3,7 @@
 .SH NAME
 gitriddance \- closes all open issues and pull requests
 .SH SYNOPSIS
-.B gitriddance
+.B gitriddance [comment]
 .SH DESCRIPTION
 .I gitriddance
 closes all open issues and pull requests on GitHub. This is useful for
@@ -15,8 +15,8 @@ It should be run in a git repository that was cloned from GitHub. It
 looks at the origin remote to find the repository on GitHub. All open
 issues and pull requests will have a comment posted to them, and be closed.
 .PP
-The text of the comment is configured by setting core.gitriddance. For
-example:
+The text of the comment is either passed as a command-line parameter,
+or can be configured by setting core.gitriddance. For example:
 .IP
 git config core.gitriddance "Please submit patches to http://ikiwiki.info/todo/"
 .PP

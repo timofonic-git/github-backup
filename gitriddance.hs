@@ -17,7 +17,9 @@ import qualified Github.Issues as Github
 import qualified Github.Issues.Comments as Github
 import Data.Maybe
 import Control.Applicative
+import System.Environment
 
+import Utility.PartialPrelude
 import qualified Git
 import qualified Git.Construct
 import qualified Git.Config
@@ -30,12 +32,15 @@ main = do
 		<$> getAuth
 	r <- maybe (error "not in a git repository") Git.Config.read
 		=<< Git.Construct.fromCwd
-	let msg = fromMaybe (error "core.gitriddance needs to be set to a message to use when closing issues/pull requests")
-		(Git.Config.getMaybe "core.gitriddance" r)
+	msg <- maybe (getMsg r) id <$> (headMaybe <$> getArgs)
 	case gitHubRemotes (onlyOriginRemote r) of
 		[] -> error "origin does not seem to be a github repository"
 		[origin] -> closeall auth origin msg
 		_ -> error "somehow found multiple origin repos; this should be impossible!"
+
+getMsg :: Git.Repo -> String
+getMsg r = fromMaybe (error "core.gitriddance needs to be set to a message to use when closing issues/pull requests (or pass the message on the command line)")
+	(Git.Config.getMaybe "core.gitriddance" r)
 
 {- Limit to only having the origin remote; we don't want to affect any
  - other remotes that might be on github. -}
