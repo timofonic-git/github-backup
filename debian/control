@@ -28,3 +28,6 @@ Description: backs up data from GitHub
  GitHub. It backs up everything GitHub publishes about the repository,
  including other forks, issues, comments, wikis, milestones, pull requests,
  and watchers.
+ .
+ Also includes gitriddance, which can be used to close all open issues and
+ pull requests.

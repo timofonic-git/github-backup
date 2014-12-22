@@ -1,0 +1,26 @@
+.\" -*- nroff -*-
+.TH gitriddance 1 "Commands"
+.SH NAME
+gitriddance \- closes all open issues and pull requests
+.SH SYNOPSIS
+.B gitriddance
+.SH DESCRIPTION
+.I gitriddance
+closes all open issues and pull requests on GitHub. This is useful for
+projects that have their own issue trackers, patch submission systems etc,
+rather than relying on GitHub's, which many of us find to be clumsy,
+slow, proprietary, and encouraging of drive-by pull requests of poor quality.
+.PP
+It should be run in a git repository that was cloned from GitHub. It
+looks at the origin remote to find the repository on GitHub. All open
+issues and pull requests will have a comment posted to them, and be closed.
+.PP
+The text of the comment is configured by setting core.gitriddance. For
+example:
+.IP
+git config core.gitriddance "Please submit patches to http://ikiwiki.info/todo/"
+.PP
+In order for gitriddance to log into GitHub, you need to set 
+the GITHUB_USER and GITHUB_PASSWORD environment variables.
+.SH AUTHOR 
+Joey Hess <joey@kitenet.net>

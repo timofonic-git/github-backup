@@ -4,6 +4,7 @@ CABAL?=cabal # set to "./Setup" if you lack a cabal program
 build: Build/SysConfig.hs
 	$(CABAL) build
 	ln -sf dist/build/github-backup/github-backup github-backup
+	ln -sf dist/build/gitriddance/gitriddance gitriddance
 	@$(MAKE) tags >/dev/null 2>&1 &
 
 Build/SysConfig.hs: configure.hs Build/TestConfig.hs Build/Configure.hs
@@ -12,12 +13,12 @@ Build/SysConfig.hs: configure.hs Build/TestConfig.hs Build/Configure.hs
 
 install: build
 	install -d $(DESTDIR)$(PREFIX)/bin
-	install github-backup $(DESTDIR)$(PREFIX)/bin
+	install github-backup gitriddance $(DESTDIR)$(PREFIX)/bin
 	install -d $(DESTDIR)$(PREFIX)/share/man/man1
-	install -m 0644 github-backup.1 $(DESTDIR)$(PREFIX)/share/man/man1
+	install -m 0644 github-backup.1 gitriddance.1 $(DESTDIR)$(PREFIX)/share/man/man1
 
 clean:
-	rm -rf github-backup dist configure Build/SysConfig.hs Setup tags
+	rm -rf github-backup gitriddance dist configure Build/SysConfig.hs Setup tags
 	find -name \*.o -exec rm {} \;
 	find -name \*.hi -exec rm {} \;
 

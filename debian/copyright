@@ -2,7 +2,7 @@ Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Source: native package
 
 Files: *
-Copyright: © 2010-2013 Joey Hess <joey@kitenet.net>
+Copyright: © 2010-2014 Joey Hess <joey@kitenet.net>
 License: GPL-3+
  The full text of version 3 of the GPL is distributed as doc/GPL in
  this package's source, or in /usr/share/common-licenses/GPL-3 on

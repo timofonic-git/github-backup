@@ -16,6 +16,9 @@ Description:
  Github. It backs up everything Github knows about the repository, including
  other forks, issues, comments, milestones, pull requests, and watchers.
 
+ Also includes gitriddance, which can be used to close all open issues and
+ pull requests.
+
 Flag network-uri
   Description: Get Network.URI from the network-uri package
   Default: True
@@ -28,7 +31,22 @@ Executable github-backup
    IfElse, pretty-show, text, process, optparse-applicative,
    github >= 0.7.2,
    base >= 4.5, base < 5
+  
+  if (! os(windows))
+    Build-Depends: unix
+  
+  if flag(network-uri)
+    Build-Depends: network-uri (>= 2.6), network (>= 2.6)
+  else
+    Build-Depends: network (< 2.6), network (>= 2.0)
 
+Executable gitriddance
+  Main-Is: gitriddance.hs
+  GHC-Options: -Wall
+  Build-Depends: github >= 0.7.2, base >= 4.5, base < 5, text, filepath,
+    MissingH, exceptions, transformers, bytestring, hslogger, process,
+    containers, unix-compat, IfElse, directory, mtl
+  
   if (! os(windows))
     Build-Depends: unix
   

@@ -13,8 +13,6 @@ module Main where
 
 import qualified Data.Map as M
 import qualified Data.Set as S
-import qualified Data.Text as T
-import Data.Text.Encoding (encodeUtf8)
 import Data.Either
 import Data.Monoid
 import Options.Applicative
@@ -43,26 +41,12 @@ import qualified Git.Command
 import qualified Git.Ref
 import qualified Git.Branch
 import qualified Git.UpdateIndex
+import Github.GetAuth
+import Github.EnumRepos
 import Git.HashObject
 import Git.FilePath
 import Git.CatFile
 import Utility.Env
-
--- A github user and repo.
-data GithubUserRepo = GithubUserRepo String String
-	deriving (Eq, Show, Read, Ord)
-
-class ToGithubUserRepo a where
-	toGithubUserRepo :: a -> GithubUserRepo
-
-instance ToGithubUserRepo Github.Repo where
-	toGithubUserRepo r = GithubUserRepo 
-		(Github.githubOwnerLogin $ Github.repoOwner r)
-		(Github.repoName r)
-
-instance ToGithubUserRepo Github.RepoRef where
-	toGithubUserRepo (Github.RepoRef owner name) = 
-		GithubUserRepo (Github.githubOwnerLogin owner) name
 
 repoUrl :: GithubUserRepo -> String
 repoUrl (GithubUserRepo user remote) =
@@ -295,42 +279,6 @@ workDir = (</>)
 storeSorted :: Ord a => Show a => FilePath -> Request -> [a] -> Backup ()
 storeSorted file req val = store file req (sort val)
 
-gitHubRepos :: Backup [Git.Repo]
-gitHubRepos = fst . unzip . gitHubPairs <$> getState gitRepo
-
-gitHubRemotes :: Backup [GithubUserRepo]
-gitHubRemotes = snd . unzip . gitHubPairs <$> getState gitRepo
-
-gitHubPairs :: Git.Repo -> [(Git.Repo, GithubUserRepo)]
-gitHubPairs = filter (not . wiki ) . mapMaybe check . Git.Types.remotes
-  where
-	check r@Git.Repo { Git.Types.location = Git.Types.Url u } =
-		headMaybe $ mapMaybe (checkurl r $ show u) gitHubUrlPrefixes
-	check _ = Nothing
-	checkurl r u prefix
-		| prefix `isPrefixOf` u && length bits == 2 =
-			Just (r,
-				GithubUserRepo (bits !! 0)
-					(dropdotgit $ bits !! 1))
-		| otherwise = Nothing
-	  where
-		rest = drop (length prefix) u
-		bits = filter (not . null) $ split "/" rest
-	dropdotgit s
-		| ".git" `isSuffixOf` s = take (length s - length ".git") s
-		| otherwise = s
-	wiki (_, GithubUserRepo _ u) = ".wiki" `isSuffixOf` u
-
-{- All known prefixes for urls to github repos. -}
-gitHubUrlPrefixes :: [String]
-gitHubUrlPrefixes = 
-	[ "git@github.com:"
-	, "git://github.com/"
-	, "https://github.com/"
-	, "http://github.com/"
-	, "ssh://git@github.com/~/"
-	]
-
 {- Commits all files in the workDir into the github branch, and deletes the
  - workDir.
  -
@@ -421,7 +369,7 @@ updateWiki fork =
 		"github_" ++ user ++ "_" ++ repo ++ ".wiki"
 
 addFork :: ToGithubUserRepo a => a -> Backup ()
-addFork forksource = unlessM (elem fork <$> gitHubRemotes) $ do
+addFork forksource = unlessM (elem fork . gitHubRemotes <$> getState gitRepo) $ do
 	liftIO $ putStrLn $ "New fork: " ++ repoUrl fork
 	void $ addRemote (remoteFor fork) (repoUrl fork)
 	gitRepo' <- inRepo $ Git.Config.reRead
@@ -536,17 +484,6 @@ newState r = BackupState
 
 endState :: Backup ()
 endState = liftIO . maybe noop catFileStop =<< getState catFileHandle
-
-getAuth :: IO (Maybe Github.GithubAuth)
-getAuth = do
-	user <- getEnv "GITHUB_USER"
-	password <- getEnv "GITHUB_PASSWORD"
-	return $ case (user, password) of
-		(Just u, Just p) -> Just $ 
-			Github.GithubBasicAuth (tobs u) (tobs p)
-		_ -> Nothing
-  where
-	tobs = encodeUtf8 . T.pack
 
 genBackupState :: Git.Repo -> IO BackupState
 genBackupState repo = newState =<< Git.Config.read repo

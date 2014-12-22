@@ -1,3 +1,11 @@
+github-backup (1.20141205) UNRELEASED; urgency=medium
+
+  * Added gitriddance(1), a utility to close all issues and pull requests,
+    for repos that don't want to be bothered with GitHub's proprietary
+    issue tracker.
+
+ -- Joey Hess <id@joeyh.name>  Mon, 22 Dec 2014 13:47:01 -0400
+
 github-backup (1.20141204) unstable; urgency=high
 
   * Fix broken argument parser for the username|organization parameter.
