@@ -558,7 +558,6 @@ backupOwner exclude (Owner name) = do
 	prepare (dir, url)
 		| url `elem` excludeurls = return Nothing
 		| otherwise = do
-			print url
 			unlessM (doesDirectoryExist dir) $ do
 				putStrLn $ "New repository: " ++ dir
 				ok <- boolSystem "git"
