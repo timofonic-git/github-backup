@@ -1,3 +1,9 @@
+github-backup (1.20141223) UNRELEASED; urgency=medium
+
+  * Fix build with process 1.2.1.0.
+
+ -- Joey Hess <id@joeyh.name>  Sun, 04 Jan 2015 12:52:39 -0400
+
 github-backup (1.20141222) unstable; urgency=medium
 
   * Added gitriddance(1), a utility to close all issues and pull requests,

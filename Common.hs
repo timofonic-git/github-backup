@@ -16,7 +16,7 @@ import System.Directory as X
 import System.IO as X hiding (FilePath)
 import System.PosixCompat.Files as X
 #ifndef mingw32_HOST_OS
-import System.Posix.IO as X
+import System.Posix.IO as X hiding (createPipe)
 #endif
 import System.Exit as X
 
