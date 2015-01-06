@@ -262,7 +262,7 @@ store filebase req val = do
 		<$> workDir
 		<*> pure (storeLocation filebase req)
 	liftIO $ do
-		createDirectoryIfMissing True (parentDir file)
+		createDirectoryIfMissing True (takeDirectory file)
 		writeFile file (ppShow val)
 
 storeLocation :: FilePath -> Request -> FilePath

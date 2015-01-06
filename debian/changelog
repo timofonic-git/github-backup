@@ -1,6 +1,7 @@
 github-backup (1.20141223) UNRELEASED; urgency=medium
 
   * Fix build with process 1.2.1.0.
+  * Various updates to internal git and utility libraries shared with git-annex.
 
  -- Joey Hess <id@joeyh.name>  Sun, 04 Jan 2015 12:52:39 -0400
 
