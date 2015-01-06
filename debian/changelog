@@ -1,9 +1,10 @@
-github-backup (1.20141223) UNRELEASED; urgency=medium
+github-backup (1.20150106) unstable; urgency=medium
 
   * Fix build with process 1.2.1.0.
-  * Various updates to internal git and utility libraries shared with git-annex.
+  * Various updates to internal git and utility libraries shared
+    with git-annex.
 
- -- Joey Hess <id@joeyh.name>  Sun, 04 Jan 2015 12:52:39 -0400
+ -- Joey Hess <id@joeyh.name>  Tue, 06 Jan 2015 19:08:08 -0400
 
 github-backup (1.20141222) unstable; urgency=medium
 
@@ -12,7 +13,8 @@ github-backup (1.20141222) unstable; urgency=medium
     issue tracker.
   * gitriddance depends on github 0.13.1, which has bug fixes
     for posting comments.
-  * Various updates to internal git and utility libraries shared with git-annex.
+  * Various updates to internal git and utility libraries shared
+    with git-annex.
 
  -- Joey Hess <id@joeyh.name>  Mon, 22 Dec 2014 15:30:08 -0400
 
