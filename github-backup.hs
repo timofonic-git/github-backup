@@ -310,7 +310,7 @@ commitWorkDir = do
 		fs <- filter (not . dirCruft) <$> dirContentsRecursive dir
 		forM_ fs $ \f -> do
 			sha <- hashFile h f
-			let path = asTopFilePath (relPathDirToFile dir f)
+			path <- asTopFilePath <$> relPathDirToFile dir f
 			streamer $ Git.UpdateIndex.updateIndexLine
 				sha Git.Types.FileBlob path
 
