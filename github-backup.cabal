@@ -25,7 +25,7 @@ Flag network-uri
 
 Executable github-backup
   Main-Is: github-backup.hs
-  GHC-Options: -Wall
+  GHC-Options: -Wall -fno-warn-tabs
   Build-Depends: MissingH, hslogger, directory, filepath, containers, mtl,
    network, exceptions, transformers, unix-compat, bytestring,
    IfElse, pretty-show, text, process, optparse-applicative,
