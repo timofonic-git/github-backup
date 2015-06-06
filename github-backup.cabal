@@ -34,6 +34,8 @@ Executable github-backup
   
   if (! os(windows))
     Build-Depends: unix
+  else
+    Build-Depends: Win32, setenv, utf8-string
   
   if flag(network-uri)
     Build-Depends: network-uri (>= 2.6), network (>= 2.6)
@@ -49,6 +51,8 @@ Executable gitriddance
   
   if (! os(windows))
     Build-Depends: unix
+  else
+    Build-Depends: Win32, setenv, utf8-string
   
   if flag(network-uri)
     Build-Depends: network-uri (>= 2.6), network (>= 2.6)
