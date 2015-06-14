@@ -8,6 +8,7 @@ Stability: Stable
 Copyright: 2012 Joey Hess
 License-File: GPL
 Build-Type: Custom
+Extra-Source-Files: CHANGELOG
 Homepage: https://github.com/joeyh/github-backup
 Category: Utility
 Synopsis: backs up everything github knows about a repository, to the repository
