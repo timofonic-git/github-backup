@@ -1,11 +1,12 @@
 {- Simple IO exception handling (and some more)
  -
- - Copyright 2011-2014 Joey Hess <id@joeyh.name>
+ - Copyright 2011-2015 Joey Hess <id@joeyh.name>
  -
  - License: BSD-2-clause
  -}
 
 {-# LANGUAGE ScopedTypeVariables #-}
+{-# OPTIONS_GHC -fno-warn-tabs #-}
 
 module Utility.Exception (
 	module X,
@@ -19,6 +20,7 @@ module Utility.Exception (
 	catchNonAsync,
 	tryNonAsync,
 	tryWhenExists,
+	catchHardwareFault,
 ) where
 
 import Control.Monad.Catch as X hiding (Handler)
@@ -26,7 +28,9 @@ import qualified Control.Monad.Catch as M
 import Control.Exception (IOException, AsyncException)
 import Control.Monad
 import Control.Monad.IO.Class (liftIO, MonadIO)
-import System.IO.Error (isDoesNotExistError)
+import System.IO.Error (isDoesNotExistError, ioeGetErrorType)
+import GHC.IO.Exception (IOErrorType(..))
+
 import Utility.Data
 
 {- Catches IO errors and returns a Bool -}
@@ -86,3 +90,12 @@ tryWhenExists :: MonadCatch m => m a -> m (Maybe a)
 tryWhenExists a = do
 	v <- tryJust (guard . isDoesNotExistError) a
 	return (eitherToMaybe v)
+
+{- Catches only exceptions caused by hardware faults.
+ - Ie, disk IO error. -}
+catchHardwareFault :: MonadCatch m => m a -> (IOException -> m a) -> m a
+catchHardwareFault a onhardwareerr = catchIO a onlyhw
+  where
+	onlyhw e
+		| ioeGetErrorType e == HardwareFault = onhardwareerr e
+		| otherwise = throwM e
