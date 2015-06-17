@@ -1,11 +1,11 @@
-github-backup (1.20150107) UNRELEASED; urgency=medium
+github-backup (1.20150617) unstable; urgency=medium
 
   * Add missing build deps for windows to cabal file.
     Thanks, Jeff Segal.
   * Various updates to internal git and utility libraries shared
     with git-annex.
 
- -- Joey Hess <id@joeyh.name>  Wed, 29 Apr 2015 15:04:38 -0400
+ -- Joey Hess <id@joeyh.name>  Wed, 17 Jun 2015 14:44:14 -0400
 
 github-backup (1.20150106) unstable; urgency=medium
 
