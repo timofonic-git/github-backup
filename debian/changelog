@@ -1,3 +1,9 @@
+github-backup (1.20150618) unstable; urgency=medium
+
+  * Fix broken configure script.
+
+ -- Joey Hess <id@joeyh.name>  Thu, 18 Jun 2015 16:56:41 -0400
+
 github-backup (1.20150617) unstable; urgency=medium
 
   * Add missing build deps for windows to cabal file.
