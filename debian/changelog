@@ -1,3 +1,9 @@
+github-backup (1.20141204.1) UNRELEASED; urgency=medium
+
+  * Set myself as maintainer.
+
+ -- James McCoy <jamessan@debian.org>  Fri, 19 Jun 2015 21:27:26 -0400
+
 github-backup (1.20141204) unstable; urgency=high
 
   * Fix broken argument parser for the username|organization parameter.
