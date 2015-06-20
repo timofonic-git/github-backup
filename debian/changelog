@@ -1,8 +1,8 @@
-github-backup (1.20141204.1) UNRELEASED; urgency=medium
+github-backup (1.20141204.1) unstable; urgency=medium
 
   * Set myself as maintainer.
 
- -- James McCoy <jamessan@debian.org>  Fri, 19 Jun 2015 21:27:26 -0400
+ -- James McCoy <jamessan@debian.org>  Fri, 19 Jun 2015 21:32:18 -0400
 
 github-backup (1.20141204) unstable; urgency=high
 
