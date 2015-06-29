@@ -14,7 +14,7 @@ Build-Depends:
 	libghc-transformers-dev,
 	libghc-unix-compat-dev,
 	libghc-optparse-applicative-dev
-Maintainer: Debian QA Group <packages@qa.debian.org>
+Maintainer: James McCoy <jamessan@debian.org>
 Standards-Version: 3.9.5
 Vcs-Git: git://github.com/joeyh/github-backup.git
 Homepage: http://github.com/joeyh/github-backup

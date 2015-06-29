@@ -33,6 +33,12 @@ github-backup (1.20141222) unstable; urgency=medium
 
  -- Joey Hess <id@joeyh.name>  Mon, 22 Dec 2014 15:30:08 -0400
 
+github-backup (1.20141204.1) unstable; urgency=medium
+
+  * Set myself as maintainer.
+
+ -- James McCoy <jamessan@debian.org>  Fri, 19 Jun 2015 21:32:18 -0400
+
 github-backup (1.20141204) unstable; urgency=high
 
   * Fix broken argument parser for the username|organization parameter.
