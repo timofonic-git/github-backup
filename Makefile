@@ -16,7 +16,7 @@ install: build
 	install github-backup gitriddance $(DESTDIR)$(PREFIX)/bin
 	install -d $(DESTDIR)$(PREFIX)/share/man/man1
 	install -m 0644 github-backup.1 gitriddance.1 $(DESTDIR)$(PREFIX)/share/man/man1
-	install -d $(DESTDIR)$(PREFIX)/usr/share/bash-completion/completions
+	install -d $(DESTDIR)$(PREFIX)/share/bash-completion/completions
 	./github-backup --bash-completion-script github-backup > $(DESTDIR)$(PREFIX)/share/bash-completion/completions/github-backup
 
 clean:
