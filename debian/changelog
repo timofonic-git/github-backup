@@ -1,6 +1,8 @@
 github-backup (1.20150619) UNRELEASED; urgency=medium
 
   * Added bash completion.
+  * Add --no-forks flag that turns off backing up forks.
+    Thanks, Phil Ruffwind.
 
  -- Joey Hess <id@joeyh.name>  Fri, 07 Aug 2015 12:16:51 -0400
 

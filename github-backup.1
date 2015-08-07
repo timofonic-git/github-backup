@@ -3,7 +3,7 @@
 .SH NAME
 github-backup \- backs up data from GitHub
 .SH SYNOPSIS
-.B github-backup [\fIusername\fP|\fIorganization\fP ...] [--exclude=username/repository ...]
+.B github-backup [\fIusername\fP|\fIorganization\fP ...] [options]
 .SH DESCRIPTION
 .I github-backup
 is a simple tool you run in a git repository you cloned from
@@ -20,5 +20,15 @@ By default it runs without logging in to GitHub. To log in, set
 GITHUB_USER and GITHUB_PASSWORD environment variables. However note that
 this only works around API rate limiting; it does not allow private
 repositories to be downloaded.
+.SH OPTIONS
+.PP
+.IP --exclude=username/repository
+When backing up a user or an organization, this can be used to exclude
+bacup of a particular repository belonging to the user or organization.
+This option can be specified any number of time to exclude more than one
+repository.
+.PP
+.IP --no-forks
+Avoid backing up a repository's forks.
 .SH AUTHOR 
 Joey Hess <joey@kitenet.net>
