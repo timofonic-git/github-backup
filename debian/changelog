@@ -1,4 +1,4 @@
-github-backup (1.20150619) UNRELEASED; urgency=medium
+github-backup (1.20150807) unstable; urgency=medium
 
   * Added bash completion.
   * Add --no-forks flag that turns off backing up forks.
@@ -7,7 +7,7 @@ github-backup (1.20150619) UNRELEASED; urgency=medium
     time github-backup runs, so that it can be used in a cron job with eg,
     chronic.
 
- -- Joey Hess <id@joeyh.name>  Fri, 07 Aug 2015 12:16:51 -0400
+ -- Joey Hess <id@joeyh.name>  Fri, 07 Aug 2015 12:50:02 -0400
 
 github-backup (1.20150618) unstable; urgency=medium
 
