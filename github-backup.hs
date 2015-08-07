@@ -80,6 +80,7 @@ data BackupState = BackupState
 	, gitHubAuth :: Maybe Github.GithubAuth
 	, deferredBackups :: [Backup ()]
 	, catFileHandle :: Maybe CatFileHandle
+	, noForks :: Bool
 	}
 
 {- Our monad. -}
@@ -407,10 +408,12 @@ fetchRepo repo = inRepo $ Git.Command.runBool
 
 gatherMetaData :: GithubUserRepo -> Backup ()
 gatherMetaData repo = do
+	noforks <- getState noForks
 	liftIO $ putStrLn $ "Gathering metadata for " ++ repoUrl repo ++ " ..."
-	mapM_ call toplevelApi
+	mapM_ call (filter (forksfilter noforks) toplevelApi)
   where
 	call name = runRequest $ RequestSimple name repo
+	forksfilter noforks name = not (noforks && name == "forks")
 
 storeRetry :: [Request] -> Git.Repo -> IO ()
 storeRetry [] r = void $ do
@@ -472,8 +475,8 @@ showFailures l = error $ unlines $
 	[ "Run again later."
 	]
 
-newState :: Git.Repo -> IO BackupState
-newState r = BackupState
+newState :: Bool -> Git.Repo -> IO BackupState
+newState noforks r = BackupState
 	<$> pure S.empty
 	<*> pure S.empty
 	<*> pure S.empty
@@ -481,17 +484,18 @@ newState r = BackupState
 	<*> getAuth
 	<*> pure []
 	<*> pure Nothing
+	<*> pure noforks
 
 endState :: Backup ()
 endState = liftIO . maybe noop catFileStop =<< getState catFileHandle
 
-genBackupState :: Git.Repo -> IO BackupState
-genBackupState repo = newState =<< Git.Config.read repo
+genBackupState :: Bool -> Git.Repo -> IO BackupState
+genBackupState noforks repo = newState noforks =<< Git.Config.read repo
 
-backupRepo :: (Maybe Git.Repo) -> IO ()
-backupRepo Nothing = error "not in a git repository, and nothing specified to back up"
-backupRepo (Just repo) = 
-	genBackupState repo >>= evalStateT (runBackup go) >>= showFailures
+backupRepo :: Bool -> (Maybe Git.Repo) -> IO ()
+backupRepo _ Nothing = error "not in a git repository, and nothing specified to back up"
+backupRepo noforks (Just repo) =
+	genBackupState noforks repo >>= evalStateT (runBackup go) >>= showFailures
   where
 	go = do
 		retry
@@ -519,8 +523,8 @@ runDeferred = go =<< getState deferredBackups
 		-- more actions to be deferred; run them too.
 		runDeferred
 
-backupOwner :: [GithubUserRepo] -> Owner -> IO ()
-backupOwner exclude (Owner name) = do
+backupOwner :: Bool -> [GithubUserRepo] -> Owner -> IO ()
+backupOwner noforks exclude (Owner name) = do
 	auth <- getAuth
 	l <- sequence
 	 	[ Github.userRepos' auth name Github.All
@@ -566,11 +570,12 @@ backupOwner exclude (Owner name) = do
 					, Param dir
 					]
 				unless ok $ error "clone failed"
-			Just <$> (genBackupState =<< Git.Construct.fromPath dir)
+			Just <$> (genBackupState noforks =<< Git.Construct.fromPath dir)
 
 data Options = Options
 	{ includeOwner :: [Owner]
 	, excludeRepo :: [GithubUserRepo]
+	, noForksOpt :: Bool
 	}
 	deriving (Show)
 
@@ -578,7 +583,7 @@ data Owner = Owner String
 	deriving (Show)
 
 options :: Parser Options
-options = Options <$> many owneropt <*> many excludeopt
+options = Options <$> many owneropt <*> many excludeopt <*> noforksopt
   where
 	owneropt = Owner <$> (argument str)
 		( metavar "USERNAME|ORGANIZATION"
@@ -589,6 +594,10 @@ options = Options <$> many owneropt <*> many excludeopt
 		<> metavar "USERNAME/REPOSITORY"
 		<> help "Skip backing up a repository."
 		))
+	noforksopt = switch
+		( long "no-forks"
+		<> help "Do not backup forks."
+		)
 
 parseUserRepo :: String -> GithubUserRepo
 parseUserRepo s =
@@ -608,6 +617,6 @@ main = execParser opts >>= go
 		, "Run without any parameters inside a clone of a repository to back it up."
 		, "Or, specify whose repositories to back up."
 		]
-	go (Options owner exclude)
-		| null owner = backupRepo =<< Git.Construct.fromCwd
-		| otherwise = mapM_ (backupOwner exclude) owner
+	go (Options owner exclude noforks)
+		| null owner = backupRepo noforks =<< Git.Construct.fromCwd
+		| otherwise = mapM_ (backupOwner noforks exclude) owner
