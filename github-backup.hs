@@ -468,7 +468,7 @@ save = do
 
 showFailures :: [Request] -> IO ()
 showFailures [] = noop
-showFailures l = error $ unlines $
+showFailures l = hPutStrLn stderr $ unlines $
 	["Backup may be incomplete; " ++ 
 		show (length l) ++ " requests failed:"
 	] ++ map ("  " ++) (summarizeRequests l) ++ 
