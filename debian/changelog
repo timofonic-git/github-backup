@@ -1,3 +1,9 @@
+github-backup (1.20150807-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- James McCoy <jamessan@debian.org>  Mon, 24 Aug 2015 20:13:50 -0400
+
 github-backup (1.20150807) unstable; urgency=medium
 
   * Added bash completion.
