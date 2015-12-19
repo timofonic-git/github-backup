@@ -20,7 +20,8 @@ module Utility.Exception (
 	catchNonAsync,
 	tryNonAsync,
 	tryWhenExists,
-	catchHardwareFault,
+	catchIOErrorType,
+	IOErrorType(..)
 ) where
 
 import Control.Monad.Catch as X hiding (Handler)
@@ -39,10 +40,7 @@ catchBoolIO = catchDefaultIO False
 
 {- Catches IO errors and returns a Maybe -}
 catchMaybeIO :: MonadCatch m => m a -> m (Maybe a)
-catchMaybeIO a = do
-	catchDefaultIO Nothing $ do
-		v <- a
-		return (Just v)
+catchMaybeIO a = catchDefaultIO Nothing $ a >>= (return . Just)
 
 {- Catches IO errors and returns a default value. -}
 catchDefaultIO :: MonadCatch m => a -> m a -> m a
@@ -91,11 +89,11 @@ tryWhenExists a = do
 	v <- tryJust (guard . isDoesNotExistError) a
 	return (eitherToMaybe v)
 
-{- Catches only exceptions caused by hardware faults.
- - Ie, disk IO error. -}
-catchHardwareFault :: MonadCatch m => m a -> (IOException -> m a) -> m a
-catchHardwareFault a onhardwareerr = catchIO a onlyhw
+{- Catches only IO exceptions of a particular type.
+ - Ie, use HardwareFault to catch disk IO errors. -}
+catchIOErrorType :: MonadCatch m => IOErrorType -> (IOException -> m a) -> m a -> m a
+catchIOErrorType errtype onmatchingerr a = catchIO a onlymatching
   where
-	onlyhw e
-		| ioeGetErrorType e == HardwareFault = onhardwareerr e
+	onlymatching e
+		| ioeGetErrorType e == errtype = onmatchingerr e
 		| otherwise = throwM e
