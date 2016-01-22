@@ -3,6 +3,9 @@ github-backup (1.20150808) UNRELEASED; urgency=medium
   * Silence build warnings with ghc 7.10.
   * Various updates to internal git and utility libraries shared
     with git-annex.
+  * Switch to using https instead of git:// for a secure transport.
+    Note that existing git:// remotes will continue to be used.
+    Thanks, Robin Schneider.
 
  -- Joey Hess <id@joeyh.name>  Sat, 19 Dec 2015 17:45:03 -0400
 
