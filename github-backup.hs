@@ -27,12 +27,10 @@ import qualified GitHub.Auth as Github
 import qualified GitHub.Data.Repos as Github
 import qualified GitHub.Endpoints.Repos as Github
 import qualified GitHub.Endpoints.Repos.Forks as Github
-import qualified GitHub.Data.PullRequests as Github
 import qualified GitHub.Endpoints.PullRequests as Github
 import qualified GitHub.Endpoints.Activity.Watching as Github
 import qualified GitHub.Endpoints.Activity.Starring as Github
 import qualified GitHub.Data.Definitions as Github ()
-import qualified GitHub.Data.Issues as Github
 import qualified GitHub.Endpoints.Issues as Github
 import qualified GitHub.Endpoints.Issues.Comments
 import qualified GitHub.Endpoints.Issues.Milestones
@@ -164,8 +162,13 @@ pullrequestsStore = simpleHelper "pullrequest" Github.pullRequestsFor' $
 		runRequest $ RequestNum "pullrequest" repo n
 
 pullrequestStore :: Storer
-pullrequestStore = numHelper "pullrequest" Github.pullRequest' $ \n ->
+pullrequestStore = numHelper "pullrequest" call $ \n ->
 	store ("pullrequest" </> show n)
+  where
+	call auth user repo n = Github.pullRequest' auth
+		(fromString user)
+		(fromString repo)
+		(Github.mkId (Github.Id 0) n)
 
 milestonesStore :: Storer
 milestonesStore = simpleHelper "milestone" GitHub.Endpoints.Issues.Milestones.milestones' $
@@ -175,9 +178,9 @@ milestonesStore = simpleHelper "milestone" GitHub.Endpoints.Issues.Milestones.mi
 
 issuesStore :: Storer
 issuesStore = withHelper "issue" (\a u r y ->
-	Github.issuesForRepo' a u r (y <> [Github.Open])
+	Github.issuesForRepo' a (fromString u) (fromString r) (y <> [Github.Open])
 		>>= either (return . Left)
-			(\xs -> Github.issuesForRepo' a u r
+			(\xs -> Github.issuesForRepo' a (fromString u) (fromString r)
 				(y <> [Github.OnlyClosed])
 					>>= either (return . Left)
 						(\ys -> return (Right (xs <> ys)))))
@@ -190,10 +193,15 @@ issuesStore = withHelper "issue" (\a u r y ->
 		runRequest (RequestNum "issuecomments" repo n)
 
 issuecommentsStore :: Storer
-issuecommentsStore = numHelper "issuecomments" GitHub.Endpoints.Issues.Comments.comments' $ \n ->
+issuecommentsStore = numHelper "issuecomments" call $ \n ->
 	forValues $ \req c -> do
 		let i = Github.issueCommentId c
 		store ("issue" </> show n ++ "_comment" </> show i) req c
+  where
+	call auth user repo n = GitHub.Endpoints.Issues.Comments.comments' auth
+		(fromString user)
+		(fromString repo)
+		(Github.mkId (Github.Id 0) n)
 
 userrepoStore :: Storer
 userrepoStore = simpleHelper "repo" Github.repository' $ \req r -> do
