@@ -5,7 +5,6 @@
  - Licensed under the GNU GPL version 3 or higher.
  -}
 
-{-# LANGUAGE CPP #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE PackageImports #-}
 
@@ -18,18 +17,19 @@ import Data.Monoid
 import Options.Applicative
 import Text.Show.Pretty
 import "mtl" Control.Monad.State.Strict
-import qualified Github.Repos as Github
-#if MIN_VERSION_github(0,9,0)
-import qualified Github.Auth as Github
-#endif
-import qualified Github.Repos.Forks as Github
-import qualified Github.PullRequests as Github
-import qualified Github.Repos.Watching as Github
-import qualified Github.Repos.Starring as Github
-import qualified Github.Data.Definitions as Github ()
-import qualified Github.Issues as Github
-import qualified Github.Issues.Comments
-import qualified Github.Issues.Milestones
+import qualified GitHub.Auth as Github
+import qualified GitHub.Data.Repos as Github
+import qualified GitHub.Endpoints.Repos as Github
+import qualified GitHub.Endpoints.Repos.Forks as Github
+import qualified GitHub.Data.PullRequests as Github
+import qualified GitHub.Endpoints.PullRequests as Github
+import qualified GitHub.Endpoints.Activity.Watching as Github
+import qualified GitHub.Endpoints.Activity.Starring as Github
+import qualified GitHub.Data.Definitions as Github ()
+import qualified GitHub.Data.Issues as Github
+import qualified GitHub.Endpoints.Issues as Github
+import qualified GitHub.Endpoints.Issues.Comments
+import qualified GitHub.Endpoints.Issues.Milestones
 
 import Common
 import Utility.State
@@ -77,7 +77,7 @@ data BackupState = BackupState
 	, retriedRequests :: S.Set Request
 	, retriedFailed :: S.Set Request
 	, gitRepo :: Git.Repo
-	, gitHubAuth :: Maybe Github.GithubAuth
+	, gitHubAuth :: Maybe Github.Auth
 	, deferredBackups :: [Backup ()]
 	, catFileHandle :: Maybe CatFileHandle
 	, noForks :: Bool
@@ -162,7 +162,7 @@ pullrequestStore = numHelper "pullrequest" Github.pullRequest' $ \n ->
 	store ("pullrequest" </> show n)
 
 milestonesStore :: Storer
-milestonesStore = simpleHelper "milestone" Github.Issues.Milestones.milestones' $
+milestonesStore = simpleHelper "milestone" GitHub.Endpoints.Issues.Milestones.milestones' $
 	forValues $ \req m -> do
 		let n = Github.milestoneNumber m
 		store ("milestone" </> show n) req m
@@ -184,13 +184,13 @@ issuesStore = withHelper "issue" (\a u r y ->
 		runRequest (RequestNum "issuecomments" repo n)
 
 issuecommentsStore :: Storer
-issuecommentsStore = numHelper "issuecomments" Github.Issues.Comments.comments' $ \n ->
+issuecommentsStore = numHelper "issuecomments" GitHub.Endpoints.Issues.Comments.comments' $ \n ->
 	forValues $ \req c -> do
 		let i = Github.issueCommentId c
 		store ("issue" </> show n ++ "_comment" </> show i) req c
 
 userrepoStore :: Storer
-userrepoStore = simpleHelper "repo" Github.userRepo' $ \req r -> do
+userrepoStore = simpleHelper "repo" Github.repository' $ \req r -> do
 	store "repo" req r
 	when (Github.repoHasWiki r == Just True) $
 		updateWiki $ toGithubUserRepo r
@@ -205,8 +205,8 @@ forksStore = simpleHelper "forks" Github.forksFor' $ \req fs -> do
 forValues :: (Request -> v -> Backup ()) -> Request -> [v] -> Backup ()
 forValues a req vs = forM_ vs (a req)
 
-type ApiCall v = Maybe Github.GithubAuth -> String -> String -> IO (Either Github.Error v)
-type ApiWith v b = Maybe Github.GithubAuth -> String -> String -> b -> IO (Either Github.Error v)
+type ApiCall v = Maybe Github.Auth -> String -> String -> IO (Either Github.Error v)
+type ApiWith v b = Maybe Github.Auth -> String -> String -> b -> IO (Either Github.Error v)
 type ApiNum v = ApiWith v Int
 type Handler v = Request -> v -> Backup ()
 type Helper = Request -> Backup ()
@@ -527,7 +527,7 @@ backupOwner :: Bool -> [GithubUserRepo] -> Owner -> IO ()
 backupOwner noforks exclude (Owner name) = do
 	auth <- getAuth
 	l <- sequence
-	 	[ Github.userRepos' auth name Github.All
+	 	[ Github.userRepos' auth name Github.RepoPublicityAll
 		, Github.reposWatchedBy' auth name
 		, Github.reposStarredBy auth name
 		, Github.organizationRepos' auth name
@@ -551,13 +551,9 @@ backupOwner noforks exclude (Owner name) = do
 	excludeurls = map repoUrl exclude
 	
 	makenameurl repo = 
-#if MIN_VERSION_github(0,10,0)
 		case Github.repoGitUrl repo of
 			Just url -> Just (Github.repoName repo, url)
 			Nothing -> Nothing
-#else
-		Just (Github.repoName repo, Github.repoGitUrl repo)
-#endif
 
 	prepare (dir, url)
 		| url `elem` excludeurls = return Nothing

@@ -30,7 +30,7 @@ Executable github-backup
   Build-Depends: MissingH, hslogger, directory, filepath, containers, mtl,
    network, exceptions, transformers, unix-compat, bytestring,
    IfElse, pretty-show, text, process, optparse-applicative,
-   github >= 0.7.2 && < 0.14.0,
+   github >= 0.14.0 && < 0.15.0,
    base >= 4.5, base < 5
   
   if (! os(windows))
@@ -46,7 +46,7 @@ Executable github-backup
 Executable gitriddance
   Main-Is: gitriddance.hs
   GHC-Options: -Wall -fno-warn-tabs
-  Build-Depends: github >= 0.13.1 && < 0.14.0, base >= 4.5, base < 5, text, filepath,
+  Build-Depends: github >= 0.14.0 && < 0.15.0, base >= 4.5, base < 5, text, filepath,
     MissingH, exceptions, transformers, bytestring, hslogger, process,
     containers, unix-compat, IfElse, directory, mtl
   
