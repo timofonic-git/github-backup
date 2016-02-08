@@ -75,8 +75,9 @@ Bear in mind that this uses the GitHub API; don't run it every 5 minutes.
 GitHub [rate limits](http://developer.github.com/v3/#rate-limiting) the
 API to some small number of requests per hour when used without
 authentication. To avoid this limit, you can set `GITHUB_USER` and
-`GITHUB_PASSWORD` in the environment and it will log in when making 
-(most) API requests.
+`GITHUB_PASSWORD` (or `GITHUB_OAUTH_TOKEN` obtained from
+<https://github.com/settings/tokens>) in the environment and
+it will log in when making (most) API requests.
 
 Anyway, github-backup *does* do an incremental backup, picking up where it
 left off, so will complete the backup eventually even if it's rate limited.
