@@ -1,3 +1,9 @@
+github-backup (1.20160207-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- James McCoy <jamessan@debian.org>  Thu, 18 Feb 2016 23:07:42 -0500
+
 github-backup (1.20160207) unstable; urgency=medium
 
   * Switch to using https instead of git:// for a secure transport.
