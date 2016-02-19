@@ -31,6 +31,7 @@ module Utility.Process (
 	withQuietOutput,
 	feedWithQuietOutput,
 	createProcess,
+	waitForProcess,
 	startInteractiveProcess,
 	stdinHandle,
 	stdoutHandle,
@@ -40,9 +41,12 @@ module Utility.Process (
 	devNull,
 ) where
 
-import qualified System.Process
-import qualified System.Process as X hiding (CreateProcess(..), createProcess, runInteractiveProcess, readProcess, readProcessWithExitCode, system, rawSystem, runInteractiveCommand, runProcess)
-import System.Process hiding (createProcess, readProcess)
+import qualified Utility.Process.Shim
+import qualified Utility.Process.Shim as X hiding (CreateProcess(..), createProcess, runInteractiveProcess, readProcess, readProcessWithExitCode, system, rawSystem, runInteractiveCommand, runProcess)
+import Utility.Process.Shim hiding (createProcess, readProcess, waitForProcess)
+import Utility.Misc
+import Utility.Exception
+
 import System.Exit
 import System.IO
 import System.Log.Logger
@@ -56,9 +60,6 @@ import Control.Applicative
 #endif
 import Data.Maybe
 import Prelude
-
-import Utility.Misc
-import Utility.Exception
 
 type CreateProcessRunner = forall a. CreateProcess -> ((Maybe Handle, Maybe Handle, Maybe Handle, ProcessHandle) -> IO a) -> IO a
 
@@ -171,22 +172,21 @@ createBackgroundProcess p a = a =<< createProcess p
 -- returns a transcript combining its stdout and stderr, and
 -- whether it succeeded or failed.
 processTranscript :: String -> [String] -> (Maybe String) -> IO (String, Bool)
-processTranscript cmd opts input = processTranscript' cmd opts Nothing input
+processTranscript = processTranscript' id
 
-processTranscript' :: String -> [String] -> Maybe [(String, String)] -> (Maybe String) -> IO (String, Bool)
-processTranscript' cmd opts environ input = do
+processTranscript' :: (CreateProcess -> CreateProcess) -> String -> [String] -> Maybe String -> IO (String, Bool)
+processTranscript' modproc cmd opts input = do
 #ifndef mingw32_HOST_OS
 {- This implementation interleves stdout and stderr in exactly the order
  - the process writes them. -}
 	(readf, writef) <- System.Posix.IO.createPipe
 	readh <- System.Posix.IO.fdToHandle readf
 	writeh <- System.Posix.IO.fdToHandle writef
-	p@(_, _, _, pid) <- createProcess $
+	p@(_, _, _, pid) <- createProcess $ modproc $
 		(proc cmd opts)
 			{ std_in = if isJust input then CreatePipe else Inherit
 			, std_out = UseHandle writeh
 			, std_err = UseHandle writeh
-			, env = environ
 			}
 	hClose writeh
 
@@ -198,12 +198,11 @@ processTranscript' cmd opts environ input = do
 	return (transcript, ok)
 #else
 {- This implementation for Windows puts stderr after stdout. -}
-	p@(_, _, _, pid) <- createProcess $
+	p@(_, _, _, pid) <- createProcess $ modproc $
 		(proc cmd opts)
 			{ std_in = if isJust input then CreatePipe else Inherit
 			, std_out = CreatePipe
 			, std_err = CreatePipe
-			, env = environ
 			}
 
 	getout <- mkreader (stdoutHandle p)
@@ -345,22 +344,6 @@ oeHandles _ = error "expected oeHandles"
 processHandle :: (Maybe Handle, Maybe Handle, Maybe Handle, ProcessHandle) -> ProcessHandle
 processHandle (_, _, _, pid) = pid
 
--- | Debugging trace for a CreateProcess.
-debugProcess :: CreateProcess -> IO ()
-debugProcess p = do
-	debugM "Utility.Process" $ unwords
-		[ action ++ ":"
-		, showCmd p
-		]
-  where
-	action
-		| piped (std_in p) && piped (std_out p) = "chat"
-		| piped (std_in p)                      = "feed"
-		| piped (std_out p)                     = "read"
-		| otherwise                             = "call"
-	piped Inherit = False
-	piped _ = True
-
 -- | Shows the command that a CreateProcess will run.
 showCmd :: CreateProcess -> String
 showCmd = go . cmdspec
@@ -385,9 +368,30 @@ startInteractiveProcess cmd args environ = do
 	(Just from, Just to, _, pid) <- createProcess p
 	return (pid, to, from)
 
--- | Wrapper around 'System.Process.createProcess' from System.Process,
--- that does debug logging.
+-- | Wrapper around 'System.Process.createProcess' that does debug logging.
 createProcess :: CreateProcess -> IO (Maybe Handle, Maybe Handle, Maybe Handle, ProcessHandle)
 createProcess p = do
 	debugProcess p
-	System.Process.createProcess p
+	Utility.Process.Shim.createProcess p
+
+-- | Debugging trace for a CreateProcess.
+debugProcess :: CreateProcess -> IO ()
+debugProcess p = debugM "Utility.Process" $ unwords
+	[ action ++ ":"
+	, showCmd p
+	]
+  where
+	action
+		| piped (std_in p) && piped (std_out p) = "chat"
+		| piped (std_in p)                      = "feed"
+		| piped (std_out p)                     = "read"
+		| otherwise                             = "call"
+	piped Inherit = False
+	piped _ = True
+
+-- | Wrapper around 'System.Process.waitForProcess' that does debug logging.
+waitForProcess ::  ProcessHandle -> IO ExitCode
+waitForProcess h = do
+	r <- Utility.Process.Shim.waitForProcess h
+	debugM "Utility.Process" ("process done " ++ show r)
+	return r

@@ -50,11 +50,11 @@ import Utility.Env
 
 repoUrl :: GithubUserRepo -> String
 repoUrl (GithubUserRepo user remote) =
-	"git://github.com/" ++ user ++ "/" ++ remote ++ ".git"
+	"https://github.com/" ++ user ++ "/" ++ remote ++ ".git"
 
 repoWikiUrl :: GithubUserRepo -> String
 repoWikiUrl (GithubUserRepo user remote) =
-	"git://github.com/" ++ user ++ "/" ++ remote ++ ".wiki.git"
+	"https://github.com/" ++ user ++ "/" ++ remote ++ ".wiki.git"
 
 -- A name for a github api call.
 type ApiName = String

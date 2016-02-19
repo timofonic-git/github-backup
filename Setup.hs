@@ -1,5 +1,7 @@
 {- cabal setup file -}
 
+{-# OPTIONS_GHC -fno-warn-tabs #-}
+
 import Distribution.Simple
 import Distribution.Simple.Setup
 
