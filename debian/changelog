@@ -1,11 +1,11 @@
-github-backup (1.20160208) UNRELEASED; urgency=medium
+github-backup (1.20160319) unstable; urgency=medium
 
   * Update to github-0.14.1.
     Building with old versions is not supported due to the massive API
     changes in this version of the github library.
   * Added support for oath tokens.
 
- -- Joey Hess <id@joeyh.name>  Mon, 08 Feb 2016 01:52:37 -0400
+ -- Joey Hess <id@joeyh.name>  Sat, 19 Mar 2016 14:11:55 -0400
 
 github-backup (1.20160207) unstable; urgency=medium
 
