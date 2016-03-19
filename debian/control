@@ -13,7 +13,7 @@ Build-Depends:
 	libghc-exceptions-dev,
 	libghc-transformers-dev,
 	libghc-unix-compat-dev,
-	libghc-optparse-applicative-dev
+	libghc-optparse-applicative-dev,
 	libghc-vector-dev,
 	libghc-utf8-string-dev,
 Maintainer: James McCoy <jamessan@debian.org>
