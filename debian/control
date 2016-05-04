@@ -5,7 +5,7 @@ Build-Depends:
 	debhelper (>= 9),
 	ghc,
 	git,
-	libghc-github-dev (>= 0.13.1),
+	libghc-github-dev (>= 0.14.0), libghc-github-dev (<< 0.15.0),
 	libghc-missingh-dev,
 	libghc-hslogger-dev,
 	libghc-pretty-show-dev,
@@ -13,7 +13,9 @@ Build-Depends:
 	libghc-exceptions-dev,
 	libghc-transformers-dev,
 	libghc-unix-compat-dev,
-	libghc-optparse-applicative-dev
+	libghc-optparse-applicative-dev,
+	libghc-vector-dev,
+	libghc-utf8-string-dev,
 Maintainer: James McCoy <jamessan@debian.org>
 Standards-Version: 3.9.5
 Vcs-Git: git://github.com/joeyh/github-backup.git

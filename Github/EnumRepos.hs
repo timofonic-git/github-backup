@@ -1,9 +1,12 @@
 module Github.EnumRepos where
 
-import qualified Github.Repos as Github
+import qualified GitHub.Data.Repos as Github
+import qualified GitHub.Data.Definitions as Github
+import qualified GitHub.Data.Name as Github
 import Data.List
 import Data.List.Utils
 import Data.Maybe
+import qualified Data.Text as T
 
 import Utility.PartialPrelude
 import qualified Git
@@ -18,12 +21,13 @@ class ToGithubUserRepo a where
 
 instance ToGithubUserRepo Github.Repo where
 	toGithubUserRepo r = GithubUserRepo 
-		(Github.githubOwnerLogin $ Github.repoOwner r)
-		(Github.repoName r)
+		(T.unpack $ Github.untagName $ Github.simpleOwnerLogin $ Github.repoOwner r)
+		(T.unpack $ Github.untagName $ Github.repoName r)
 
 instance ToGithubUserRepo Github.RepoRef where
-	toGithubUserRepo (Github.RepoRef owner name) = 
-		GithubUserRepo (Github.githubOwnerLogin owner) name
+	toGithubUserRepo (Github.RepoRef owner name) = GithubUserRepo
+		(T.unpack $ Github.untagName $ Github.simpleOwnerLogin owner)
+		(T.unpack $ Github.untagName name)
 
 gitHubRepos :: Git.Repo -> [Git.Repo]
 gitHubRepos = fst . unzip . gitHubPairs

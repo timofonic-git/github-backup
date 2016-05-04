@@ -5,17 +5,15 @@
  - Licensed under the GNU GPL version 3 or higher.
  -}
 
-{-# LANGUAGE CPP #-}
-
 module Main where
 
-import qualified Github.Repos as Github
-#if MIN_VERSION_github(0,9,0)
-import qualified Github.Auth as Github
-#endif
-import qualified Github.Issues as Github
-import qualified Github.Issues.Comments as Github
+import qualified GitHub.Endpoints.Repos as Github
+import qualified GitHub.Endpoints.Issues as Github
+import qualified GitHub.Endpoints.Issues.Comments as Github
+import qualified GitHub.Data.Id as Github
 import System.Environment
+import Data.String
+import qualified Data.Text as T
 
 import Common
 import qualified Git
@@ -47,17 +45,17 @@ onlyOriginRemote r = r { Git.remotes = filter isorigin (Git.remotes r) }
   where
 	isorigin rmt = Git.remoteName rmt == Just "origin"
 
-closeall :: Github.GithubAuth -> GithubUserRepo -> String -> IO ()
+closeall :: Github.Auth -> GithubUserRepo -> String -> IO ()
 closeall auth (GithubUserRepo user repo) msg =
 	either (oops "getting issue list") (mapM_ close)
-		=<< Github.issuesForRepo' (Just auth) user repo [Github.Open]
+		=<< Github.issuesForRepo' (Just auth) (fromString user) (fromString repo) [Github.Open]
   where
 	oops action err = error $ "failed " ++ action ++ ": " ++ show err
 	close issue = do
 		let i = Github.issueNumber issue
-		putStrLn $ "closing issue: " ++ Github.issueTitle issue
+		putStrLn $ "closing issue: " ++ T.unpack (Github.issueTitle issue)
 		either (oops "posting comment") (const $ return ())
-			=<< Github.createComment auth user repo i msg
+			=<< Github.createComment auth (fromString user) (fromString repo) (Github.mkId (Github.Id 0) i) (T.pack msg)
 		either (oops "closing issue/pull") (const $ return ())
-			=<< Github.editIssue auth user repo i
-				(Github.editOfIssue { Github.editIssueState = Just "closed" } )
+			=<< Github.editIssue auth (fromString user) (fromString repo) (Github.mkId (Github.Id 0) i)
+				(Github.editOfIssue { Github.editIssueState = Just (T.pack "closed") } )

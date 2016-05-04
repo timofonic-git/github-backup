@@ -5,7 +5,6 @@
  - Licensed under the GNU GPL version 3 or higher.
  -}
 
-{-# LANGUAGE CPP #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE PackageImports #-}
 
@@ -13,23 +12,28 @@ module Main where
 
 import qualified Data.Map as M
 import qualified Data.Set as S
+import qualified Data.Text as T
 import Data.Either
 import Data.Monoid
+import Data.String
+import GHC.Exts (toList)
+import Data.Vector (Vector)
 import Options.Applicative
 import Text.Show.Pretty
 import "mtl" Control.Monad.State.Strict
-import qualified Github.Repos as Github
-#if MIN_VERSION_github(0,9,0)
-import qualified Github.Auth as Github
-#endif
-import qualified Github.Repos.Forks as Github
-import qualified Github.PullRequests as Github
-import qualified Github.Repos.Watching as Github
-import qualified Github.Repos.Starring as Github
-import qualified Github.Data.Definitions as Github ()
-import qualified Github.Issues as Github
-import qualified Github.Issues.Comments
-import qualified Github.Issues.Milestones
+import qualified GitHub.Data.Id as Github
+import qualified GitHub.Data.Name as Github
+import qualified GitHub.Auth as Github
+import qualified GitHub.Data.Repos as Github
+import qualified GitHub.Endpoints.Repos as Github
+import qualified GitHub.Endpoints.Repos.Forks as Github
+import qualified GitHub.Endpoints.PullRequests as Github
+import qualified GitHub.Endpoints.Activity.Watching as Github
+import qualified GitHub.Endpoints.Activity.Starring as Github
+import qualified GitHub.Data.Definitions as Github ()
+import qualified GitHub.Endpoints.Issues as Github
+import qualified GitHub.Endpoints.Issues.Comments
+import qualified GitHub.Endpoints.Issues.Milestones
 
 import Common
 import Utility.State
@@ -77,7 +81,7 @@ data BackupState = BackupState
 	, retriedRequests :: S.Set Request
 	, retriedFailed :: S.Set Request
 	, gitRepo :: Git.Repo
-	, gitHubAuth :: Maybe Github.GithubAuth
+	, gitHubAuth :: Maybe Github.Auth
 	, deferredBackups :: [Backup ()]
 	, catFileHandle :: Maybe CatFileHandle
 	, noForks :: Bool
@@ -154,24 +158,29 @@ pullrequestsStore :: Storer
 pullrequestsStore = simpleHelper "pullrequest" Github.pullRequestsFor' $
 	forValues $ \req r -> do
 		let repo = requestRepo req
-		let n = Github.pullRequestNumber r
+		let n = Github.simplePullRequestNumber r
 		runRequest $ RequestNum "pullrequest" repo n
 
 pullrequestStore :: Storer
-pullrequestStore = numHelper "pullrequest" Github.pullRequest' $ \n ->
+pullrequestStore = numHelper "pullrequest" call $ \n ->
 	store ("pullrequest" </> show n)
+  where
+	call auth user repo n = Github.pullRequest' auth
+		(fromString user)
+		(fromString repo)
+		(Github.mkId (Github.Id 0) n)
 
 milestonesStore :: Storer
-milestonesStore = simpleHelper "milestone" Github.Issues.Milestones.milestones' $
+milestonesStore = simpleHelper "milestone" GitHub.Endpoints.Issues.Milestones.milestones' $
 	forValues $ \req m -> do
 		let n = Github.milestoneNumber m
 		store ("milestone" </> show n) req m
 
 issuesStore :: Storer
 issuesStore = withHelper "issue" (\a u r y ->
-	Github.issuesForRepo' a u r (y <> [Github.Open])
+	Github.issuesForRepo' a (fromString u) (fromString r) (y <> [Github.Open])
 		>>= either (return . Left)
-			(\xs -> Github.issuesForRepo' a u r
+			(\xs -> Github.issuesForRepo' a (fromString u) (fromString r)
 				(y <> [Github.OnlyClosed])
 					>>= either (return . Left)
 						(\ys -> return (Right (xs <> ys)))))
@@ -184,13 +193,18 @@ issuesStore = withHelper "issue" (\a u r y ->
 		runRequest (RequestNum "issuecomments" repo n)
 
 issuecommentsStore :: Storer
-issuecommentsStore = numHelper "issuecomments" Github.Issues.Comments.comments' $ \n ->
+issuecommentsStore = numHelper "issuecomments" call $ \n ->
 	forValues $ \req c -> do
 		let i = Github.issueCommentId c
 		store ("issue" </> show n ++ "_comment" </> show i) req c
+  where
+	call auth user repo n = GitHub.Endpoints.Issues.Comments.comments' auth
+		(fromString user)
+		(fromString repo)
+		(Github.mkId (Github.Id 0) n)
 
 userrepoStore :: Storer
-userrepoStore = simpleHelper "repo" Github.userRepo' $ \req r -> do
+userrepoStore = simpleHelper "repo" Github.repository' $ \req r -> do
 	store "repo" req r
 	when (Github.repoHasWiki r == Just True) $
 		updateWiki $ toGithubUserRepo r
@@ -202,11 +216,11 @@ forksStore = simpleHelper "forks" Github.forksFor' $ \req fs -> do
 	storeSorted "forks" req fs
 	mapM_ addFork fs
 
-forValues :: (Request -> v -> Backup ()) -> Request -> [v] -> Backup ()
-forValues a req vs = forM_ vs (a req)
+forValues :: (Request -> v -> Backup ()) -> Request -> Vector v -> Backup ()
+forValues a req vs = forM_ (toList vs) (a req)
 
-type ApiCall v = Maybe Github.GithubAuth -> String -> String -> IO (Either Github.Error v)
-type ApiWith v b = Maybe Github.GithubAuth -> String -> String -> b -> IO (Either Github.Error v)
+type ApiCall v = Maybe Github.Auth -> Github.Name Github.Owner -> Github.Name Github.Repo -> IO (Either Github.Error v)
+type ApiWith v b = Maybe Github.Auth -> String -> String -> b -> IO (Either Github.Error v)
 type ApiNum v = ApiWith v Int
 type Handler v = Request -> v -> Backup ()
 type Helper = Request -> Backup ()
@@ -215,7 +229,8 @@ simpleHelper :: FilePath -> ApiCall v -> Handler v -> Helper
 simpleHelper dest call handler req@(RequestSimple _ (GithubUserRepo user repo)) =
 	deferOn dest req $ do
 		auth <- getState gitHubAuth
-		either (failedRequest req) (handler req) =<< liftIO (call auth user repo)
+		either (failedRequest req) (handler req)
+			=<< liftIO (call auth (fromString user) (fromString repo))
 simpleHelper _ _ _ r = badRequest r
 
 withHelper :: FilePath -> ApiWith v b -> b -> Handler v -> Helper
@@ -229,7 +244,8 @@ numHelper :: FilePath -> ApiNum v -> (Int -> Handler v) -> Helper
 numHelper dest call handler req@(RequestNum _ (GithubUserRepo user repo) num) =
 	deferOn dest req $ do
 		auth <- getState gitHubAuth
-		either (failedRequest req) (handler num req) =<< liftIO (call auth user repo num)
+		either (failedRequest req) (handler num req)
+			=<< liftIO (call auth user repo num)
 numHelper _ _ _ r = badRequest r
 
 badRequest :: Request -> a
@@ -277,8 +293,8 @@ workDir = (</>)
 		<$> (Git.repoPath <$> getState gitRepo)
 		<*> pure "github-backup.tmp"
 
-storeSorted :: Ord a => Show a => FilePath -> Request -> [a] -> Backup ()
-storeSorted file req val = store file req (sort val)
+storeSorted :: Ord a => Show a => FilePath -> Request -> Vector a -> Backup ()
+storeSorted file req val = store file req (sort $ toList val)
 
 {- Commits all files in the workDir into the github branch, and deletes the
  - workDir.
@@ -527,12 +543,12 @@ backupOwner :: Bool -> [GithubUserRepo] -> Owner -> IO ()
 backupOwner noforks exclude (Owner name) = do
 	auth <- getAuth
 	l <- sequence
-	 	[ Github.userRepos' auth name Github.All
-		, Github.reposWatchedBy' auth name
-		, Github.reposStarredBy auth name
-		, Github.organizationRepos' auth name
+	 	[ Github.userRepos' auth (fromString name) Github.RepoPublicityAll
+		, Github.reposWatchedBy' auth (fromString name)
+		, Github.reposStarredBy auth (fromString name)
+		, Github.organizationRepos' auth (fromString name) Github.RepoPublicityAll
 		]
-	let nameurls = nub $ mapMaybe makenameurl $ concat $ rights l
+	let nameurls = nub $ mapMaybe makenameurl $ concatMap toList $ rights l
 	when (null nameurls) $
 		if (null $ rights l)
 			then error $ unlines $ "Failed to query github for repos:" : map show (lefts l)
@@ -551,13 +567,9 @@ backupOwner noforks exclude (Owner name) = do
 	excludeurls = map repoUrl exclude
 	
 	makenameurl repo = 
-#if MIN_VERSION_github(0,10,0)
 		case Github.repoGitUrl repo of
-			Just url -> Just (Github.repoName repo, url)
+			Just url -> Just (T.unpack $ Github.untagName $ Github.repoName repo, T.unpack url)
 			Nothing -> Nothing
-#else
-		Just (Github.repoName repo, Github.repoGitUrl repo)
-#endif
 
 	prepare (dir, url)
 		| url `elem` excludeurls = return Nothing
