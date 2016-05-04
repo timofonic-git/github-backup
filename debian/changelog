@@ -1,3 +1,11 @@
+github-backup (1.20160319-1) UNRELEASED; urgency=medium
+
+  * New upstream release.
+    + Ported to new haskell-github, which fixes "failed to parse" JsonErrors.
+      (Closes: #819556)
+
+ -- James McCoy <jamessan@debian.org>  Tue, 03 May 2016 22:07:03 -0400
+
 github-backup (1.20160319) unstable; urgency=medium
 
   * Update to github-0.14.1.
