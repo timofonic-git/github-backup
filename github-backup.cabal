@@ -60,6 +60,9 @@ Executable gitriddance
   else
     Build-Depends: network (< 2.6), network (>= 2.0)
 
+custom-setup
+  Setup-Depends: base (>= 4.5), hslogger, MissingH
+
 source-repository head
   type: git
   location: git://github.com/joeyh/github-backup.git
