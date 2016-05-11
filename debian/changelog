@@ -1,9 +1,9 @@
-github-backup (1.20160320) UNRELEASED; urgency=medium
+github-backup (1.20160511) unstable; urgency=medium
 
   * Fix build with directory-1.2.6.2.
   * github-backup.cabal: Add Setup-Depends.
 
- -- Joey Hess <id@joeyh.name>  Thu, 28 Apr 2016 15:33:14 -0400
+ -- Joey Hess <id@joeyh.name>  Wed, 11 May 2016 13:12:12 -0400
 
 github-backup (1.20160319) unstable; urgency=medium
 
