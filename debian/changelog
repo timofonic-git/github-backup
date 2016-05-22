@@ -6,6 +6,10 @@ github-backup (1.20160522) unstable; urgency=medium
     with git-annex.
   * debian: Add lintian overrides for rpath.
   * debian: Bump standards-version.
+  * Makefile: Pass LDFLAGS, CFLAGS, and CPPFLAGS through ghc and on to 
+    ld, cc, and cpp. This lets the Debian package build with various
+    hardening options. Although their benefit to a largely haskell program
+    is unknown.
 
  -- Joey Hess <id@joeyh.name>  Sun, 22 May 2016 15:24:04 -0400
 
