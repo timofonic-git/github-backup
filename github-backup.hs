@@ -50,6 +50,7 @@ import Github.EnumRepos
 import Git.HashObject
 import Git.FilePath
 import Git.CatFile
+import Git.Index
 import Utility.Env
 
 repoUrl :: GithubUserRepo -> String
@@ -348,9 +349,9 @@ getBranch = maybe (hasOrigin >>= create) return =<< branchsha
 withIndex :: Backup a -> Backup a
 withIndex a = do
 	r <- getState gitRepo
-	let f = Git.localGitDir r </> "github-backup.index"
+	f <- liftIO $ indexEnvVal $ Git.localGitDir r </> "github-backup.index"
 	e <- liftIO getEnvironment
-	let r' = r { Git.Types.gitEnv = Just $ ("GIT_INDEX_FILE", f):e }
+	let r' = r { Git.Types.gitEnv = Just $ (indexEnv, f):e }
 	changeState $ \s -> s { gitRepo = r' }
 	v <- a
 	changeState $ \s -> s { gitRepo = (gitRepo s) { Git.Types.gitEnv = Git.Types.gitEnv r } }
