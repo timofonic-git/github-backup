@@ -17,7 +17,7 @@ Build-Depends:
 	libghc-vector-dev,
 	libghc-utf8-string-dev,
 Maintainer: James McCoy <jamessan@debian.org>
-Standards-Version: 3.9.5
+Standards-Version: 3.9.8
 Vcs-Git: git://github.com/joeyh/github-backup.git
 Homepage: http://github.com/joeyh/github-backup
 
