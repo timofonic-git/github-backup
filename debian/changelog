@@ -1,3 +1,10 @@
+github-backup (1.20160512) UNRELEASED; urgency=medium
+
+  * Various updates to internal git and utility libraries shared
+    with git-annex.
+
+ -- Joey Hess <id@joeyh.name>  Sun, 22 May 2016 15:20:45 -0400
+
 github-backup (1.20160511) unstable; urgency=medium
 
   * Fix build with directory-1.2.6.2.
