@@ -4,6 +4,7 @@ github-backup (1.20160522) unstable; urgency=medium
     when in a subdirectory of the repository.
   * Various updates to internal git and utility libraries shared
     with git-annex.
+  * debian: Add lintian overrides for rpath.
 
  -- Joey Hess <id@joeyh.name>  Sun, 22 May 2016 15:24:04 -0400
 
