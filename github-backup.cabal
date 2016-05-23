@@ -1,5 +1,5 @@
 Name: github-backup
-Version: 1.20160319
+Version: 1.20160522
 Cabal-Version: >= 1.8
 Maintainer: Joey Hess <joey@kitenet.net>
 Author: Joey Hess
@@ -59,6 +59,9 @@ Executable gitriddance
     Build-Depends: network-uri (>= 2.6), network (>= 2.6)
   else
     Build-Depends: network (< 2.6), network (>= 2.0)
+
+custom-setup
+  Setup-Depends: base (>= 4.5), hslogger, MissingH
 
 source-repository head
   type: git

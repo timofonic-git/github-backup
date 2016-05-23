@@ -1,3 +1,25 @@
+github-backup (1.20160522) unstable; urgency=medium
+
+  * Work around git weirdness in handling of relative path to GIT_INDEX_FILE
+    when in a subdirectory of the repository.
+  * Various updates to internal git and utility libraries shared
+    with git-annex.
+  * debian: Add lintian overrides for rpath.
+  * debian: Bump standards-version.
+  * Makefile: Pass LDFLAGS, CFLAGS, and CPPFLAGS through ghc and on to 
+    ld, cc, and cpp. This lets the Debian package build with various
+    hardening options. Although their benefit to a largely haskell program
+    is unknown.
+
+ -- Joey Hess <id@joeyh.name>  Sun, 22 May 2016 15:24:04 -0400
+
+github-backup (1.20160511) unstable; urgency=medium
+
+  * Fix build with directory-1.2.6.2.
+  * github-backup.cabal: Add Setup-Depends.
+
+ -- Joey Hess <id@joeyh.name>  Wed, 11 May 2016 13:12:12 -0400
+
 github-backup (1.20160319-1) unstable; urgency=medium
 
   * New upstream release.
