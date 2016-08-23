@@ -5,9 +5,18 @@ pull requests, watchers, and stars.
 
 ## Installation
 
-    cabal install github-backup --bindir=$HOME/bin
+First install Haskell's [stack](http://haskellstack.org/) tool.
+For example, on a Debian system:
 
-(Cabal is bundled with the [Haskell Platform](http://www.haskell.org/platform/).)
+	sudo apt-get install haskell-stack
+
+Then to build and install github-backup:
+
+	stack install github-backup
+
+There is also a Makefile, which uses cabal to build, and installs
+a man page, bash completion file, etc. This is recommended for use when
+making packages of github-backup.
 
 ## Use
 
@@ -82,14 +91,9 @@ it will log in when making (most) API requests.
 Anyway, github-backup *does* do an incremental backup, picking up where it
 left off, so will complete the backup eventually even if it's rate limited.
 
-## Contributing
-
-Besides the cabal instalation you can also use [stack](https://www.stackage.org) to build from sources.
-Once you have stack installed just type ```stack build``` in the repo root directory.
-
 ## Author
 
-github-backup was written by Joey Hess <joey@kitenet.net>
+github-backup was written by Joey Hess <id@joeyh.name>
 
 It is made possible thanks to:
 

@@ -1,14 +1,13 @@
 Name: github-backup
 Version: 1.20160522
 Cabal-Version: >= 1.8
-Maintainer: Joey Hess <joey@kitenet.net>
+Maintainer: Joey Hess <id@joeyh.name>
 Author: Joey Hess
 Stability: Stable
 Copyright: 2012 Joey Hess
 License: GPL-3
 License-File: COPYRIGHT
 Build-Type: Custom
-Extra-Source-Files: CHANGELOG
 Homepage: https://github.com/joeyh/github-backup
 Category: Utility
 Synopsis: backs up everything github knows about a repository, to the repository
@@ -19,6 +18,17 @@ Description:
 
  Also includes gitriddance, which can be used to close all open issues and
  pull requests.
+Extra-Source-Files:
+  stack.yaml
+  README.md
+  CHANGELOG
+  COPYRIGHT
+  GPL
+  github-backup.1
+  gitriddance.1
+  Makefile
+  configure.hs
+  Build/collect-ghc-options.sh
 
 Flag network-uri
   Description: Get Network.URI from the network-uri package
@@ -42,11 +52,58 @@ Executable github-backup
     Build-Depends: network-uri (>= 2.6), network (>= 2.6)
   else
     Build-Depends: network (< 2.6), network (>= 2.0)
+  
+  Other-Modules:
+    Build.Version
+    Build.TestConfig
+    Build.Configure
+    Common
+    Github.GetAuth
+    Github.EnumRepos
+    Git
+    Git.CatFile
+    Git.Branch
+    Git.Ref
+    Git.Url
+    Git.Command
+    Git.Version
+    Git.Construct
+    Git.Config
+    Git.UpdateIndex
+    Git.FilePath
+    Git.Types
+    Git.DiffTreeItem
+    Git.Queue
+    Git.BuildVersion
+    Git.HashObject
+    Git.Index
+    Git.Sha
+    Git.Remote
+    Utility.Tmp
+    Utility.Path
+    Utility.FileSystemEncoding
+    Utility.Monad
+    Utility.SafeCommand
+    Utility.Exception
+    Utility.State
+    Utility.Process
+    Utility.FileMode
+    Utility.CoProcess
+    Utility.Process.Shim
+    Utility.UserInfo
+    Utility.Misc
+    Utility.Env
+    Utility.PosixFiles
+    Utility.Data
+    Utility.PartialPrelude
+    Utility.DottedVersion
+    Utility.Applicative
+    Utility.Directory
 
 Executable gitriddance
   Main-Is: gitriddance.hs
   GHC-Options: -Wall -fno-warn-tabs
-  Build-Depends: github >= 0.14.0 && < 0.15.0, base >= 4.5, base < 5, text, filepath,
+  Build-Depends: github >= 0.14.0 && < 0.15.0, base >= 4.8, base < 5, text, filepath,
     MissingH, exceptions, transformers, bytestring, vector, hslogger, process,
     containers, unix-compat, IfElse, directory, mtl, utf8-string
   
