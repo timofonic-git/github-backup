@@ -1,3 +1,9 @@
+github-backup (1.20160523) UNRELEASED; urgency=medium
+
+  * Increase base bounds to 4.8 to get mapM_ etc that works on Vector.
+
+ -- Joey Hess <id@joeyh.name>  Mon, 22 Aug 2016 22:16:07 -0400
+
 github-backup (1.20160522) unstable; urgency=medium
 
   * Work around git weirdness in handling of relative path to GIT_INDEX_FILE
