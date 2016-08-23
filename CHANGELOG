@@ -7,6 +7,8 @@ github-backup (1.20160523) unstable; urgency=medium
     source files in the future; the purpose of that tarball is to make
     stack/cabal install work, not to be a complete source distribution.
     Use git repository to get complete source.
+  * Various updates to internal git and utility libraries shared
+    with git-annex.
 
  -- Joey Hess <id@joeyh.name>  Mon, 22 Aug 2016 23:32:18 -0400
 
