@@ -1,4 +1,4 @@
-github-backup (1.20160523) unstable; urgency=medium
+github-backup (1.20160922) unstable; urgency=medium
 
   * Increase base bounds to 4.8 to get mapM_ etc that works on Vector.
   * Recommended build method is now to use stack, for more reliable builds.
@@ -10,7 +10,7 @@ github-backup (1.20160523) unstable; urgency=medium
   * Various updates to internal git and utility libraries shared
     with git-annex.
 
- -- Joey Hess <id@joeyh.name>  Mon, 22 Aug 2016 23:32:18 -0400
+ -- Joey Hess <id@joeyh.name>  Mon, 22 Aug 2016 23:57:16 -0400
 
 github-backup (1.20160522) unstable; urgency=medium
 
