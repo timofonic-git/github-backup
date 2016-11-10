@@ -12,7 +12,6 @@ import Data.List as X hiding (head, tail, init, last)
 import Data.String.Utils as X hiding (join)
 
 import System.FilePath as X
-import System.Directory as X
 import System.IO as X hiding (FilePath)
 import System.PosixCompat.Files as X
 #ifndef mingw32_HOST_OS
