@@ -1,9 +1,9 @@
-github-backup (1.20160522-2) UNRELEASED; urgency=medium
+github-backup (1.20160522-2) unstable; urgency=medium
 
   * Add remove-System.Directory-import patch to fix build with recent directory
     module.  (Closes: #842515)
 
- -- James McCoy <jamessan@debian.org>  Thu, 10 Nov 2016 00:19:16 -0500
+ -- James McCoy <jamessan@debian.org>  Thu, 10 Nov 2016 00:22:04 -0500
 
 github-backup (1.20160522-1) unstable; urgency=medium
 
