@@ -1,3 +1,12 @@
+github-backup (1.20161110) unstable; urgency=medium
+
+  * Fix build with recent versions of the directory package.
+    Thanks, James McCoy.
+  * Various updates to internal git and utility libraries shared
+    with git-annex.
+
+ -- Joey Hess <id@joeyh.name>  Thu, 10 Nov 2016 11:55:44 -0400
+
 github-backup (1.20160922) unstable; urgency=medium
 
   * Increase base bounds to 4.8 to get mapM_ etc that works on Vector.
