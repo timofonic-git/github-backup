@@ -12,7 +12,6 @@ import Data.List as X hiding (head, tail, init, last)
 import Data.String.Utils as X hiding (join)
 
 import System.FilePath as X
-import System.Directory as X
 import System.IO as X hiding (FilePath)
 import System.PosixCompat.Files as X
 #ifndef mingw32_HOST_OS
@@ -20,6 +19,7 @@ import System.Posix.IO as X hiding (createPipe)
 #endif
 import System.Exit as X
 
+import Utility.SystemDirectory as X
 import Utility.Misc as X
 import Utility.Exception as X
 import Utility.SafeCommand as X
