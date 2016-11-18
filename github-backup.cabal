@@ -119,7 +119,8 @@ Executable gitriddance
     Build-Depends: network (< 2.6), network (>= 2.0)
 
 custom-setup
-  Setup-Depends: base (>= 4.5), hslogger, MissingH
+  Setup-Depends: base (>= 4.5), hslogger, MissingH, directory, process,
+    unix-compat, unix, exceptions, bytestring, filepath, IfElse, mtl, Cabal
 
 source-repository head
   type: git

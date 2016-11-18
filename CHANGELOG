@@ -1,3 +1,9 @@
+github-backup (1.20161111) UNRELEASED; urgency=medium
+
+  * Fix build with recent versions of cabal.
+
+ -- Joey Hess <id@joeyh.name>  Fri, 18 Nov 2016 12:58:08 -0400
+
 github-backup (1.20161110) unstable; urgency=medium
 
   * Fix build with recent versions of the directory package.
