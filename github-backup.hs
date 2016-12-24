@@ -52,6 +52,7 @@ import Git.FilePath
 import Git.CatFile
 import Git.Index
 import Utility.Env
+import Utility.FileSystemEncoding
 
 repoUrl :: GithubUserRepo -> String
 repoUrl (GithubUserRepo user remote) =
@@ -618,7 +619,9 @@ parseUserRepo s =
 	in GithubUserRepo user repo
 
 main :: IO ()
-main = execParser opts >>= go
+main = do
+	useFileSystemEncoding
+	execParser opts >>= go
   where
 	opts = info (helper <*> options)
 		( fullDesc

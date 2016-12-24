@@ -1,3 +1,10 @@
+github-backup (1.20161119) UNRELEASED; urgency=medium
+
+  * Various updates to internal git and utility libraries shared
+    with git-annex.
+
+ -- Joey Hess <id@joeyh.name>  Sat, 24 Dec 2016 14:57:02 -0400
+
 github-backup (1.20161118) unstable; urgency=medium
 
   * Fix build with recent versions of cabal.
