@@ -10,9 +10,9 @@ For example, on a Debian system:
 
 	sudo apt-get install haskell-stack
 
-Then to build and install github-backup:
+Then to build and install github-backup, clone it, cd inside, and run:
 
-	stack install github-backup
+	stack install
 
 There is also a Makefile, which uses cabal to build, and installs
 a man page, bash completion file, etc. This is recommended for use when
