@@ -1,0 +1,73 @@
+Repo
+  { repoSshUrl =
+      Just (URL "git@github.com:codeqqby/github-backup.git")
+  , repoDescription =
+      Just
+        "backs up everything github knows about a repository, to the repository"
+  , repoCreatedAt = Just 2016 (-12) (-22) 03 : 08 : 36 UTC
+  , repoHtmlUrl = URL "https://github.com/codeqqby/github-backup"
+  , repoSvnUrl =
+      Just (URL "https://github.com/codeqqby/github-backup")
+  , repoForks = Just 0
+  , repoHomepage = Just ""
+  , repoFork = Just True
+  , repoGitUrl =
+      Just (URL "git://github.com/codeqqby/github-backup.git")
+  , repoPrivate = False
+  , repoCloneUrl =
+      Just (URL "https://github.com/codeqqby/github-backup.git")
+  , repoSize = Just 673
+  , repoUpdatedAt = Just 2016 (-12) (-22) 03 : 08 : 39 UTC
+  , repoWatchers = Just 0
+  , repoOwner =
+      SimpleOwner
+        { simpleOwnerId = Id 16679188
+        , simpleOwnerLogin = N "codeqqby"
+        , simpleOwnerUrl = URL "https://api.github.com/users/codeqqby"
+        , simpleOwnerAvatarUrl =
+            URL "https://avatars.githubusercontent.com/u/16679188?v=3"
+        , simpleOwnerType = OwnerUser
+        }
+  , repoName = N "github-backup"
+  , repoLanguage = Just (Language "Haskell")
+  , repoDefaultBranch = Just "master"
+  , repoPushedAt = Just 2016 (-11) (-18) 17 : 00 : 50 UTC
+  , repoId = Id 77106982
+  , repoUrl =
+      URL "https://api.github.com/repos/codeqqby/github-backup"
+  , repoOpenIssues = Just 0
+  , repoHasWiki = Just True
+  , repoHasIssues = Just False
+  , repoHasDownloads = Just True
+  , repoParent =
+      Just
+        RepoRef
+          { repoRefOwner =
+              SimpleOwner
+                { simpleOwnerId = Id 16392
+                , simpleOwnerLogin = N "joeyh"
+                , simpleOwnerUrl = URL "https://api.github.com/users/joeyh"
+                , simpleOwnerAvatarUrl =
+                    URL "https://avatars.githubusercontent.com/u/16392?v=3"
+                , simpleOwnerType = OwnerUser
+                }
+          , repoRefRepo = N "github-backup"
+          }
+  , repoSource =
+      Just
+        RepoRef
+          { repoRefOwner =
+              SimpleOwner
+                { simpleOwnerId = Id 16392
+                , simpleOwnerLogin = N "joeyh"
+                , simpleOwnerUrl = URL "https://api.github.com/users/joeyh"
+                , simpleOwnerAvatarUrl =
+                    URL "https://avatars.githubusercontent.com/u/16392?v=3"
+                , simpleOwnerType = OwnerUser
+                }
+          , repoRefRepo = N "github-backup"
+          }
+  , repoHooksUrl =
+      URL "https://api.github.com/repos/codeqqby/github-backup/hooks"
+  , repoStargazersCount = 0
+  }

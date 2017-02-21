@@ -1,0 +1,73 @@
+Repo
+  { repoSshUrl =
+      Just (URL "git@github.com:isaacwong/github-backup.git")
+  , repoDescription =
+      Just
+        "backs up everything github knows about a repository, to the repository"
+  , repoCreatedAt = Just 2017 (-01) (-31) 18 : 43 : 44 UTC
+  , repoHtmlUrl = URL "https://github.com/isaacwong/github-backup"
+  , repoSvnUrl =
+      Just (URL "https://github.com/isaacwong/github-backup")
+  , repoForks = Just 0
+  , repoHomepage = Just ""
+  , repoFork = Just True
+  , repoGitUrl =
+      Just (URL "git://github.com/isaacwong/github-backup.git")
+  , repoPrivate = False
+  , repoCloneUrl =
+      Just (URL "https://github.com/isaacwong/github-backup.git")
+  , repoSize = Just 670
+  , repoUpdatedAt = Just 2017 (-01) (-31) 18 : 43 : 46 UTC
+  , repoWatchers = Just 0
+  , repoOwner =
+      SimpleOwner
+        { simpleOwnerId = Id 225568
+        , simpleOwnerLogin = N "isaacwong"
+        , simpleOwnerUrl = URL "https://api.github.com/users/isaacwong"
+        , simpleOwnerAvatarUrl =
+            URL "https://avatars.githubusercontent.com/u/225568?v=3"
+        , simpleOwnerType = OwnerUser
+        }
+  , repoName = N "github-backup"
+  , repoLanguage = Just (Language "Haskell")
+  , repoDefaultBranch = Just "master"
+  , repoPushedAt = Just 2017 (-01) (-24) 14 : 38 : 08 UTC
+  , repoId = Id 80550125
+  , repoUrl =
+      URL "https://api.github.com/repos/isaacwong/github-backup"
+  , repoOpenIssues = Just 0
+  , repoHasWiki = Just True
+  , repoHasIssues = Just False
+  , repoHasDownloads = Just True
+  , repoParent =
+      Just
+        RepoRef
+          { repoRefOwner =
+              SimpleOwner
+                { simpleOwnerId = Id 16392
+                , simpleOwnerLogin = N "joeyh"
+                , simpleOwnerUrl = URL "https://api.github.com/users/joeyh"
+                , simpleOwnerAvatarUrl =
+                    URL "https://avatars.githubusercontent.com/u/16392?v=3"
+                , simpleOwnerType = OwnerUser
+                }
+          , repoRefRepo = N "github-backup"
+          }
+  , repoSource =
+      Just
+        RepoRef
+          { repoRefOwner =
+              SimpleOwner
+                { simpleOwnerId = Id 16392
+                , simpleOwnerLogin = N "joeyh"
+                , simpleOwnerUrl = URL "https://api.github.com/users/joeyh"
+                , simpleOwnerAvatarUrl =
+                    URL "https://avatars.githubusercontent.com/u/16392?v=3"
+                , simpleOwnerType = OwnerUser
+                }
+          , repoRefRepo = N "github-backup"
+          }
+  , repoHooksUrl =
+      URL "https://api.github.com/repos/isaacwong/github-backup/hooks"
+  , repoStargazersCount = 0
+  }

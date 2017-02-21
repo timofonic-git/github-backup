@@ -1,0 +1,73 @@
+Repo
+  { repoSshUrl =
+      Just (URL "git@github.com:rubycourse/github-backup.git")
+  , repoDescription =
+      Just
+        "backs up everything github knows about a repository, to the repository"
+  , repoCreatedAt = Just 2016 (-12) (-16) 16 : 12 : 43 UTC
+  , repoHtmlUrl = URL "https://github.com/rubycourse/github-backup"
+  , repoSvnUrl =
+      Just (URL "https://github.com/rubycourse/github-backup")
+  , repoForks = Just 0
+  , repoHomepage = Just ""
+  , repoFork = Just True
+  , repoGitUrl =
+      Just (URL "git://github.com/rubycourse/github-backup.git")
+  , repoPrivate = False
+  , repoCloneUrl =
+      Just (URL "https://github.com/rubycourse/github-backup.git")
+  , repoSize = Just 673
+  , repoUpdatedAt = Just 2016 (-12) (-16) 16 : 12 : 44 UTC
+  , repoWatchers = Just 0
+  , repoOwner =
+      SimpleOwner
+        { simpleOwnerId = Id 19244902
+        , simpleOwnerLogin = N "rubycourse"
+        , simpleOwnerUrl = URL "https://api.github.com/users/rubycourse"
+        , simpleOwnerAvatarUrl =
+            URL "https://avatars.githubusercontent.com/u/19244902?v=3"
+        , simpleOwnerType = OwnerUser
+        }
+  , repoName = N "github-backup"
+  , repoLanguage = Just (Language "Haskell")
+  , repoDefaultBranch = Just "master"
+  , repoPushedAt = Just 2016 (-11) (-18) 17 : 00 : 50 UTC
+  , repoId = Id 76667320
+  , repoUrl =
+      URL "https://api.github.com/repos/rubycourse/github-backup"
+  , repoOpenIssues = Just 0
+  , repoHasWiki = Just True
+  , repoHasIssues = Just False
+  , repoHasDownloads = Just True
+  , repoParent =
+      Just
+        RepoRef
+          { repoRefOwner =
+              SimpleOwner
+                { simpleOwnerId = Id 16392
+                , simpleOwnerLogin = N "joeyh"
+                , simpleOwnerUrl = URL "https://api.github.com/users/joeyh"
+                , simpleOwnerAvatarUrl =
+                    URL "https://avatars.githubusercontent.com/u/16392?v=3"
+                , simpleOwnerType = OwnerUser
+                }
+          , repoRefRepo = N "github-backup"
+          }
+  , repoSource =
+      Just
+        RepoRef
+          { repoRefOwner =
+              SimpleOwner
+                { simpleOwnerId = Id 16392
+                , simpleOwnerLogin = N "joeyh"
+                , simpleOwnerUrl = URL "https://api.github.com/users/joeyh"
+                , simpleOwnerAvatarUrl =
+                    URL "https://avatars.githubusercontent.com/u/16392?v=3"
+                , simpleOwnerType = OwnerUser
+                }
+          , repoRefRepo = N "github-backup"
+          }
+  , repoHooksUrl =
+      URL "https://api.github.com/repos/rubycourse/github-backup/hooks"
+  , repoStargazersCount = 0
+  }

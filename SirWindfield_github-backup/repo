@@ -1,0 +1,73 @@
+Repo
+  { repoSshUrl =
+      Just (URL "git@github.com:SirWindfield/github-backup.git")
+  , repoDescription =
+      Just
+        "backs up everything github knows about a repository, to the repository"
+  , repoCreatedAt = Just 2017 (-02) (-13) 19 : 57 : 10 UTC
+  , repoHtmlUrl = URL "https://github.com/SirWindfield/github-backup"
+  , repoSvnUrl =
+      Just (URL "https://github.com/SirWindfield/github-backup")
+  , repoForks = Just 0
+  , repoHomepage = Just ""
+  , repoFork = Just True
+  , repoGitUrl =
+      Just (URL "git://github.com/SirWindfield/github-backup.git")
+  , repoPrivate = False
+  , repoCloneUrl =
+      Just (URL "https://github.com/SirWindfield/github-backup.git")
+  , repoSize = Just 670
+  , repoUpdatedAt = Just 2017 (-02) (-13) 19 : 57 : 12 UTC
+  , repoWatchers = Just 0
+  , repoOwner =
+      SimpleOwner
+        { simpleOwnerId = Id 5113257
+        , simpleOwnerLogin = N "SirWindfield"
+        , simpleOwnerUrl = URL "https://api.github.com/users/SirWindfield"
+        , simpleOwnerAvatarUrl =
+            URL "https://avatars.githubusercontent.com/u/5113257?v=3"
+        , simpleOwnerType = OwnerUser
+        }
+  , repoName = N "github-backup"
+  , repoLanguage = Just (Language "Haskell")
+  , repoDefaultBranch = Just "master"
+  , repoPushedAt = Just 2017 (-01) (-24) 14 : 38 : 08 UTC
+  , repoId = Id 81865178
+  , repoUrl =
+      URL "https://api.github.com/repos/SirWindfield/github-backup"
+  , repoOpenIssues = Just 0
+  , repoHasWiki = Just True
+  , repoHasIssues = Just False
+  , repoHasDownloads = Just True
+  , repoParent =
+      Just
+        RepoRef
+          { repoRefOwner =
+              SimpleOwner
+                { simpleOwnerId = Id 16392
+                , simpleOwnerLogin = N "joeyh"
+                , simpleOwnerUrl = URL "https://api.github.com/users/joeyh"
+                , simpleOwnerAvatarUrl =
+                    URL "https://avatars.githubusercontent.com/u/16392?v=3"
+                , simpleOwnerType = OwnerUser
+                }
+          , repoRefRepo = N "github-backup"
+          }
+  , repoSource =
+      Just
+        RepoRef
+          { repoRefOwner =
+              SimpleOwner
+                { simpleOwnerId = Id 16392
+                , simpleOwnerLogin = N "joeyh"
+                , simpleOwnerUrl = URL "https://api.github.com/users/joeyh"
+                , simpleOwnerAvatarUrl =
+                    URL "https://avatars.githubusercontent.com/u/16392?v=3"
+                , simpleOwnerType = OwnerUser
+                }
+          , repoRefRepo = N "github-backup"
+          }
+  , repoHooksUrl =
+      URL "https://api.github.com/repos/SirWindfield/github-backup/hooks"
+  , repoStargazersCount = 0
+  }

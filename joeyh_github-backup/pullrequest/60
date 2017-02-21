@@ -1,0 +1,173 @@
+PullRequest
+  { pullRequestClosedAt = Nothing
+  , pullRequestCreatedAt = 2016 (-07) (-13) 15 : 41 : 40 UTC
+  , pullRequestUser =
+      SimpleUser
+        { simpleUserId = Id 141546
+        , simpleUserLogin = N "jwilk"
+        , simpleUserAvatarUrl =
+            URL "https://avatars.githubusercontent.com/u/141546?v=3"
+        , simpleUserUrl = URL "https://api.github.com/users/jwilk"
+        }
+  , pullRequestPatchUrl =
+      URL "https://github.com/joeyh/github-backup/pull/60.patch"
+  , pullRequestState = StateOpen
+  , pullRequestNumber = 60
+  , pullRequestHtmlUrl =
+      URL "https://github.com/joeyh/github-backup/pull/60"
+  , pullRequestUpdatedAt = 2016 (-12) (-06) 23 : 59 : 00 UTC
+  , pullRequestBody =
+      Just
+        "Found using [mwic](http://jwilk.net/software/mwic) and [anorack](https://github.com/jwilk/anorack).\n"
+  , pullRequestAssignees = []
+  , pullRequestIssueUrl =
+      URL "https://api.github.com/repos/joeyh/github-backup/issues/60"
+  , pullRequestDiffUrl =
+      URL "https://github.com/joeyh/github-backup/pull/60.diff"
+  , pullRequestUrl =
+      URL "https://api.github.com/repos/joeyh/github-backup/pulls/60"
+  , pullRequestLinks =
+      PullRequestLinks
+        { pullRequestLinksReviewComments =
+            URL
+              "https://api.github.com/repos/joeyh/github-backup/pulls/60/comments"
+        , pullRequestLinksComments =
+            URL
+              "https://api.github.com/repos/joeyh/github-backup/issues/60/comments"
+        , pullRequestLinksHtml =
+            URL "https://github.com/joeyh/github-backup/pull/60"
+        , pullRequestLinksSelf =
+            URL "https://api.github.com/repos/joeyh/github-backup/pulls/60"
+        }
+  , pullRequestMergedAt = Nothing
+  , pullRequestTitle = "Fix typos"
+  , pullRequestId = Id 77312151
+  , pullRequestMergedBy = Nothing
+  , pullRequestChangedFiles = 13
+  , pullRequestHead =
+      PullRequestCommit
+        { pullRequestCommitLabel = "jwilk:spelling"
+        , pullRequestCommitRef = "spelling"
+        , pullRequestCommitSha = "de4a80d8ab96df2064fb0ef0613b88485645304e"
+        , pullRequestCommitUser =
+            SimpleUser
+              { simpleUserId = Id 141546
+              , simpleUserLogin = N "jwilk"
+              , simpleUserAvatarUrl =
+                  URL "https://avatars.githubusercontent.com/u/141546?v=3"
+              , simpleUserUrl = URL "https://api.github.com/users/jwilk"
+              }
+        , pullRequestCommitRepo =
+            Repo
+              { repoSshUrl = Just (URL "git@github.com:jwilk/github-backup.git")
+              , repoDescription =
+                  Just
+                    "backs up everything github knows about a repository, to the repository"
+              , repoCreatedAt = Just 2016 (-07) (-13) 15 : 41 : 20 UTC
+              , repoHtmlUrl = URL "https://github.com/jwilk/github-backup"
+              , repoSvnUrl = Just (URL "https://github.com/jwilk/github-backup")
+              , repoForks = Just 0
+              , repoHomepage = Just ""
+              , repoFork = Just True
+              , repoGitUrl =
+                  Just (URL "git://github.com/jwilk/github-backup.git")
+              , repoPrivate = False
+              , repoCloneUrl =
+                  Just (URL "https://github.com/jwilk/github-backup.git")
+              , repoSize = Just 648
+              , repoUpdatedAt = Just 2016 (-07) (-13) 15 : 41 : 21 UTC
+              , repoWatchers = Just 0
+              , repoOwner =
+                  SimpleOwner
+                    { simpleOwnerId = Id 141546
+                    , simpleOwnerLogin = N "jwilk"
+                    , simpleOwnerUrl = URL "https://api.github.com/users/jwilk"
+                    , simpleOwnerAvatarUrl =
+                        URL "https://avatars.githubusercontent.com/u/141546?v=3"
+                    , simpleOwnerType = OwnerUser
+                    }
+              , repoName = N "github-backup"
+              , repoLanguage = Just (Language "Haskell")
+              , repoDefaultBranch = Just "master"
+              , repoPushedAt = Just 2016 (-07) (-13) 15 : 41 : 39 UTC
+              , repoId = Id 63258886
+              , repoUrl = URL "https://api.github.com/repos/jwilk/github-backup"
+              , repoOpenIssues = Just 0
+              , repoHasWiki = Just True
+              , repoHasIssues = Just False
+              , repoHasDownloads = Just True
+              , repoParent = Nothing
+              , repoSource = Nothing
+              , repoHooksUrl =
+                  URL "https://api.github.com/repos/jwilk/github-backup/hooks"
+              , repoStargazersCount = 0
+              }
+        }
+  , pullRequestComments = 1
+  , pullRequestDeletions = 21
+  , pullRequestAdditions = 21
+  , pullRequestReviewComments = 0
+  , pullRequestBase =
+      PullRequestCommit
+        { pullRequestCommitLabel = "joeyh:master"
+        , pullRequestCommitRef = "master"
+        , pullRequestCommitSha = "4c40b471449cf1635d3ddcfdae8a8b6dec6d7766"
+        , pullRequestCommitUser =
+            SimpleUser
+              { simpleUserId = Id 16392
+              , simpleUserLogin = N "joeyh"
+              , simpleUserAvatarUrl =
+                  URL "https://avatars.githubusercontent.com/u/16392?v=3"
+              , simpleUserUrl = URL "https://api.github.com/users/joeyh"
+              }
+        , pullRequestCommitRepo =
+            Repo
+              { repoSshUrl = Just (URL "git@github.com:joeyh/github-backup.git")
+              , repoDescription =
+                  Just
+                    "backs up everything github knows about a repository, to the repository"
+              , repoCreatedAt = Just 2012 (-01) (-26) 04 : 01 : 37 UTC
+              , repoHtmlUrl = URL "https://github.com/joeyh/github-backup"
+              , repoSvnUrl = Just (URL "https://github.com/joeyh/github-backup")
+              , repoForks = Just 78
+              , repoHomepage = Just ""
+              , repoFork = Just False
+              , repoGitUrl =
+                  Just (URL "git://github.com/joeyh/github-backup.git")
+              , repoPrivate = False
+              , repoCloneUrl =
+                  Just (URL "https://github.com/joeyh/github-backup.git")
+              , repoSize = Just 670
+              , repoUpdatedAt = Just 2017 (-02) (-19) 21 : 23 : 53 UTC
+              , repoWatchers = Just 1351
+              , repoOwner =
+                  SimpleOwner
+                    { simpleOwnerId = Id 16392
+                    , simpleOwnerLogin = N "joeyh"
+                    , simpleOwnerUrl = URL "https://api.github.com/users/joeyh"
+                    , simpleOwnerAvatarUrl =
+                        URL "https://avatars.githubusercontent.com/u/16392?v=3"
+                    , simpleOwnerType = OwnerUser
+                    }
+              , repoName = N "github-backup"
+              , repoLanguage = Just (Language "Haskell")
+              , repoDefaultBranch = Just "master"
+              , repoPushedAt = Just 2017 (-01) (-24) 14 : 38 : 08 UTC
+              , repoId = Id 3271130
+              , repoUrl = URL "https://api.github.com/repos/joeyh/github-backup"
+              , repoOpenIssues = Just 24
+              , repoHasWiki = Just True
+              , repoHasIssues = Just True
+              , repoHasDownloads = Just True
+              , repoParent = Nothing
+              , repoSource = Nothing
+              , repoHooksUrl =
+                  URL "https://api.github.com/repos/joeyh/github-backup/hooks"
+              , repoStargazersCount = 1351
+              }
+        }
+  , pullRequestCommits = 1
+  , pullRequestMerged = False
+  , pullRequestMergeable = Just False
+  , pullRequestMergeableState = StateDirty
+  }

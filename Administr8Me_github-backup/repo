@@ -1,0 +1,73 @@
+Repo
+  { repoSshUrl =
+      Just (URL "git@github.com:Administr8Me/github-backup.git")
+  , repoDescription =
+      Just
+        "backs up everything github knows about a repository, to the repository"
+  , repoCreatedAt = Just 2013 (-02) (-13) 19 : 58 : 06 UTC
+  , repoHtmlUrl = URL "https://github.com/Administr8Me/github-backup"
+  , repoSvnUrl =
+      Just (URL "https://github.com/Administr8Me/github-backup")
+  , repoForks = Just 0
+  , repoHomepage = Just ""
+  , repoFork = Just True
+  , repoGitUrl =
+      Just (URL "git://github.com/Administr8Me/github-backup.git")
+  , repoPrivate = False
+  , repoCloneUrl =
+      Just (URL "https://github.com/Administr8Me/github-backup.git")
+  , repoSize = Just 246
+  , repoUpdatedAt = Just 2013 (-02) (-13) 19 : 58 : 06 UTC
+  , repoWatchers = Just 0
+  , repoOwner =
+      SimpleOwner
+        { simpleOwnerId = Id 1300241
+        , simpleOwnerLogin = N "Administr8Me"
+        , simpleOwnerUrl = URL "https://api.github.com/users/Administr8Me"
+        , simpleOwnerAvatarUrl =
+            URL "https://avatars.githubusercontent.com/u/1300241?v=3"
+        , simpleOwnerType = OwnerOrganization
+        }
+  , repoName = N "github-backup"
+  , repoLanguage = Just (Language "Haskell")
+  , repoDefaultBranch = Just "master"
+  , repoPushedAt = Just 2013 (-01) (-31) 11 : 18 : 55 UTC
+  , repoId = Id 8186613
+  , repoUrl =
+      URL "https://api.github.com/repos/Administr8Me/github-backup"
+  , repoOpenIssues = Just 0
+  , repoHasWiki = Just True
+  , repoHasIssues = Just False
+  , repoHasDownloads = Just True
+  , repoParent =
+      Just
+        RepoRef
+          { repoRefOwner =
+              SimpleOwner
+                { simpleOwnerId = Id 16392
+                , simpleOwnerLogin = N "joeyh"
+                , simpleOwnerUrl = URL "https://api.github.com/users/joeyh"
+                , simpleOwnerAvatarUrl =
+                    URL "https://avatars.githubusercontent.com/u/16392?v=3"
+                , simpleOwnerType = OwnerUser
+                }
+          , repoRefRepo = N "github-backup"
+          }
+  , repoSource =
+      Just
+        RepoRef
+          { repoRefOwner =
+              SimpleOwner
+                { simpleOwnerId = Id 16392
+                , simpleOwnerLogin = N "joeyh"
+                , simpleOwnerUrl = URL "https://api.github.com/users/joeyh"
+                , simpleOwnerAvatarUrl =
+                    URL "https://avatars.githubusercontent.com/u/16392?v=3"
+                , simpleOwnerType = OwnerUser
+                }
+          , repoRefRepo = N "github-backup"
+          }
+  , repoHooksUrl =
+      URL "https://api.github.com/repos/Administr8Me/github-backup/hooks"
+  , repoStargazersCount = 0
+  }

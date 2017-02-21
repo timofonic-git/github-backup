@@ -1,1 +1,3547 @@
-[Repo {repoSshUrl = Just "git@github.com:Administr8Me/github-backup.git", repoDescription = Just "backs up everything github knows about a repository, to the repository", repoCreatedAt = Just (GithubDate {fromGithubDate = 2013-02-13 19:58:06 UTC}), repoHtmlUrl = "https://github.com/Administr8Me/github-backup", repoSvnUrl = Just "https://github.com/Administr8Me/github-backup", repoForks = Just 0, repoHomepage = Just "", repoFork = Just True, repoGitUrl = Just "git://github.com/Administr8Me/github-backup.git", repoPrivate = False, repoCloneUrl = Just "https://github.com/Administr8Me/github-backup.git", repoSize = Just 246, repoUpdatedAt = Just (GithubDate {fromGithubDate = 2013-02-13 19:58:06 UTC}), repoWatchers = Just 0, repoOwner = GithubUser {githubOwnerAvatarUrl = "https://avatars.githubusercontent.com/u/1300241?v=2", githubOwnerLogin = "Administr8Me", githubOwnerUrl = "https://api.github.com/users/Administr8Me", githubOwnerId = 1300241, githubOwnerGravatarId = Just "ceba5f1d4d6ad9b9f533ff9f2db596ac"}, repoName = "github-backup", repoLanguage = Just "Haskell", repoMasterBranch = Nothing, repoPushedAt = Just (GithubDate {fromGithubDate = 2013-01-31 11:18:55 UTC}), repoId = 8186613, repoUrl = "https://api.github.com/repos/Administr8Me/github-backup", repoOpenIssues = Just 0, repoHasWiki = Just True, repoHasIssues = Just False, repoHasDownloads = Just True, repoParent = Nothing, repoSource = Nothing, repoHooksUrl = "https://api.github.com/repos/Administr8Me/github-backup/hooks"},Repo {repoSshUrl = Just "git@github.com:ConsultingMD/github-backup.git", repoDescription = Just "backs up everything github knows about a repository, to the repository", repoCreatedAt = Just (GithubDate {fromGithubDate = 2014-02-20 02:24:59 UTC}), repoHtmlUrl = "https://github.com/ConsultingMD/github-backup", repoSvnUrl = Just "https://github.com/ConsultingMD/github-backup", repoForks = Just 0, repoHomepage = Just "", repoFork = Just True, repoGitUrl = Just "git://github.com/ConsultingMD/github-backup.git", repoPrivate = False, repoCloneUrl = Just "https://github.com/ConsultingMD/github-backup.git", repoSize = Just 681, repoUpdatedAt = Just (GithubDate {fromGithubDate = 2014-02-20 02:25:00 UTC}), repoWatchers = Just 0, repoOwner = GithubUser {githubOwnerAvatarUrl = "https://avatars.githubusercontent.com/u/1349864?v=2", githubOwnerLogin = "ConsultingMD", githubOwnerUrl = "https://api.github.com/users/ConsultingMD", githubOwnerId = 1349864, githubOwnerGravatarId = Just "a05595c65247d421894e60e587cc8e3f"}, repoName = "github-backup", repoLanguage = Just "Haskell", repoMasterBranch = Nothing, repoPushedAt = Just (GithubDate {fromGithubDate = 2014-02-17 14:55:29 UTC}), repoId = 17006792, repoUrl = "https://api.github.com/repos/ConsultingMD/github-backup", repoOpenIssues = Just 0, repoHasWiki = Just True, repoHasIssues = Just False, repoHasDownloads = Just True, repoParent = Nothing, repoSource = Nothing, repoHooksUrl = "https://api.github.com/repos/ConsultingMD/github-backup/hooks"},Repo {repoSshUrl = Just "git@github.com:DenaSullivanSmith/github-backup.git", repoDescription = Just "backs up everything github knows about a repository, to the repository", repoCreatedAt = Just (GithubDate {fromGithubDate = 2013-09-05 00:05:34 UTC}), repoHtmlUrl = "https://github.com/DenaSullivanSmith/github-backup", repoSvnUrl = Just "https://github.com/DenaSullivanSmith/github-backup", repoForks = Just 0, repoHomepage = Just "", repoFork = Just True, repoGitUrl = Just "git://github.com/DenaSullivanSmith/github-backup.git", repoPrivate = False, repoCloneUrl = Just "https://github.com/DenaSullivanSmith/github-backup.git", repoSize = Just 60, repoUpdatedAt = Just (GithubDate {fromGithubDate = 2013-09-05 00:05:34 UTC}), repoWatchers = Just 0, repoOwner = GithubUser {githubOwnerAvatarUrl = "https://avatars.githubusercontent.com/u/4050748?v=2", githubOwnerLogin = "DenaSullivanSmith", githubOwnerUrl = "https://api.github.com/users/DenaSullivanSmith", githubOwnerId = 4050748, githubOwnerGravatarId = Just "db7ec38008f76e8d042032315d4c1986"}, repoName = "github-backup", repoLanguage = Just "Haskell", repoMasterBranch = Nothing, repoPushedAt = Just (GithubDate {fromGithubDate = 2013-06-22 18:41:56 UTC}), repoId = 12605002, repoUrl = "https://api.github.com/repos/DenaSullivanSmith/github-backup", repoOpenIssues = Just 0, repoHasWiki = Just True, repoHasIssues = Just False, repoHasDownloads = Just True, repoParent = Nothing, repoSource = Nothing, repoHooksUrl = "https://api.github.com/repos/DenaSullivanSmith/github-backup/hooks"},Repo {repoSshUrl = Just "git@github.com:EHJ-52n/github-backup.git", repoDescription = Just "backs up everything github knows about a repository, to the repository", repoCreatedAt = Just (GithubDate {fromGithubDate = 2014-01-27 10:14:30 UTC}), repoHtmlUrl = "https://github.com/EHJ-52n/github-backup", repoSvnUrl = Just "https://github.com/EHJ-52n/github-backup", repoForks = Just 0, repoHomepage = Just "", repoFork = Just True, repoGitUrl = Just "git://github.com/EHJ-52n/github-backup.git", repoPrivate = False, repoCloneUrl = Just "https://github.com/EHJ-52n/github-backup.git", repoSize = Just 644, repoUpdatedAt = Just (GithubDate {fromGithubDate = 2014-01-27 10:14:31 UTC}), repoWatchers = Just 0, repoOwner = GithubUser {githubOwnerAvatarUrl = "https://avatars.githubusercontent.com/u/3839896?v=2", githubOwnerLogin = "EHJ-52n", githubOwnerUrl = "https://api.github.com/users/EHJ-52n", githubOwnerId = 3839896, githubOwnerGravatarId = Just "2822c3b17b5fec9eb2344ef8b4d2e618"}, repoName = "github-backup", repoLanguage = Just "Haskell", repoMasterBranch = Nothing, repoPushedAt = Just (GithubDate {fromGithubDate = 2013-12-03 19:01:06 UTC}), repoId = 16275554, repoUrl = "https://api.github.com/repos/EHJ-52n/github-backup", repoOpenIssues = Just 0, repoHasWiki = Just True, repoHasIssues = Just False, repoHasDownloads = Just True, repoParent = Nothing, repoSource = Nothing, repoHooksUrl = "https://api.github.com/repos/EHJ-52n/github-backup/hooks"},Repo {repoSshUrl = Just "git@github.com:FlavioFalcao/github-backup.git", repoDescription = Just "backs up everything github knows about a repository, to the repository", repoCreatedAt = Just (GithubDate {fromGithubDate = 2014-03-09 14:12:50 UTC}), repoHtmlUrl = "https://github.com/FlavioFalcao/github-backup", repoSvnUrl = Just "https://github.com/FlavioFalcao/github-backup", repoForks = Just 0, repoHomepage = Just "", repoFork = Just True, repoGitUrl = Just "git://github.com/FlavioFalcao/github-backup.git", repoPrivate = False, repoCloneUrl = Just "https://github.com/FlavioFalcao/github-backup.git", repoSize = Just 681, repoUpdatedAt = Just (GithubDate {fromGithubDate = 2014-03-09 14:12:50 UTC}), repoWatchers = Just 0, repoOwner = GithubUser {githubOwnerAvatarUrl = "https://avatars.githubusercontent.com/u/6661039?v=2", githubOwnerLogin = "FlavioFalcao", githubOwnerUrl = "https://api.github.com/users/FlavioFalcao", githubOwnerId = 6661039, githubOwnerGravatarId = Just "e320722ccb986318558f2108af81a3b1"}, repoName = "github-backup", repoLanguage = Just "Haskell", repoMasterBranch = Nothing, repoPushedAt = Just (GithubDate {fromGithubDate = 2014-02-17 14:55:29 UTC}), repoId = 17565736, repoUrl = "https://api.github.com/repos/FlavioFalcao/github-backup", repoOpenIssues = Just 0, repoHasWiki = Just True, repoHasIssues = Just False, repoHasDownloads = Just True, repoParent = Nothing, repoSource = Nothing, repoHooksUrl = "https://api.github.com/repos/FlavioFalcao/github-backup/hooks"},Repo {repoSshUrl = Just "git@github.com:RickEyre/github-backup.git", repoDescription = Just "backs up everything github knows about a repository, to the repository", repoCreatedAt = Just (GithubDate {fromGithubDate = 2013-07-11 14:23:01 UTC}), repoHtmlUrl = "https://github.com/RickEyre/github-backup", repoSvnUrl = Just "https://github.com/RickEyre/github-backup", repoForks = Just 0, repoHomepage = Just "", repoFork = Just True, repoGitUrl = Just "git://github.com/RickEyre/github-backup.git", repoPrivate = False, repoCloneUrl = Just "https://github.com/RickEyre/github-backup.git", repoSize = Just 306, repoUpdatedAt = Just (GithubDate {fromGithubDate = 2013-07-11 14:23:01 UTC}), repoWatchers = Just 0, repoOwner = GithubUser {githubOwnerAvatarUrl = "https://avatars.githubusercontent.com/u/1071332?v=2", githubOwnerLogin = "RickEyre", githubOwnerUrl = "https://api.github.com/users/RickEyre", githubOwnerId = 1071332, githubOwnerGravatarId = Just "2f33a7c6fc14b5a7611c9ecd8a584276"}, repoName = "github-backup", repoLanguage = Just "Haskell", repoMasterBranch = Nothing, repoPushedAt = Just (GithubDate {fromGithubDate = 2013-06-22 18:41:56 UTC}), repoId = 11343879, repoUrl = "https://api.github.com/repos/RickEyre/github-backup", repoOpenIssues = Just 0, repoHasWiki = Just True, repoHasIssues = Just False, repoHasDownloads = Just True, repoParent = Nothing, repoSource = Nothing, repoHooksUrl = "https://api.github.com/repos/RickEyre/github-backup/hooks"},Repo {repoSshUrl = Just "git@github.com:Web5design/github-backup.git", repoDescription = Just "backs up everything github knows about a repository, to the repository", repoCreatedAt = Just (GithubDate {fromGithubDate = 2013-12-23 12:29:03 UTC}), repoHtmlUrl = "https://github.com/Web5design/github-backup", repoSvnUrl = Just "https://github.com/Web5design/github-backup", repoForks = Just 0, repoHomepage = Just "", repoFork = Just True, repoGitUrl = Just "git://github.com/Web5design/github-backup.git", repoPrivate = False, repoCloneUrl = Just "https://github.com/Web5design/github-backup.git", repoSize = Just 644, repoUpdatedAt = Just (GithubDate {fromGithubDate = 2013-12-23 12:29:04 UTC}), repoWatchers = Just 0, repoOwner = GithubUser {githubOwnerAvatarUrl = "https://avatars.githubusercontent.com/u/391309?v=2", githubOwnerLogin = "Web5design", githubOwnerUrl = "https://api.github.com/users/Web5design", githubOwnerId = 391309, githubOwnerGravatarId = Just "687d937c650bdef078f15f17e990e068"}, repoName = "github-backup", repoLanguage = Just "Haskell", repoMasterBranch = Nothing, repoPushedAt = Just (GithubDate {fromGithubDate = 2013-12-03 19:01:06 UTC}), repoId = 15394976, repoUrl = "https://api.github.com/repos/Web5design/github-backup", repoOpenIssues = Just 0, repoHasWiki = Just True, repoHasIssues = Just False, repoHasDownloads = Just True, repoParent = Nothing, repoSource = Nothing, repoHooksUrl = "https://api.github.com/repos/Web5design/github-backup/hooks"},Repo {repoSshUrl = Just "git@github.com:ankushnarula/github-backup-1.git", repoDescription = Just "backs up everything github knows about a repository, to the repository", repoCreatedAt = Just (GithubDate {fromGithubDate = 2014-06-18 22:32:27 UTC}), repoHtmlUrl = "https://github.com/ankushnarula/github-backup-1", repoSvnUrl = Just "https://github.com/ankushnarula/github-backup-1", repoForks = Just 0, repoHomepage = Just "", repoFork = Just True, repoGitUrl = Just "git://github.com/ankushnarula/github-backup-1.git", repoPrivate = False, repoCloneUrl = Just "https://github.com/ankushnarula/github-backup-1.git", repoSize = Just 681, repoUpdatedAt = Just (GithubDate {fromGithubDate = 2014-06-18 22:32:28 UTC}), repoWatchers = Just 0, repoOwner = GithubUser {githubOwnerAvatarUrl = "https://avatars.githubusercontent.com/u/68403?v=2", githubOwnerLogin = "ankushnarula", githubOwnerUrl = "https://api.github.com/users/ankushnarula", githubOwnerId = 68403, githubOwnerGravatarId = Just "3731515c9817422e5f8201eeb5809d43"}, repoName = "github-backup-1", repoLanguage = Just "Haskell", repoMasterBranch = Nothing, repoPushedAt = Just (GithubDate {fromGithubDate = 2014-02-17 14:55:29 UTC}), repoId = 20980252, repoUrl = "https://api.github.com/repos/ankushnarula/github-backup-1", repoOpenIssues = Just 0, repoHasWiki = Just True, repoHasIssues = Just False, repoHasDownloads = Just True, repoParent = Nothing, repoSource = Nothing, repoHooksUrl = "https://api.github.com/repos/ankushnarula/github-backup-1/hooks"},Repo {repoSshUrl = Just "git@github.com:creswick/github-backup.git", repoDescription = Just "backs up everything github knows about a repository, to the repository", repoCreatedAt = Just (GithubDate {fromGithubDate = 2012-04-17 15:43:53 UTC}), repoHtmlUrl = "https://github.com/creswick/github-backup", repoSvnUrl = Just "https://github.com/creswick/github-backup", repoForks = Just 0, repoHomepage = Just "", repoFork = Just True, repoGitUrl = Just "git://github.com/creswick/github-backup.git", repoPrivate = False, repoCloneUrl = Just "https://github.com/creswick/github-backup.git", repoSize = Just 171, repoUpdatedAt = Just (GithubDate {fromGithubDate = 2013-01-08 18:35:45 UTC}), repoWatchers = Just 1, repoOwner = GithubUser {githubOwnerAvatarUrl = "https://avatars.githubusercontent.com/u/257712?v=2", githubOwnerLogin = "creswick", githubOwnerUrl = "https://api.github.com/users/creswick", githubOwnerId = 257712, githubOwnerGravatarId = Just "b785d79619fc2a21e66d5b849341952a"}, repoName = "github-backup", repoLanguage = Just "Haskell", repoMasterBranch = Nothing, repoPushedAt = Just (GithubDate {fromGithubDate = 2012-03-27 17:22:16 UTC}), repoId = 4054143, repoUrl = "https://api.github.com/repos/creswick/github-backup", repoOpenIssues = Just 0, repoHasWiki = Just True, repoHasIssues = Just False, repoHasDownloads = Just True, repoParent = Nothing, repoSource = Nothing, repoHooksUrl = "https://api.github.com/repos/creswick/github-backup/hooks"},Repo {repoSshUrl = Just "git@github.com:damajor/github-backup.git", repoDescription = Just "backs up everything github knows about a repository, to the repository", repoCreatedAt = Just (GithubDate {fromGithubDate = 2012-09-28 22:31:26 UTC}), repoHtmlUrl = "https://github.com/damajor/github-backup", repoSvnUrl = Just "https://github.com/damajor/github-backup", repoForks = Just 0, repoHomepage = Just "", repoFork = Just True, repoGitUrl = Just "git://github.com/damajor/github-backup.git", repoPrivate = False, repoCloneUrl = Just "https://github.com/damajor/github-backup.git", repoSize = Just 249, repoUpdatedAt = Just (GithubDate {fromGithubDate = 2013-01-12 11:26:02 UTC}), repoWatchers = Just 0, repoOwner = GithubUser {githubOwnerAvatarUrl = "https://avatars.githubusercontent.com/u/1475820?v=2", githubOwnerLogin = "damajor", githubOwnerUrl = "https://api.github.com/users/damajor", githubOwnerId = 1475820, githubOwnerGravatarId = Just "5023af3c9096a76f3b32756a06bf60e6"}, repoName = "github-backup", repoLanguage = Just "Haskell", repoMasterBranch = Nothing, repoPushedAt = Just (GithubDate {fromGithubDate = 2012-09-28 05:46:25 UTC}), repoId = 6003865, repoUrl = "https://api.github.com/repos/damajor/github-backup", repoOpenIssues = Just 0, repoHasWiki = Just True, repoHasIssues = Just False, repoHasDownloads = Just True, repoParent = Nothing, repoSource = Nothing, repoHooksUrl = "https://api.github.com/repos/damajor/github-backup/hooks"},Repo {repoSshUrl = Just "git@github.com:davgit/github-backup.git", repoDescription = Just "backs up everything github knows about a repository, to the repository", repoCreatedAt = Just (GithubDate {fromGithubDate = 2013-04-08 03:45:53 UTC}), repoHtmlUrl = "https://github.com/davgit/github-backup", repoSvnUrl = Just "https://github.com/davgit/github-backup", repoForks = Just 0, repoHomepage = Just "", repoFork = Just True, repoGitUrl = Just "git://github.com/davgit/github-backup.git", repoPrivate = False, repoCloneUrl = Just "https://github.com/davgit/github-backup.git", repoSize = Just 263, repoUpdatedAt = Just (GithubDate {fromGithubDate = 2013-04-08 03:45:53 UTC}), repoWatchers = Just 0, repoOwner = GithubUser {githubOwnerAvatarUrl = "https://avatars.githubusercontent.com/u/294138?v=2", githubOwnerLogin = "davgit", githubOwnerUrl = "https://api.github.com/users/davgit", githubOwnerId = 294138, githubOwnerGravatarId = Just "a8314955b3c321d654d8c40d03de4a8d"}, repoName = "github-backup", repoLanguage = Just "Haskell", repoMasterBranch = Nothing, repoPushedAt = Just (GithubDate {fromGithubDate = 2013-04-05 14:33:16 UTC}), repoId = 9288095, repoUrl = "https://api.github.com/repos/davgit/github-backup", repoOpenIssues = Just 0, repoHasWiki = Just True, repoHasIssues = Just False, repoHasDownloads = Just True, repoParent = Nothing, repoSource = Nothing, repoHooksUrl = "https://api.github.com/repos/davgit/github-backup/hooks"},Repo {repoSshUrl = Just "git@github.com:doubleotoo/github-backup.git", repoDescription = Just "backs up everything github knows about a repository, to the repository", repoCreatedAt = Just (GithubDate {fromGithubDate = 2012-04-25 23:12:28 UTC}), repoHtmlUrl = "https://github.com/doubleotoo/github-backup", repoSvnUrl = Just "https://github.com/doubleotoo/github-backup", repoForks = Just 0, repoHomepage = Just "", repoFork = Just True, repoGitUrl = Just "git://github.com/doubleotoo/github-backup.git", repoPrivate = False, repoCloneUrl = Just "https://github.com/doubleotoo/github-backup.git", repoSize = Just 177, repoUpdatedAt = Just (GithubDate {fromGithubDate = 2013-01-08 22:12:54 UTC}), repoWatchers = Just 1, repoOwner = GithubUser {githubOwnerAvatarUrl = "https://avatars.githubusercontent.com/u/1280870?v=2", githubOwnerLogin = "doubleotoo", githubOwnerUrl = "https://api.github.com/users/doubleotoo", githubOwnerId = 1280870, githubOwnerGravatarId = Just "3188a4be551fa6d65ac63cec309ecd58"}, repoName = "github-backup", repoLanguage = Just "Haskell", repoMasterBranch = Nothing, repoPushedAt = Just (GithubDate {fromGithubDate = 2012-04-23 04:35:53 UTC}), repoId = 4142261, repoUrl = "https://api.github.com/repos/doubleotoo/github-backup", repoOpenIssues = Just 0, repoHasWiki = Just True, repoHasIssues = Just False, repoHasDownloads = Just True, repoParent = Nothing, repoSource = Nothing, repoHooksUrl = "https://api.github.com/repos/doubleotoo/github-backup/hooks"},Repo {repoSshUrl = Just "git@github.com:fourks/github-backup.git", repoDescription = Just "backs up everything github knows about a repository, to the repository", repoCreatedAt = Just (GithubDate {fromGithubDate = 2014-03-27 20:51:01 UTC}), repoHtmlUrl = "https://github.com/fourks/github-backup", repoSvnUrl = Just "https://github.com/fourks/github-backup", repoForks = Just 0, repoHomepage = Just "", repoFork = Just True, repoGitUrl = Just "git://github.com/fourks/github-backup.git", repoPrivate = False, repoCloneUrl = Just "https://github.com/fourks/github-backup.git", repoSize = Just 681, repoUpdatedAt = Just (GithubDate {fromGithubDate = 2014-03-27 20:51:02 UTC}), repoWatchers = Just 0, repoOwner = GithubUser {githubOwnerAvatarUrl = "https://avatars.githubusercontent.com/u/6034885?v=2", githubOwnerLogin = "fourks", githubOwnerUrl = "https://api.github.com/users/fourks", githubOwnerId = 6034885, githubOwnerGravatarId = Nothing}, repoName = "github-backup", repoLanguage = Just "Haskell", repoMasterBranch = Nothing, repoPushedAt = Just (GithubDate {fromGithubDate = 2014-02-17 14:55:29 UTC}), repoId = 18190996, repoUrl = "https://api.github.com/repos/fourks/github-backup", repoOpenIssues = Just 0, repoHasWiki = Just True, repoHasIssues = Just False, repoHasDownloads = Just True, repoParent = Nothing, repoSource = Nothing, repoHooksUrl = "https://api.github.com/repos/fourks/github-backup/hooks"},Repo {repoSshUrl = Just "git@github.com:jbrahy/github-backup.git", repoDescription = Just "backs up everything github knows about a repository, to the repository", repoCreatedAt = Just (GithubDate {fromGithubDate = 2013-12-04 20:03:30 UTC}), repoHtmlUrl = "https://github.com/jbrahy/github-backup", repoSvnUrl = Just "https://github.com/jbrahy/github-backup", repoForks = Just 0, repoHomepage = Just "", repoFork = Just True, repoGitUrl = Just "git://github.com/jbrahy/github-backup.git", repoPrivate = False, repoCloneUrl = Just "https://github.com/jbrahy/github-backup.git", repoSize = Just 644, repoUpdatedAt = Just (GithubDate {fromGithubDate = 2013-12-04 20:03:30 UTC}), repoWatchers = Just 0, repoOwner = GithubUser {githubOwnerAvatarUrl = "https://avatars.githubusercontent.com/u/885254?v=2", githubOwnerLogin = "jbrahy", githubOwnerUrl = "https://api.github.com/users/jbrahy", githubOwnerId = 885254, githubOwnerGravatarId = Just "0e8e574fae6c1dd8a29ea5817d9592c9"}, repoName = "github-backup", repoLanguage = Just "Haskell", repoMasterBranch = Nothing, repoPushedAt = Just (GithubDate {fromGithubDate = 2013-12-03 19:01:06 UTC}), repoId = 14934367, repoUrl = "https://api.github.com/repos/jbrahy/github-backup", repoOpenIssues = Just 0, repoHasWiki = Just True, repoHasIssues = Just False, repoHasDownloads = Just True, repoParent = Nothing, repoSource = Nothing, repoHooksUrl = "https://api.github.com/repos/jbrahy/github-backup/hooks"},Repo {repoSshUrl = Just "git@github.com:jorik041/github-backup.git", repoDescription = Just "backs up everything github knows about a repository, to the repository", repoCreatedAt = Just (GithubDate {fromGithubDate = 2013-08-30 21:16:03 UTC}), repoHtmlUrl = "https://github.com/jorik041/github-backup", repoSvnUrl = Just "https://github.com/jorik041/github-backup", repoForks = Just 0, repoHomepage = Just "", repoFork = Just True, repoGitUrl = Just "git://github.com/jorik041/github-backup.git", repoPrivate = False, repoCloneUrl = Just "https://github.com/jorik041/github-backup.git", repoSize = Just 60, repoUpdatedAt = Just (GithubDate {fromGithubDate = 2013-08-30 21:16:03 UTC}), repoWatchers = Just 0, repoOwner = GithubUser {githubOwnerAvatarUrl = "https://avatars.githubusercontent.com/u/4687038?v=2", githubOwnerLogin = "jorik041", githubOwnerUrl = "https://api.github.com/users/jorik041", githubOwnerId = 4687038, githubOwnerGravatarId = Just "206fa935fa08061f84f8c50965216b1b"}, repoName = "github-backup", repoLanguage = Just "Haskell", repoMasterBranch = Nothing, repoPushedAt = Just (GithubDate {fromGithubDate = 2013-06-22 18:41:56 UTC}), repoId = 12495742, repoUrl = "https://api.github.com/repos/jorik041/github-backup", repoOpenIssues = Just 0, repoHasWiki = Just True, repoHasIssues = Just False, repoHasDownloads = Just True, repoParent = Nothing, repoSource = Nothing, repoHooksUrl = "https://api.github.com/repos/jorik041/github-backup/hooks"},Repo {repoSshUrl = Just "git@github.com:jwiegley/github-backup.git", repoDescription = Just "backs up everything github knows about a repository, to the repository", repoCreatedAt = Just (GithubDate {fromGithubDate = 2013-01-31 08:36:18 UTC}), repoHtmlUrl = "https://github.com/jwiegley/github-backup", repoSvnUrl = Just "https://github.com/jwiegley/github-backup", repoForks = Just 0, repoHomepage = Just "", repoFork = Just True, repoGitUrl = Just "git://github.com/jwiegley/github-backup.git", repoPrivate = False, repoCloneUrl = Just "https://github.com/jwiegley/github-backup.git", repoSize = Just 294, repoUpdatedAt = Just (GithubDate {fromGithubDate = 2013-06-28 09:41:55 UTC}), repoWatchers = Just 2, repoOwner = GithubUser {githubOwnerAvatarUrl = "https://avatars.githubusercontent.com/u/8460?v=2", githubOwnerLogin = "jwiegley", githubOwnerUrl = "https://api.github.com/users/jwiegley", githubOwnerId = 8460, githubOwnerGravatarId = Just "910fdec093deffebb92d7db019b5996a"}, repoName = "github-backup", repoLanguage = Just "Haskell", repoMasterBranch = Nothing, repoPushedAt = Just (GithubDate {fromGithubDate = 2013-01-31 08:37:24 UTC}), repoId = 7933095, repoUrl = "https://api.github.com/repos/jwiegley/github-backup", repoOpenIssues = Just 0, repoHasWiki = Just True, repoHasIssues = Just False, repoHasDownloads = Just True, repoParent = Nothing, repoSource = Nothing, repoHooksUrl = "https://api.github.com/repos/jwiegley/github-backup/hooks"},Repo {repoSshUrl = Just "git@github.com:nivertech/github-backup.git", repoDescription = Just "backs up everything github knows about a repository, to the repository", repoCreatedAt = Just (GithubDate {fromGithubDate = 2012-02-19 14:09:11 UTC}), repoHtmlUrl = "https://github.com/nivertech/github-backup", repoSvnUrl = Just "https://github.com/nivertech/github-backup", repoForks = Just 0, repoHomepage = Just "", repoFork = Just True, repoGitUrl = Just "git://github.com/nivertech/github-backup.git", repoPrivate = False, repoCloneUrl = Just "https://github.com/nivertech/github-backup.git", repoSize = Just 147, repoUpdatedAt = Just (GithubDate {fromGithubDate = 2013-01-07 22:22:50 UTC}), repoWatchers = Just 1, repoOwner = GithubUser {githubOwnerAvatarUrl = "https://avatars.githubusercontent.com/u/78495?v=2", githubOwnerLogin = "nivertech", githubOwnerUrl = "https://api.github.com/users/nivertech", githubOwnerId = 78495, githubOwnerGravatarId = Just "fd7c9326801be45f4bd366f7a0ea92fd"}, repoName = "github-backup", repoLanguage = Just "Haskell", repoMasterBranch = Nothing, repoPushedAt = Just (GithubDate {fromGithubDate = 2012-02-15 18:03:09 UTC}), repoId = 3485698, repoUrl = "https://api.github.com/repos/nivertech/github-backup", repoOpenIssues = Just 0, repoHasWiki = Just True, repoHasIssues = Just False, repoHasDownloads = Just True, repoParent = Nothing, repoSource = Nothing, repoHooksUrl = "https://api.github.com/repos/nivertech/github-backup/hooks"},Repo {repoSshUrl = Just "git@github.com:pombreda/github-backup.git", repoDescription = Just "backs up everything github knows about a repository, to the repository", repoCreatedAt = Just (GithubDate {fromGithubDate = 2014-08-07 13:04:12 UTC}), repoHtmlUrl = "https://github.com/pombreda/github-backup", repoSvnUrl = Just "https://github.com/pombreda/github-backup", repoForks = Just 0, repoHomepage = Just "", repoFork = Just True, repoGitUrl = Just "git://github.com/pombreda/github-backup.git", repoPrivate = False, repoCloneUrl = Just "https://github.com/pombreda/github-backup.git", repoSize = Just 736, repoUpdatedAt = Just (GithubDate {fromGithubDate = 2014-08-06 09:06:54 UTC}), repoWatchers = Just 0, repoOwner = GithubUser {githubOwnerAvatarUrl = "https://avatars.githubusercontent.com/u/8384917?v=2", githubOwnerLogin = "pombreda", githubOwnerUrl = "https://api.github.com/users/pombreda", githubOwnerId = 8384917, githubOwnerGravatarId = Just "e55f574e06ffe1bb4d048dc54a30c3ba"}, repoName = "github-backup", repoLanguage = Nothing, repoMasterBranch = Nothing, repoPushedAt = Just (GithubDate {fromGithubDate = 2014-07-21 17:13:44 UTC}), repoId = 22721532, repoUrl = "https://api.github.com/repos/pombreda/github-backup", repoOpenIssues = Just 0, repoHasWiki = Just True, repoHasIssues = Just False, repoHasDownloads = Just True, repoParent = Nothing, repoSource = Nothing, repoHooksUrl = "https://api.github.com/repos/pombreda/github-backup/hooks"},Repo {repoSshUrl = Just "git@github.com:rmoorman/github-backup.git", repoDescription = Just "backs up everything github knows about a repository, to the repository", repoCreatedAt = Just (GithubDate {fromGithubDate = 2013-05-19 20:44:32 UTC}), repoHtmlUrl = "https://github.com/rmoorman/github-backup", repoSvnUrl = Just "https://github.com/rmoorman/github-backup", repoForks = Just 0, repoHomepage = Just "", repoFork = Just True, repoGitUrl = Just "git://github.com/rmoorman/github-backup.git", repoPrivate = False, repoCloneUrl = Just "https://github.com/rmoorman/github-backup.git", repoSize = Just 261, repoUpdatedAt = Just (GithubDate {fromGithubDate = 2013-05-19 20:44:32 UTC}), repoWatchers = Just 0, repoOwner = GithubUser {githubOwnerAvatarUrl = "https://avatars.githubusercontent.com/u/219695?v=2", githubOwnerLogin = "rmoorman", githubOwnerUrl = "https://api.github.com/users/rmoorman", githubOwnerId = 219695, githubOwnerGravatarId = Just "23818a58e1f63c5d70d5212b585db4fe"}, repoName = "github-backup", repoLanguage = Just "Haskell", repoMasterBranch = Nothing, repoPushedAt = Just (GithubDate {fromGithubDate = 2013-05-12 15:41:53 UTC}), repoId = 10161149, repoUrl = "https://api.github.com/repos/rmoorman/github-backup", repoOpenIssues = Just 0, repoHasWiki = Just True, repoHasIssues = Just False, repoHasDownloads = Just True, repoParent = Nothing, repoSource = Nothing, repoHooksUrl = "https://api.github.com/repos/rmoorman/github-backup/hooks"},Repo {repoSshUrl = Just "git@github.com:rohieb/github-backup.git", repoDescription = Just "backs up everything github knows about a repository, to the repository", repoCreatedAt = Just (GithubDate {fromGithubDate = 2012-03-20 22:58:45 UTC}), repoHtmlUrl = "https://github.com/rohieb/github-backup", repoSvnUrl = Just "https://github.com/rohieb/github-backup", repoForks = Just 0, repoHomepage = Just "", repoFork = Just True, repoGitUrl = Just "git://github.com/rohieb/github-backup.git", repoPrivate = False, repoCloneUrl = Just "https://github.com/rohieb/github-backup.git", repoSize = Just 156, repoUpdatedAt = Just (GithubDate {fromGithubDate = 2013-12-05 01:46:44 UTC}), repoWatchers = Just 0, repoOwner = GithubUser {githubOwnerAvatarUrl = "https://avatars.githubusercontent.com/u/192014?v=2", githubOwnerLogin = "rohieb", githubOwnerUrl = "https://api.github.com/users/rohieb", githubOwnerId = 192014, githubOwnerGravatarId = Just "51c20c579bcdc4768098c7cc37b77196"}, repoName = "github-backup", repoLanguage = Just "Haskell", repoMasterBranch = Nothing, repoPushedAt = Just (GithubDate {fromGithubDate = 2012-03-20 22:59:13 UTC}), repoId = 3781156, repoUrl = "https://api.github.com/repos/rohieb/github-backup", repoOpenIssues = Just 0, repoHasWiki = Just True, repoHasIssues = Just False, repoHasDownloads = Just True, repoParent = Nothing, repoSource = Nothing, repoHooksUrl = "https://api.github.com/repos/rohieb/github-backup/hooks"},Repo {repoSshUrl = Just "git@github.com:waako/github-backup.git", repoDescription = Just "backs up everything github knows about a repository, to the repository", repoCreatedAt = Just (GithubDate {fromGithubDate = 2014-01-28 15:37:54 UTC}), repoHtmlUrl = "https://github.com/waako/github-backup", repoSvnUrl = Just "https://github.com/waako/github-backup", repoForks = Just 0, repoHomepage = Just "", repoFork = Just True, repoGitUrl = Just "git://github.com/waako/github-backup.git", repoPrivate = False, repoCloneUrl = Just "https://github.com/waako/github-backup.git", repoSize = Just 457, repoUpdatedAt = Just (GithubDate {fromGithubDate = 2014-04-24 12:58:06 UTC}), repoWatchers = Just 2, repoOwner = GithubUser {githubOwnerAvatarUrl = "https://avatars.githubusercontent.com/u/70727?v=2", githubOwnerLogin = "waako", githubOwnerUrl = "https://api.github.com/users/waako", githubOwnerId = 70727, githubOwnerGravatarId = Just "a20bacd99dc49bd9cce86b147f275802"}, repoName = "github-backup", repoLanguage = Just "Haskell", repoMasterBranch = Nothing, repoPushedAt = Just (GithubDate {fromGithubDate = 2014-01-29 17:21:15 UTC}), repoId = 16315979, repoUrl = "https://api.github.com/repos/waako/github-backup", repoOpenIssues = Just 0, repoHasWiki = Just True, repoHasIssues = Just False, repoHasDownloads = Just True, repoParent = Nothing, repoSource = Nothing, repoHooksUrl = "https://api.github.com/repos/waako/github-backup/hooks"}]
+[ Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:Administr8Me/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2013 (-02) (-13) 19 : 58 : 06 UTC
+    , repoHtmlUrl = URL "https://github.com/Administr8Me/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/Administr8Me/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/Administr8Me/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/Administr8Me/github-backup.git")
+    , repoSize = Just 246
+    , repoUpdatedAt = Just 2013 (-02) (-13) 19 : 58 : 06 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 1300241
+          , simpleOwnerLogin = N "Administr8Me"
+          , simpleOwnerUrl = URL "https://api.github.com/users/Administr8Me"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/1300241?v=3"
+          , simpleOwnerType = OwnerOrganization
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2013 (-01) (-31) 11 : 18 : 55 UTC
+    , repoId = Id 8186613
+    , repoUrl =
+        URL "https://api.github.com/repos/Administr8Me/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/Administr8Me/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl = Just (URL "git@github.com:Dagrol/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-02) (-08) 10 : 43 : 08 UTC
+    , repoHtmlUrl = URL "https://github.com/Dagrol/github-backup"
+    , repoSvnUrl = Just (URL "https://github.com/Dagrol/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/Dagrol/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/Dagrol/github-backup.git")
+    , repoSize = Just 581
+    , repoUpdatedAt = Just 2016 (-02) (-08) 10 : 43 : 09 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 15840450
+          , simpleOwnerLogin = N "Dagrol"
+          , simpleOwnerUrl = URL "https://api.github.com/users/Dagrol"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/15840450?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-02) (-08) 06 : 10 : 37 UTC
+    , repoId = Id 51292208
+    , repoUrl = URL "https://api.github.com/repos/Dagrol/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/Dagrol/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:DenaSullivanSmith/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2013 (-09) (-05) 00 : 05 : 34 UTC
+    , repoHtmlUrl =
+        URL "https://github.com/DenaSullivanSmith/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/DenaSullivanSmith/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/DenaSullivanSmith/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/DenaSullivanSmith/github-backup.git")
+    , repoSize = Just 60
+    , repoUpdatedAt = Just 2013 (-09) (-05) 00 : 05 : 34 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 4050748
+          , simpleOwnerLogin = N "DenaSullivanSmith"
+          , simpleOwnerUrl =
+              URL "https://api.github.com/users/DenaSullivanSmith"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/4050748?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2013 (-06) (-22) 18 : 41 : 56 UTC
+    , repoId = Id 12605002
+    , repoUrl =
+        URL "https://api.github.com/repos/DenaSullivanSmith/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL
+          "https://api.github.com/repos/DenaSullivanSmith/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:FlavioFalcao/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2014 (-03) (-09) 14 : 12 : 50 UTC
+    , repoHtmlUrl = URL "https://github.com/FlavioFalcao/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/FlavioFalcao/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/FlavioFalcao/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/FlavioFalcao/github-backup.git")
+    , repoSize = Just 681
+    , repoUpdatedAt = Just 2014 (-03) (-09) 14 : 12 : 50 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 6661039
+          , simpleOwnerLogin = N "FlavioFalcao"
+          , simpleOwnerUrl = URL "https://api.github.com/users/FlavioFalcao"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/6661039?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2014 (-02) (-17) 14 : 55 : 29 UTC
+    , repoId = Id 17565736
+    , repoUrl =
+        URL "https://api.github.com/repos/FlavioFalcao/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/FlavioFalcao/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:Gurkenglas/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-11) (-06) 22 : 02 : 47 UTC
+    , repoHtmlUrl = URL "https://github.com/Gurkenglas/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/Gurkenglas/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/Gurkenglas/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/Gurkenglas/github-backup.git")
+    , repoSize = Just 651
+    , repoUpdatedAt = Just 2016 (-11) (-06) 22 : 02 : 48 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 1489801
+          , simpleOwnerLogin = N "Gurkenglas"
+          , simpleOwnerUrl = URL "https://api.github.com/users/Gurkenglas"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/1489801?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-08) (-31) 22 : 46 : 44 UTC
+    , repoId = Id 73021843
+    , repoUrl =
+        URL "https://api.github.com/repos/Gurkenglas/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/Gurkenglas/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:HelioCampos/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-04) (-11) 21 : 40 : 17 UTC
+    , repoHtmlUrl = URL "https://github.com/HelioCampos/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/HelioCampos/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/HelioCampos/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/HelioCampos/github-backup.git")
+    , repoSize = Just 588
+    , repoUpdatedAt = Just 2016 (-04) (-11) 21 : 40 : 18 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 1965427
+          , simpleOwnerLogin = N "HelioCampos"
+          , simpleOwnerUrl = URL "https://api.github.com/users/HelioCampos"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/1965427?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-03) (-19) 18 : 12 : 59 UTC
+    , repoId = Id 56009639
+    , repoUrl =
+        URL "https://api.github.com/repos/HelioCampos/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/HelioCampos/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:Mermouy/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2015 (-04) (-12) 03 : 15 : 38 UTC
+    , repoHtmlUrl = URL "https://github.com/Mermouy/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/Mermouy/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/Mermouy/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/Mermouy/github-backup.git")
+    , repoSize = Just 956
+    , repoUpdatedAt = Just 2015 (-04) (-12) 03 : 15 : 38 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 76957
+          , simpleOwnerLogin = N "Mermouy"
+          , simpleOwnerUrl = URL "https://api.github.com/users/Mermouy"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/76957?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2015 (-03) (-14) 19 : 56 : 37 UTC
+    , repoId = Id 33801324
+    , repoUrl =
+        URL "https://api.github.com/repos/Mermouy/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/Mermouy/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl = Just (URL "git@github.com:MoOx/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-01) (-22) 11 : 58 : 52 UTC
+    , repoHtmlUrl = URL "https://github.com/MoOx/github-backup"
+    , repoSvnUrl = Just (URL "https://github.com/MoOx/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl = Just (URL "git://github.com/MoOx/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/MoOx/github-backup.git")
+    , repoSize = Just 560
+    , repoUpdatedAt = Just 2016 (-01) (-22) 11 : 58 : 53 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 157534
+          , simpleOwnerLogin = N "MoOx"
+          , simpleOwnerUrl = URL "https://api.github.com/users/MoOx"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/157534?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-01) (-22) 13 : 33 : 31 UTC
+    , repoId = Id 50178771
+    , repoUrl = URL "https://api.github.com/repos/MoOx/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/MoOx/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:RickEyre/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2013 (-07) (-11) 14 : 23 : 01 UTC
+    , repoHtmlUrl = URL "https://github.com/RickEyre/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/RickEyre/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/RickEyre/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/RickEyre/github-backup.git")
+    , repoSize = Just 306
+    , repoUpdatedAt = Just 2013 (-07) (-11) 14 : 23 : 01 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 1071332
+          , simpleOwnerLogin = N "RickEyre"
+          , simpleOwnerUrl = URL "https://api.github.com/users/RickEyre"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/1071332?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2013 (-06) (-22) 18 : 41 : 56 UTC
+    , repoId = Id 11343879
+    , repoUrl =
+        URL "https://api.github.com/repos/RickEyre/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/RickEyre/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:SirWindfield/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2017 (-02) (-13) 19 : 57 : 10 UTC
+    , repoHtmlUrl = URL "https://github.com/SirWindfield/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/SirWindfield/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/SirWindfield/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/SirWindfield/github-backup.git")
+    , repoSize = Just 670
+    , repoUpdatedAt = Just 2017 (-02) (-13) 19 : 57 : 12 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 5113257
+          , simpleOwnerLogin = N "SirWindfield"
+          , simpleOwnerUrl = URL "https://api.github.com/users/SirWindfield"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/5113257?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2017 (-01) (-24) 14 : 38 : 08 UTC
+    , repoId = Id 81865178
+    , repoUrl =
+        URL "https://api.github.com/repos/SirWindfield/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/SirWindfield/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:Softsapiens/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-02) (-09) 10 : 05 : 13 UTC
+    , repoHtmlUrl = URL "https://github.com/Softsapiens/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/Softsapiens/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/Softsapiens/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/Softsapiens/github-backup.git")
+    , repoSize = Just 584
+    , repoUpdatedAt = Just 2016 (-02) (-09) 10 : 05 : 14 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 5175207
+          , simpleOwnerLogin = N "Softsapiens"
+          , simpleOwnerUrl = URL "https://api.github.com/users/Softsapiens"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/5175207?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-02) (-08) 15 : 39 : 37 UTC
+    , repoId = Id 51358966
+    , repoUrl =
+        URL "https://api.github.com/repos/Softsapiens/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/Softsapiens/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:Web5design/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2013 (-12) (-23) 12 : 29 : 03 UTC
+    , repoHtmlUrl = URL "https://github.com/Web5design/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/Web5design/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/Web5design/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/Web5design/github-backup.git")
+    , repoSize = Just 644
+    , repoUpdatedAt = Just 2013 (-12) (-23) 12 : 29 : 04 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 391309
+          , simpleOwnerLogin = N "Web5design"
+          , simpleOwnerUrl = URL "https://api.github.com/users/Web5design"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/391309?v=3"
+          , simpleOwnerType = OwnerOrganization
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2013 (-12) (-03) 19 : 01 : 06 UTC
+    , repoId = Id 15394976
+    , repoUrl =
+        URL "https://api.github.com/repos/Web5design/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/Web5design/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:ankushnarula/github-backup-1.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2014 (-06) (-18) 22 : 32 : 27 UTC
+    , repoHtmlUrl =
+        URL "https://github.com/ankushnarula/github-backup-1"
+    , repoSvnUrl =
+        Just (URL "https://github.com/ankushnarula/github-backup-1")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/ankushnarula/github-backup-1.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/ankushnarula/github-backup-1.git")
+    , repoSize = Just 681
+    , repoUpdatedAt = Just 2014 (-06) (-18) 22 : 32 : 28 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 68403
+          , simpleOwnerLogin = N "ankushnarula"
+          , simpleOwnerUrl = URL "https://api.github.com/users/ankushnarula"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/68403?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup-1"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2014 (-02) (-17) 14 : 55 : 29 UTC
+    , repoId = Id 20980252
+    , repoUrl =
+        URL "https://api.github.com/repos/ankushnarula/github-backup-1"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL
+          "https://api.github.com/repos/ankushnarula/github-backup-1/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:antonini/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-09) (-12) 17 : 54 : 53 UTC
+    , repoHtmlUrl = URL "https://github.com/antonini/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/antonini/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/antonini/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/antonini/github-backup.git")
+    , repoSize = Just 651
+    , repoUpdatedAt = Just 2016 (-09) (-12) 17 : 54 : 54 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 209396
+          , simpleOwnerLogin = N "antonini"
+          , simpleOwnerUrl = URL "https://api.github.com/users/antonini"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/209396?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-08) (-31) 22 : 46 : 44 UTC
+    , repoId = Id 68033491
+    , repoUrl =
+        URL "https://api.github.com/repos/antonini/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/antonini/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:bitemyapp/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-04) (-30) 04 : 32 : 53 UTC
+    , repoHtmlUrl = URL "https://github.com/bitemyapp/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/bitemyapp/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/bitemyapp/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/bitemyapp/github-backup.git")
+    , repoSize = Just 598
+    , repoUpdatedAt = Just 2016 (-04) (-30) 04 : 32 : 53 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 320177
+          , simpleOwnerLogin = N "bitemyapp"
+          , simpleOwnerUrl = URL "https://api.github.com/users/bitemyapp"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/320177?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-04) (-28) 19 : 44 : 48 UTC
+    , repoId = Id 57427142
+    , repoUrl =
+        URL "https://api.github.com/repos/bitemyapp/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/bitemyapp/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:brandongalbraith/github-backup-1.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-02) (-08) 04 : 59 : 27 UTC
+    , repoHtmlUrl =
+        URL "https://github.com/brandongalbraith/github-backup-1"
+    , repoSvnUrl =
+        Just (URL "https://github.com/brandongalbraith/github-backup-1")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/brandongalbraith/github-backup-1.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just
+          (URL "https://github.com/brandongalbraith/github-backup-1.git")
+    , repoSize = Just 572
+    , repoUpdatedAt = Just 2016 (-02) (-08) 04 : 59 : 28 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 350893
+          , simpleOwnerLogin = N "brandongalbraith"
+          , simpleOwnerUrl =
+              URL "https://api.github.com/users/brandongalbraith"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/350893?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup-1"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-02) (-08) 03 : 51 : 48 UTC
+    , repoId = Id 51280039
+    , repoUrl =
+        URL "https://api.github.com/repos/brandongalbraith/github-backup-1"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL
+          "https://api.github.com/repos/brandongalbraith/github-backup-1/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:bryankocol/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-11) (-18) 22 : 30 : 27 UTC
+    , repoHtmlUrl = URL "https://github.com/bryankocol/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/bryankocol/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/bryankocol/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/bryankocol/github-backup.git")
+    , repoSize = Just 673
+    , repoUpdatedAt = Just 2016 (-11) (-18) 22 : 30 : 29 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 5883212
+          , simpleOwnerLogin = N "bryankocol"
+          , simpleOwnerUrl = URL "https://api.github.com/users/bryankocol"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/5883212?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-11) (-18) 17 : 00 : 50 UTC
+    , repoId = Id 74171488
+    , repoUrl =
+        URL "https://api.github.com/repos/bryankocol/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/bryankocol/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:c18h27no3/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-02) (-09) 19 : 20 : 10 UTC
+    , repoHtmlUrl = URL "https://github.com/c18h27no3/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/c18h27no3/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/c18h27no3/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/c18h27no3/github-backup.git")
+    , repoSize = Just 584
+    , repoUpdatedAt = Just 2016 (-02) (-09) 19 : 20 : 11 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 7092981
+          , simpleOwnerLogin = N "c18h27no3"
+          , simpleOwnerUrl = URL "https://api.github.com/users/c18h27no3"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/7092981?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-02) (-08) 15 : 39 : 37 UTC
+    , repoId = Id 51392553
+    , repoUrl =
+        URL "https://api.github.com/repos/c18h27no3/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/c18h27no3/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:carlohamalainen/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-02) (-08) 02 : 19 : 04 UTC
+    , repoHtmlUrl =
+        URL "https://github.com/carlohamalainen/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/carlohamalainen/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/carlohamalainen/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/carlohamalainen/github-backup.git")
+    , repoSize = Just 561
+    , repoUpdatedAt = Just 2016 (-02) (-08) 02 : 19 : 05 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 815386
+          , simpleOwnerLogin = N "carlohamalainen"
+          , simpleOwnerUrl =
+              URL "https://api.github.com/users/carlohamalainen"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/815386?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-02) (-08) 02 : 20 : 54 UTC
+    , repoId = Id 51275831
+    , repoUrl =
+        URL "https://api.github.com/repos/carlohamalainen/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL
+          "https://api.github.com/repos/carlohamalainen/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:chriswahl/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2015 (-05) (-26) 19 : 21 : 40 UTC
+    , repoHtmlUrl = URL "https://github.com/chriswahl/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/chriswahl/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/chriswahl/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/chriswahl/github-backup.git")
+    , repoSize = Just 990
+    , repoUpdatedAt = Just 2015 (-05) (-26) 19 : 21 : 40 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 4888402
+          , simpleOwnerLogin = N "chriswahl"
+          , simpleOwnerUrl = URL "https://api.github.com/users/chriswahl"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/4888402?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2015 (-05) (-10) 21 : 20 : 09 UTC
+    , repoId = Id 36318445
+    , repoUrl =
+        URL "https://api.github.com/repos/chriswahl/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/chriswahl/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:chuckdauer/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-04) (-26) 02 : 46 : 46 UTC
+    , repoHtmlUrl = URL "https://github.com/chuckdauer/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/chuckdauer/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/chuckdauer/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/chuckdauer/github-backup.git")
+    , repoSize = Just 588
+    , repoUpdatedAt = Just 2016 (-04) (-26) 02 : 46 : 47 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 3742670
+          , simpleOwnerLogin = N "chuckdauer"
+          , simpleOwnerUrl = URL "https://api.github.com/users/chuckdauer"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/3742670?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-03) (-19) 18 : 12 : 59 UTC
+    , repoId = Id 57092378
+    , repoUrl =
+        URL "https://api.github.com/repos/chuckdauer/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/chuckdauer/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:codeqqby/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-12) (-22) 03 : 08 : 36 UTC
+    , repoHtmlUrl = URL "https://github.com/codeqqby/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/codeqqby/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/codeqqby/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/codeqqby/github-backup.git")
+    , repoSize = Just 673
+    , repoUpdatedAt = Just 2016 (-12) (-22) 03 : 08 : 39 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 16679188
+          , simpleOwnerLogin = N "codeqqby"
+          , simpleOwnerUrl = URL "https://api.github.com/users/codeqqby"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/16679188?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-11) (-18) 17 : 00 : 50 UTC
+    , repoId = Id 77106982
+    , repoUrl =
+        URL "https://api.github.com/repos/codeqqby/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/codeqqby/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:coolhacks/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-02) (-10) 08 : 52 : 43 UTC
+    , repoHtmlUrl = URL "https://github.com/coolhacks/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/coolhacks/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/coolhacks/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/coolhacks/github-backup.git")
+    , repoSize = Just 584
+    , repoUpdatedAt = Just 2016 (-02) (-10) 08 : 52 : 43 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 17002429
+          , simpleOwnerLogin = N "coolhacks"
+          , simpleOwnerUrl = URL "https://api.github.com/users/coolhacks"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/17002429?v=3"
+          , simpleOwnerType = OwnerOrganization
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-02) (-08) 15 : 39 : 37 UTC
+    , repoId = Id 51429966
+    , repoUrl =
+        URL "https://api.github.com/repos/coolhacks/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/coolhacks/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:creichert/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2015 (-06) (-09) 04 : 46 : 06 UTC
+    , repoHtmlUrl = URL "https://github.com/creichert/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/creichert/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/creichert/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/creichert/github-backup.git")
+    , repoSize = Just 937
+    , repoUpdatedAt = Just 2015 (-06) (-09) 04 : 46 : 07 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 526560
+          , simpleOwnerLogin = N "creichert"
+          , simpleOwnerUrl = URL "https://api.github.com/users/creichert"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/526560?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2015 (-06) (-06) 21 : 02 : 56 UTC
+    , repoId = Id 37110811
+    , repoUrl =
+        URL "https://api.github.com/repos/creichert/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/creichert/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:creswick/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2012 (-04) (-17) 15 : 43 : 53 UTC
+    , repoHtmlUrl = URL "https://github.com/creswick/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/creswick/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/creswick/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/creswick/github-backup.git")
+    , repoSize = Just 171
+    , repoUpdatedAt = Just 2013 (-01) (-08) 18 : 35 : 45 UTC
+    , repoWatchers = Just 1
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 257712
+          , simpleOwnerLogin = N "creswick"
+          , simpleOwnerUrl = URL "https://api.github.com/users/creswick"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/257712?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2012 (-03) (-27) 17 : 22 : 16 UTC
+    , repoId = Id 4054143
+    , repoUrl =
+        URL "https://api.github.com/repos/creswick/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/creswick/github-backup/hooks"
+    , repoStargazersCount = 1
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:curtiszimmerman/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-02) (-08) 08 : 24 : 02 UTC
+    , repoHtmlUrl =
+        URL "https://github.com/curtiszimmerman/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/curtiszimmerman/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/curtiszimmerman/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/curtiszimmerman/github-backup.git")
+    , repoSize = Just 581
+    , repoUpdatedAt = Just 2016 (-02) (-08) 08 : 24 : 03 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 1753955
+          , simpleOwnerLogin = N "curtiszimmerman"
+          , simpleOwnerUrl =
+              URL "https://api.github.com/users/curtiszimmerman"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/1753955?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-02) (-08) 06 : 10 : 37 UTC
+    , repoId = Id 51286147
+    , repoUrl =
+        URL "https://api.github.com/repos/curtiszimmerman/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL
+          "https://api.github.com/repos/curtiszimmerman/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:damajor/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2012 (-09) (-28) 22 : 31 : 26 UTC
+    , repoHtmlUrl = URL "https://github.com/damajor/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/damajor/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/damajor/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/damajor/github-backup.git")
+    , repoSize = Just 249
+    , repoUpdatedAt = Just 2013 (-01) (-12) 11 : 26 : 02 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 1475820
+          , simpleOwnerLogin = N "damajor"
+          , simpleOwnerUrl = URL "https://api.github.com/users/damajor"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/1475820?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2012 (-09) (-28) 05 : 46 : 25 UTC
+    , repoId = Id 6003865
+    , repoUrl =
+        URL "https://api.github.com/repos/damajor/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/damajor/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl = Just (URL "git@github.com:davgit/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2013 (-04) (-08) 03 : 45 : 53 UTC
+    , repoHtmlUrl = URL "https://github.com/davgit/github-backup"
+    , repoSvnUrl = Just (URL "https://github.com/davgit/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/davgit/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/davgit/github-backup.git")
+    , repoSize = Just 263
+    , repoUpdatedAt = Just 2013 (-04) (-08) 03 : 45 : 53 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 294138
+          , simpleOwnerLogin = N "davgit"
+          , simpleOwnerUrl = URL "https://api.github.com/users/davgit"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/294138?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2013 (-04) (-05) 14 : 33 : 16 UTC
+    , repoId = Id 9288095
+    , repoUrl = URL "https://api.github.com/repos/davgit/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/davgit/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl = Just (URL "git@github.com:diogob/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-02) (-11) 15 : 35 : 35 UTC
+    , repoHtmlUrl = URL "https://github.com/diogob/github-backup"
+    , repoSvnUrl = Just (URL "https://github.com/diogob/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/diogob/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/diogob/github-backup.git")
+    , repoSize = Just 574
+    , repoUpdatedAt = Just 2016 (-02) (-11) 15 : 35 : 36 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 20662
+          , simpleOwnerLogin = N "diogob"
+          , simpleOwnerUrl = URL "https://api.github.com/users/diogob"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/20662?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-02) (-16) 03 : 45 : 24 UTC
+    , repoId = Id 51524490
+    , repoUrl = URL "https://api.github.com/repos/diogob/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/diogob/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:doubleotoo/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2012 (-04) (-25) 23 : 12 : 28 UTC
+    , repoHtmlUrl = URL "https://github.com/doubleotoo/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/doubleotoo/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/doubleotoo/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/doubleotoo/github-backup.git")
+    , repoSize = Just 177
+    , repoUpdatedAt = Just 2013 (-01) (-08) 22 : 12 : 54 UTC
+    , repoWatchers = Just 1
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 1280870
+          , simpleOwnerLogin = N "doubleotoo"
+          , simpleOwnerUrl = URL "https://api.github.com/users/doubleotoo"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/1280870?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2012 (-04) (-23) 04 : 35 : 53 UTC
+    , repoId = Id 4142261
+    , repoUrl =
+        URL "https://api.github.com/repos/doubleotoo/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/doubleotoo/github-backup/hooks"
+    , repoStargazersCount = 1
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:dragon788/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-02) (-01) 01 : 47 : 21 UTC
+    , repoHtmlUrl = URL "https://github.com/dragon788/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/dragon788/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/dragon788/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/dragon788/github-backup.git")
+    , repoSize = Just 563
+    , repoUpdatedAt = Just 2016 (-02) (-01) 01 : 47 : 22 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 487774
+          , simpleOwnerLogin = N "dragon788"
+          , simpleOwnerUrl = URL "https://api.github.com/users/dragon788"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/487774?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-01) (-22) 18 : 39 : 47 UTC
+    , repoId = Id 50806268
+    , repoUrl =
+        URL "https://api.github.com/repos/dragon788/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/dragon788/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl = Just (URL "git@github.com:ef37/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-12) (-05) 13 : 49 : 02 UTC
+    , repoHtmlUrl = URL "https://github.com/ef37/github-backup"
+    , repoSvnUrl = Just (URL "https://github.com/ef37/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl = Just (URL "git://github.com/ef37/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/ef37/github-backup.git")
+    , repoSize = Just 673
+    , repoUpdatedAt = Just 2016 (-12) (-05) 13 : 49 : 07 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 23190458
+          , simpleOwnerLogin = N "ef37"
+          , simpleOwnerUrl = URL "https://api.github.com/users/ef37"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/23190458?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-11) (-18) 17 : 00 : 50 UTC
+    , repoId = Id 75629061
+    , repoUrl = URL "https://api.github.com/repos/ef37/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just True
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/ef37/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl = Just (URL "git@github.com:emijrp/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-07) (-23) 09 : 07 : 42 UTC
+    , repoHtmlUrl = URL "https://github.com/emijrp/github-backup"
+    , repoSvnUrl = Just (URL "https://github.com/emijrp/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/emijrp/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/emijrp/github-backup.git")
+    , repoSize = Just 627
+    , repoUpdatedAt = Just 2016 (-07) (-23) 09 : 07 : 43 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 422046
+          , simpleOwnerLogin = N "emijrp"
+          , simpleOwnerUrl = URL "https://api.github.com/users/emijrp"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/422046?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-07) (-13) 15 : 41 : 40 UTC
+    , repoId = Id 64008425
+    , repoUrl = URL "https://api.github.com/repos/emijrp/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/emijrp/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl = Just (URL "git@github.com:fourks/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2014 (-03) (-27) 20 : 51 : 01 UTC
+    , repoHtmlUrl = URL "https://github.com/fourks/github-backup"
+    , repoSvnUrl = Just (URL "https://github.com/fourks/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/fourks/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/fourks/github-backup.git")
+    , repoSize = Just 681
+    , repoUpdatedAt = Just 2014 (-03) (-27) 20 : 51 : 02 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 6034885
+          , simpleOwnerLogin = N "fourks"
+          , simpleOwnerUrl = URL "https://api.github.com/users/fourks"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/6034885?v=3"
+          , simpleOwnerType = OwnerOrganization
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2014 (-02) (-17) 14 : 55 : 29 UTC
+    , repoId = Id 18190996
+    , repoUrl = URL "https://api.github.com/repos/fourks/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/fourks/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl = Just (URL "git@github.com:fw1121/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2015 (-07) (-02) 02 : 49 : 57 UTC
+    , repoHtmlUrl = URL "https://github.com/fw1121/github-backup"
+    , repoSvnUrl = Just (URL "https://github.com/fw1121/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/fw1121/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/fw1121/github-backup.git")
+    , repoSize = Just 589
+    , repoUpdatedAt = Just 2015 (-07) (-02) 02 : 49 : 57 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 1687838
+          , simpleOwnerLogin = N "fw1121"
+          , simpleOwnerUrl = URL "https://api.github.com/users/fw1121"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/1687838?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2015 (-06) (-29) 03 : 09 : 41 UTC
+    , repoId = Id 38407485
+    , repoUrl = URL "https://api.github.com/repos/fw1121/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/fw1121/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:geminiyellow/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-01) (-28) 03 : 59 : 51 UTC
+    , repoHtmlUrl = URL "https://github.com/geminiyellow/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/geminiyellow/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/geminiyellow/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/geminiyellow/github-backup.git")
+    , repoSize = Just 563
+    , repoUpdatedAt = Just 2016 (-01) (-28) 03 : 59 : 52 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 929878
+          , simpleOwnerLogin = N "geminiyellow"
+          , simpleOwnerUrl = URL "https://api.github.com/users/geminiyellow"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/929878?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-01) (-22) 18 : 39 : 47 UTC
+    , repoId = Id 50553778
+    , repoUrl =
+        URL "https://api.github.com/repos/geminiyellow/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/geminiyellow/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:grubern/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-04) (-14) 08 : 43 : 45 UTC
+    , repoHtmlUrl = URL "https://github.com/grubern/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/grubern/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/grubern/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/grubern/github-backup.git")
+    , repoSize = Just 588
+    , repoUpdatedAt = Just 2016 (-04) (-14) 08 : 43 : 55 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 17982888
+          , simpleOwnerLogin = N "grubern"
+          , simpleOwnerUrl = URL "https://api.github.com/users/grubern"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/17982888?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-03) (-19) 18 : 12 : 59 UTC
+    , repoId = Id 56221494
+    , repoUrl =
+        URL "https://api.github.com/repos/grubern/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just True
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/grubern/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl = Just (URL "git@github.com:iSCInc/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-06) (-03) 14 : 54 : 48 UTC
+    , repoHtmlUrl = URL "https://github.com/iSCInc/github-backup"
+    , repoSvnUrl = Just (URL "https://github.com/iSCInc/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/iSCInc/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/iSCInc/github-backup.git")
+    , repoSize = Just 627
+    , repoUpdatedAt = Just 2016 (-06) (-03) 14 : 54 : 49 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 6920447
+          , simpleOwnerLogin = N "iSCInc"
+          , simpleOwnerUrl = URL "https://api.github.com/users/iSCInc"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/6920447?v=3"
+          , simpleOwnerType = OwnerOrganization
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-05) (-23) 00 : 55 : 05 UTC
+    , repoId = Id 60355851
+    , repoUrl = URL "https://api.github.com/repos/iSCInc/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/iSCInc/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:inthecloud247/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2014 (-10) (-31) 06 : 11 : 00 UTC
+    , repoHtmlUrl =
+        URL "https://github.com/inthecloud247/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/inthecloud247/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/inthecloud247/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/inthecloud247/github-backup.git")
+    , repoSize = Just 839
+    , repoUpdatedAt = Just 2014 (-10) (-31) 06 : 10 : 57 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 1683995
+          , simpleOwnerLogin = N "inthecloud247"
+          , simpleOwnerUrl = URL "https://api.github.com/users/inthecloud247"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/1683995?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Nothing
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2014 (-08) (-31) 22 : 37 : 35 UTC
+    , repoId = Id 26004378
+    , repoUrl =
+        URL "https://api.github.com/repos/inthecloud247/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL
+          "https://api.github.com/repos/inthecloud247/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl = Just (URL "git@github.com:irtnog/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-02) (-17) 18 : 01 : 59 UTC
+    , repoHtmlUrl = URL "https://github.com/irtnog/github-backup"
+    , repoSvnUrl = Just (URL "https://github.com/irtnog/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/irtnog/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/irtnog/github-backup.git")
+    , repoSize = Just 662
+    , repoUpdatedAt = Just 2016 (-02) (-17) 18 : 02 : 00 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 11543381
+          , simpleOwnerLogin = N "irtnog"
+          , simpleOwnerUrl = URL "https://api.github.com/users/irtnog"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/11543381?v=3"
+          , simpleOwnerType = OwnerOrganization
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2017 (-01) (-25) 16 : 55 : 03 UTC
+    , repoId = Id 51943362
+    , repoUrl = URL "https://api.github.com/repos/irtnog/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/irtnog/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:isaacwong/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2017 (-01) (-31) 18 : 43 : 44 UTC
+    , repoHtmlUrl = URL "https://github.com/isaacwong/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/isaacwong/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/isaacwong/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/isaacwong/github-backup.git")
+    , repoSize = Just 670
+    , repoUpdatedAt = Just 2017 (-01) (-31) 18 : 43 : 46 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 225568
+          , simpleOwnerLogin = N "isaacwong"
+          , simpleOwnerUrl = URL "https://api.github.com/users/isaacwong"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/225568?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2017 (-01) (-24) 14 : 38 : 08 UTC
+    , repoId = Id 80550125
+    , repoUrl =
+        URL "https://api.github.com/repos/isaacwong/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/isaacwong/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:jakirkham/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-11) (-18) 16 : 18 : 15 UTC
+    , repoHtmlUrl = URL "https://github.com/jakirkham/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/jakirkham/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/jakirkham/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/jakirkham/github-backup.git")
+    , repoSize = Just 665
+    , repoUpdatedAt = Just 2016 (-11) (-18) 16 : 18 : 16 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 3019665
+          , simpleOwnerLogin = N "jakirkham"
+          , simpleOwnerUrl = URL "https://api.github.com/users/jakirkham"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/3019665?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-11) (-10) 16 : 00 : 55 UTC
+    , repoId = Id 74146315
+    , repoUrl =
+        URL "https://api.github.com/repos/jakirkham/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/jakirkham/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:jamesbjackson/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-02) (-08) 01 : 48 : 13 UTC
+    , repoHtmlUrl =
+        URL "https://github.com/jamesbjackson/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/jamesbjackson/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/jamesbjackson/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/jamesbjackson/github-backup.git")
+    , repoSize = Just 563
+    , repoUpdatedAt = Just 2016 (-02) (-08) 01 : 48 : 14 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 685795
+          , simpleOwnerLogin = N "jamesbjackson"
+          , simpleOwnerUrl = URL "https://api.github.com/users/jamesbjackson"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/685795?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-01) (-22) 18 : 39 : 47 UTC
+    , repoId = Id 51275061
+    , repoUrl =
+        URL "https://api.github.com/repos/jamesbjackson/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL
+          "https://api.github.com/repos/jamesbjackson/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl = Just (URL "git@github.com:jbrahy/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2013 (-12) (-04) 20 : 03 : 30 UTC
+    , repoHtmlUrl = URL "https://github.com/jbrahy/github-backup"
+    , repoSvnUrl = Just (URL "https://github.com/jbrahy/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/jbrahy/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/jbrahy/github-backup.git")
+    , repoSize = Just 644
+    , repoUpdatedAt = Just 2013 (-12) (-04) 20 : 03 : 30 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 885254
+          , simpleOwnerLogin = N "jbrahy"
+          , simpleOwnerUrl = URL "https://api.github.com/users/jbrahy"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/885254?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2013 (-12) (-03) 19 : 01 : 06 UTC
+    , repoId = Id 14934367
+    , repoUrl = URL "https://api.github.com/repos/jbrahy/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/jbrahy/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:jdsn/joeyh--github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2015 (-06) (-02) 13 : 43 : 45 UTC
+    , repoHtmlUrl = URL "https://github.com/jdsn/joeyh--github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/jdsn/joeyh--github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/jdsn/joeyh--github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/jdsn/joeyh--github-backup.git")
+    , repoSize = Just 990
+    , repoUpdatedAt = Just 2015 (-06) (-02) 13 : 44 : 02 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 27084
+          , simpleOwnerLogin = N "jdsn"
+          , simpleOwnerUrl = URL "https://api.github.com/users/jdsn"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/27084?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "joeyh--github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2015 (-05) (-10) 21 : 20 : 09 UTC
+    , repoId = Id 36736077
+    , repoUrl =
+        URL "https://api.github.com/repos/jdsn/joeyh--github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/jdsn/joeyh--github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:jorik041/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2013 (-08) (-30) 21 : 16 : 03 UTC
+    , repoHtmlUrl = URL "https://github.com/jorik041/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/jorik041/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/jorik041/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/jorik041/github-backup.git")
+    , repoSize = Just 60
+    , repoUpdatedAt = Just 2013 (-08) (-30) 21 : 16 : 03 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 4687038
+          , simpleOwnerLogin = N "jorik041"
+          , simpleOwnerUrl = URL "https://api.github.com/users/jorik041"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/4687038?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2013 (-06) (-22) 18 : 41 : 56 UTC
+    , repoId = Id 12495742
+    , repoUrl =
+        URL "https://api.github.com/repos/jorik041/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/jorik041/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:jwiegley/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2013 (-01) (-31) 08 : 36 : 18 UTC
+    , repoHtmlUrl = URL "https://github.com/jwiegley/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/jwiegley/github-backup")
+    , repoForks = Just 2
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/jwiegley/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/jwiegley/github-backup.git")
+    , repoSize = Just 294
+    , repoUpdatedAt = Just 2013 (-06) (-28) 09 : 41 : 55 UTC
+    , repoWatchers = Just 2
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 8460
+          , simpleOwnerLogin = N "jwiegley"
+          , simpleOwnerUrl = URL "https://api.github.com/users/jwiegley"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/8460?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2013 (-01) (-31) 08 : 37 : 24 UTC
+    , repoId = Id 7933095
+    , repoUrl =
+        URL "https://api.github.com/repos/jwiegley/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/jwiegley/github-backup/hooks"
+    , repoStargazersCount = 2
+    }
+, Repo
+    { repoSshUrl = Just (URL "git@github.com:jwilk/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-07) (-13) 15 : 41 : 20 UTC
+    , repoHtmlUrl = URL "https://github.com/jwilk/github-backup"
+    , repoSvnUrl = Just (URL "https://github.com/jwilk/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/jwilk/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/jwilk/github-backup.git")
+    , repoSize = Just 648
+    , repoUpdatedAt = Just 2016 (-07) (-13) 15 : 41 : 21 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 141546
+          , simpleOwnerLogin = N "jwilk"
+          , simpleOwnerUrl = URL "https://api.github.com/users/jwilk"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/141546?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-07) (-13) 15 : 41 : 39 UTC
+    , repoId = Id 63258886
+    , repoUrl = URL "https://api.github.com/repos/jwilk/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/jwilk/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl = Just (URL "git@github.com:leroyg/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-02) (-08) 19 : 15 : 35 UTC
+    , repoHtmlUrl = URL "https://github.com/leroyg/github-backup"
+    , repoSvnUrl = Just (URL "https://github.com/leroyg/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/leroyg/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/leroyg/github-backup.git")
+    , repoSize = Just 584
+    , repoUpdatedAt = Just 2016 (-02) (-08) 19 : 15 : 35 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 561805
+          , simpleOwnerLogin = N "leroyg"
+          , simpleOwnerUrl = URL "https://api.github.com/users/leroyg"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/561805?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-02) (-08) 15 : 39 : 37 UTC
+    , repoId = Id 51320201
+    , repoUrl = URL "https://api.github.com/repos/leroyg/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/leroyg/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:linuxwhy/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-01) (-03) 08 : 36 : 24 UTC
+    , repoHtmlUrl = URL "https://github.com/linuxwhy/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/linuxwhy/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/linuxwhy/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/linuxwhy/github-backup.git")
+    , repoSize = Just 557
+    , repoUpdatedAt = Just 2016 (-01) (-03) 08 : 36 : 25 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 3283570
+          , simpleOwnerLogin = N "linuxwhy"
+          , simpleOwnerUrl = URL "https://api.github.com/users/linuxwhy"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/3283570?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2015 (-12) (-19) 21 : 47 : 45 UTC
+    , repoId = Id 48939391
+    , repoUrl =
+        URL "https://api.github.com/repos/linuxwhy/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/linuxwhy/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl = Just (URL "git@github.com:mommel/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2015 (-10) (-31) 14 : 12 : 24 UTC
+    , repoHtmlUrl = URL "https://github.com/mommel/github-backup"
+    , repoSvnUrl = Just (URL "https://github.com/mommel/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/mommel/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/mommel/github-backup.git")
+    , repoSize = Just 1053
+    , repoUpdatedAt = Just 2015 (-10) (-31) 14 : 12 : 25 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 1635743
+          , simpleOwnerLogin = N "mommel"
+          , simpleOwnerUrl = URL "https://api.github.com/users/mommel"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/1635743?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2015 (-09) (-15) 14 : 18 : 33 UTC
+    , repoId = Id 45304176
+    , repoUrl = URL "https://api.github.com/repos/mommel/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/mommel/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:nagya11/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-01) (-28) 10 : 48 : 27 UTC
+    , repoHtmlUrl = URL "https://github.com/nagya11/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/nagya11/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/nagya11/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/nagya11/github-backup.git")
+    , repoSize = Just 563
+    , repoUpdatedAt = Just 2016 (-01) (-28) 10 : 48 : 39 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 16880373
+          , simpleOwnerLogin = N "nagya11"
+          , simpleOwnerUrl = URL "https://api.github.com/users/nagya11"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/16880373?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-01) (-22) 18 : 39 : 47 UTC
+    , repoId = Id 50576380
+    , repoUrl =
+        URL "https://api.github.com/repos/nagya11/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just True
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/nagya11/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:neuroradiology/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2014 (-10) (-31) 18 : 03 : 48 UTC
+    , repoHtmlUrl =
+        URL "https://github.com/neuroradiology/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/neuroradiology/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/neuroradiology/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/neuroradiology/github-backup.git")
+    , repoSize = Just 502
+    , repoUpdatedAt = Just 2014 (-10) (-31) 15 : 03 : 20 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 8550951
+          , simpleOwnerLogin = N "neuroradiology"
+          , simpleOwnerUrl =
+              URL "https://api.github.com/users/neuroradiology"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/8550951?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Nothing
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2014 (-10) (-31) 15 : 27 : 21 UTC
+    , repoId = Id 26027414
+    , repoUrl =
+        URL "https://api.github.com/repos/neuroradiology/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL
+          "https://api.github.com/repos/neuroradiology/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:nivertech/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2012 (-02) (-19) 14 : 09 : 11 UTC
+    , repoHtmlUrl = URL "https://github.com/nivertech/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/nivertech/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/nivertech/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/nivertech/github-backup.git")
+    , repoSize = Just 147
+    , repoUpdatedAt = Just 2013 (-01) (-07) 22 : 22 : 50 UTC
+    , repoWatchers = Just 1
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 78495
+          , simpleOwnerLogin = N "nivertech"
+          , simpleOwnerUrl = URL "https://api.github.com/users/nivertech"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/78495?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2012 (-02) (-15) 18 : 03 : 09 UTC
+    , repoId = Id 3485698
+    , repoUrl =
+        URL "https://api.github.com/repos/nivertech/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/nivertech/github-backup/hooks"
+    , repoStargazersCount = 1
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:nonconforme/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-09) (-19) 13 : 41 : 25 UTC
+    , repoHtmlUrl = URL "https://github.com/nonconforme/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/nonconforme/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/nonconforme/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/nonconforme/github-backup.git")
+    , repoSize = Just 651
+    , repoUpdatedAt = Just 2016 (-09) (-19) 13 : 41 : 26 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 5469120
+          , simpleOwnerLogin = N "nonconforme"
+          , simpleOwnerUrl = URL "https://api.github.com/users/nonconforme"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/5469120?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-08) (-31) 22 : 46 : 44 UTC
+    , repoId = Id 68609738
+    , repoUrl =
+        URL "https://api.github.com/repos/nonconforme/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/nonconforme/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:nora55974/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-06) (-15) 18 : 45 : 36 UTC
+    , repoHtmlUrl = URL "https://github.com/nora55974/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/nora55974/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/nora55974/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/nora55974/github-backup.git")
+    , repoSize = Just 627
+    , repoUpdatedAt = Just 2016 (-12) (-15) 09 : 28 : 28 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 19627154
+          , simpleOwnerLogin = N "nora55974"
+          , simpleOwnerUrl = URL "https://api.github.com/users/nora55974"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/19627154?v=3"
+          , simpleOwnerType = OwnerOrganization
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-05) (-23) 00 : 55 : 05 UTC
+    , repoId = Id 61232197
+    , repoUrl =
+        URL "https://api.github.com/repos/nora55974/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just True
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/nora55974/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:number0/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-06) (-29) 08 : 13 : 06 UTC
+    , repoHtmlUrl = URL "https://github.com/number0/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/number0/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/number0/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/number0/github-backup.git")
+    , repoSize = Just 627
+    , repoUpdatedAt = Just 2016 (-06) (-29) 08 : 13 : 08 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 792112
+          , simpleOwnerLogin = N "number0"
+          , simpleOwnerUrl = URL "https://api.github.com/users/number0"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/792112?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-05) (-23) 00 : 55 : 05 UTC
+    , repoId = Id 62208243
+    , repoUrl =
+        URL "https://api.github.com/repos/number0/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/number0/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:pombreda/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2014 (-08) (-07) 13 : 04 : 12 UTC
+    , repoHtmlUrl = URL "https://github.com/pombreda/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/pombreda/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/pombreda/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/pombreda/github-backup.git")
+    , repoSize = Just 736
+    , repoUpdatedAt = Just 2014 (-08) (-06) 09 : 06 : 54 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 8384917
+          , simpleOwnerLogin = N "pombreda"
+          , simpleOwnerUrl = URL "https://api.github.com/users/pombreda"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/8384917?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Nothing
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2014 (-07) (-21) 17 : 13 : 44 UTC
+    , repoId = Id 22721532
+    , repoUrl =
+        URL "https://api.github.com/repos/pombreda/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/pombreda/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:pombredanne/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2014 (-11) (-23) 17 : 26 : 30 UTC
+    , repoHtmlUrl = URL "https://github.com/pombredanne/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/pombredanne/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/pombredanne/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/pombredanne/github-backup.git")
+    , repoSize = Just 916
+    , repoUpdatedAt = Just 2014 (-11) (-23) 17 : 26 : 30 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 675997
+          , simpleOwnerLogin = N "pombredanne"
+          , simpleOwnerUrl = URL "https://api.github.com/users/pombredanne"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/675997?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2014 (-11) (-10) 16 : 29 : 34 UTC
+    , repoId = Id 27040532
+    , repoUrl =
+        URL "https://api.github.com/repos/pombredanne/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/pombredanne/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:rlugojr/github-backup-1.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-02) (-08) 20 : 02 : 15 UTC
+    , repoHtmlUrl = URL "https://github.com/rlugojr/github-backup-1"
+    , repoSvnUrl =
+        Just (URL "https://github.com/rlugojr/github-backup-1")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/rlugojr/github-backup-1.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/rlugojr/github-backup-1.git")
+    , repoSize = Just 584
+    , repoUpdatedAt = Just 2016 (-02) (-08) 20 : 02 : 16 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 7250897
+          , simpleOwnerLogin = N "rlugojr"
+          , simpleOwnerUrl = URL "https://api.github.com/users/rlugojr"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/7250897?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup-1"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-02) (-08) 15 : 39 : 37 UTC
+    , repoId = Id 51323220
+    , repoUrl =
+        URL "https://api.github.com/repos/rlugojr/github-backup-1"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/rlugojr/github-backup-1/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:rmoorman/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2013 (-05) (-19) 20 : 44 : 32 UTC
+    , repoHtmlUrl = URL "https://github.com/rmoorman/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/rmoorman/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/rmoorman/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/rmoorman/github-backup.git")
+    , repoSize = Just 261
+    , repoUpdatedAt = Just 2013 (-05) (-19) 20 : 44 : 32 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 219695
+          , simpleOwnerLogin = N "rmoorman"
+          , simpleOwnerUrl = URL "https://api.github.com/users/rmoorman"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/219695?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2013 (-05) (-12) 15 : 41 : 53 UTC
+    , repoId = Id 10161149
+    , repoUrl =
+        URL "https://api.github.com/repos/rmoorman/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/rmoorman/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl = Just (URL "git@github.com:rrana/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-02) (-08) 04 : 40 : 03 UTC
+    , repoHtmlUrl = URL "https://github.com/rrana/github-backup"
+    , repoSvnUrl = Just (URL "https://github.com/rrana/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/rrana/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/rrana/github-backup.git")
+    , repoSize = Just 572
+    , repoUpdatedAt = Just 2016 (-02) (-08) 04 : 40 : 03 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 1464288
+          , simpleOwnerLogin = N "rrana"
+          , simpleOwnerUrl = URL "https://api.github.com/users/rrana"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/1464288?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-02) (-08) 03 : 51 : 48 UTC
+    , repoId = Id 51279503
+    , repoUrl = URL "https://api.github.com/repos/rrana/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/rrana/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:rubycourse/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-12) (-16) 16 : 12 : 43 UTC
+    , repoHtmlUrl = URL "https://github.com/rubycourse/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/rubycourse/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/rubycourse/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/rubycourse/github-backup.git")
+    , repoSize = Just 673
+    , repoUpdatedAt = Just 2016 (-12) (-16) 16 : 12 : 44 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 19244902
+          , simpleOwnerLogin = N "rubycourse"
+          , simpleOwnerUrl = URL "https://api.github.com/users/rubycourse"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/19244902?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-11) (-18) 17 : 00 : 50 UTC
+    , repoId = Id 76667320
+    , repoUrl =
+        URL "https://api.github.com/repos/rubycourse/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/rubycourse/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:runthejoules/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2015 (-07) (-11) 13 : 55 : 33 UTC
+    , repoHtmlUrl = URL "https://github.com/runthejoules/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/runthejoules/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/runthejoules/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/runthejoules/github-backup.git")
+    , repoSize = Just 958
+    , repoUpdatedAt = Just 2015 (-07) (-11) 13 : 55 : 34 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 5242231
+          , simpleOwnerLogin = N "runthejoules"
+          , simpleOwnerUrl = URL "https://api.github.com/users/runthejoules"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/5242231?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2015 (-06) (-29) 03 : 09 : 41 UTC
+    , repoId = Id 38927421
+    , repoUrl =
+        URL "https://api.github.com/repos/runthejoules/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/runthejoules/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:sh1nu11bi/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-09) (-13) 09 : 31 : 58 UTC
+    , repoHtmlUrl = URL "https://github.com/sh1nu11bi/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/sh1nu11bi/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/sh1nu11bi/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/sh1nu11bi/github-backup.git")
+    , repoSize = Just 651
+    , repoUpdatedAt = Just 2016 (-09) (-13) 09 : 31 : 59 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 8491438
+          , simpleOwnerLogin = N "sh1nu11bi"
+          , simpleOwnerUrl = URL "https://api.github.com/users/sh1nu11bi"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/8491438?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-08) (-31) 22 : 46 : 44 UTC
+    , repoId = Id 68094605
+    , repoUrl =
+        URL "https://api.github.com/repos/sh1nu11bi/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/sh1nu11bi/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:shaunstanislaus/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-02) (-09) 07 : 11 : 11 UTC
+    , repoHtmlUrl =
+        URL "https://github.com/shaunstanislaus/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/shaunstanislaus/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/shaunstanislaus/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/shaunstanislaus/github-backup.git")
+    , repoSize = Just 584
+    , repoUpdatedAt = Just 2016 (-02) (-09) 07 : 11 : 12 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 1703530
+          , simpleOwnerLogin = N "shaunstanislaus"
+          , simpleOwnerUrl =
+              URL "https://api.github.com/users/shaunstanislaus"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/1703530?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-02) (-08) 15 : 39 : 37 UTC
+    , repoId = Id 51351974
+    , repoUrl =
+        URL "https://api.github.com/repos/shaunstanislaus/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL
+          "https://api.github.com/repos/shaunstanislaus/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl = Just (URL "git@github.com:silky/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2015 (-04) (-10) 02 : 45 : 38 UTC
+    , repoHtmlUrl = URL "https://github.com/silky/github-backup"
+    , repoSvnUrl = Just (URL "https://github.com/silky/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/silky/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/silky/github-backup.git")
+    , repoSize = Just 956
+    , repoUpdatedAt = Just 2015 (-04) (-10) 02 : 45 : 38 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 129525
+          , simpleOwnerLogin = N "silky"
+          , simpleOwnerUrl = URL "https://api.github.com/users/silky"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/129525?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2015 (-03) (-14) 19 : 56 : 37 UTC
+    , repoId = Id 33704644
+    , repoUrl = URL "https://api.github.com/repos/silky/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/silky/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just
+          (URL "git@github.com:transformersprimeabcxyz/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-03) (-02) 16 : 01 : 19 UTC
+    , repoHtmlUrl =
+        URL "https://github.com/transformersprimeabcxyz/github-backup"
+    , repoSvnUrl =
+        Just
+          (URL "https://github.com/transformersprimeabcxyz/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just
+          (URL "git://github.com/transformersprimeabcxyz/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just
+          (URL
+             "https://github.com/transformersprimeabcxyz/github-backup.git")
+    , repoSize = Just 584
+    , repoUpdatedAt = Just 2016 (-03) (-02) 16 : 01 : 20 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 16472278
+          , simpleOwnerLogin = N "transformersprimeabcxyz"
+          , simpleOwnerUrl =
+              URL "https://api.github.com/users/transformersprimeabcxyz"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/16472278?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-02) (-19) 04 : 46 : 11 UTC
+    , repoId = Id 52976157
+    , repoUrl =
+        URL
+          "https://api.github.com/repos/transformersprimeabcxyz/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL
+          "https://api.github.com/repos/transformersprimeabcxyz/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:trenta3/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-08) (-09) 21 : 06 : 46 UTC
+    , repoHtmlUrl = URL "https://github.com/trenta3/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/trenta3/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/trenta3/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/trenta3/github-backup.git")
+    , repoSize = Just 627
+    , repoUpdatedAt = Just 2016 (-08) (-09) 21 : 06 : 47 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 10828817
+          , simpleOwnerLogin = N "trenta3"
+          , simpleOwnerUrl = URL "https://api.github.com/users/trenta3"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/10828817?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-07) (-13) 15 : 41 : 40 UTC
+    , repoId = Id 65328309
+    , repoUrl =
+        URL "https://api.github.com/repos/trenta3/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/trenta3/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl = Just (URL "git@github.com:valeIT/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-02) (-09) 19 : 12 : 24 UTC
+    , repoHtmlUrl = URL "https://github.com/valeIT/github-backup"
+    , repoSvnUrl = Just (URL "https://github.com/valeIT/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/valeIT/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/valeIT/github-backup.git")
+    , repoSize = Just 584
+    , repoUpdatedAt = Just 2016 (-02) (-09) 19 : 12 : 25 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 2276140
+          , simpleOwnerLogin = N "valeIT"
+          , simpleOwnerUrl = URL "https://api.github.com/users/valeIT"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/2276140?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-02) (-08) 15 : 39 : 37 UTC
+    , repoId = Id 51391973
+    , repoUrl = URL "https://api.github.com/repos/valeIT/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/valeIT/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl = Just (URL "git@github.com:waako/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2014 (-01) (-28) 15 : 37 : 54 UTC
+    , repoHtmlUrl = URL "https://github.com/waako/github-backup"
+    , repoSvnUrl = Just (URL "https://github.com/waako/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/waako/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/waako/github-backup.git")
+    , repoSize = Just 457
+    , repoUpdatedAt = Just 2014 (-04) (-24) 12 : 58 : 06 UTC
+    , repoWatchers = Just 2
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 70727
+          , simpleOwnerLogin = N "waako"
+          , simpleOwnerUrl = URL "https://api.github.com/users/waako"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/70727?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2014 (-01) (-29) 17 : 21 : 15 UTC
+    , repoId = Id 16315979
+    , repoUrl = URL "https://api.github.com/repos/waako/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/waako/github-backup/hooks"
+    , repoStargazersCount = 2
+    }
+, Repo
+    { repoSshUrl = Just (URL "git@github.com:ypid/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2015 (-09) (-15) 14 : 16 : 08 UTC
+    , repoHtmlUrl = URL "https://github.com/ypid/github-backup"
+    , repoSvnUrl = Just (URL "https://github.com/ypid/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl = Just (URL "git://github.com/ypid/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/ypid/github-backup.git")
+    , repoSize = Just 631
+    , repoUpdatedAt = Just 2015 (-09) (-15) 14 : 16 : 08 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 1301158
+          , simpleOwnerLogin = N "ypid"
+          , simpleOwnerUrl = URL "https://api.github.com/users/ypid"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/1301158?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2015 (-09) (-15) 14 : 17 : 53 UTC
+    , repoId = Id 42523845
+    , repoUrl = URL "https://api.github.com/repos/ypid/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/ypid/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:yuyobit/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2015 (-06) (-04) 15 : 54 : 43 UTC
+    , repoHtmlUrl = URL "https://github.com/yuyobit/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/yuyobit/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/yuyobit/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/yuyobit/github-backup.git")
+    , repoSize = Just 990
+    , repoUpdatedAt = Just 2015 (-06) (-04) 15 : 54 : 44 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 8340978
+          , simpleOwnerLogin = N "yuyobit"
+          , simpleOwnerUrl = URL "https://api.github.com/users/yuyobit"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/8340978?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2015 (-05) (-10) 21 : 20 : 09 UTC
+    , repoId = Id 36880431
+    , repoUrl =
+        URL "https://api.github.com/repos/yuyobit/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/yuyobit/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:zachlungu/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-07) (-25) 14 : 49 : 59 UTC
+    , repoHtmlUrl = URL "https://github.com/zachlungu/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/zachlungu/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/zachlungu/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/zachlungu/github-backup.git")
+    , repoSize = Just 627
+    , repoUpdatedAt = Just 2016 (-07) (-25) 14 : 50 : 00 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 20643497
+          , simpleOwnerLogin = N "zachlungu"
+          , simpleOwnerUrl = URL "https://api.github.com/users/zachlungu"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/20643497?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-07) (-13) 15 : 41 : 40 UTC
+    , repoId = Id 64143110
+    , repoUrl =
+        URL "https://api.github.com/repos/zachlungu/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/zachlungu/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl = Just (URL "git@github.com:zhanhb/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2016 (-06) (-22) 17 : 58 : 36 UTC
+    , repoHtmlUrl = URL "https://github.com/zhanhb/github-backup"
+    , repoSvnUrl = Just (URL "https://github.com/zhanhb/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/zhanhb/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/zhanhb/github-backup.git")
+    , repoSize = Just 627
+    , repoUpdatedAt = Just 2016 (-06) (-22) 17 : 58 : 38 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 6323014
+          , simpleOwnerLogin = N "zhanhb"
+          , simpleOwnerUrl = URL "https://api.github.com/users/zhanhb"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/6323014?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2016 (-05) (-23) 00 : 55 : 05 UTC
+    , repoId = Id 61740170
+    , repoUrl = URL "https://api.github.com/repos/zhanhb/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL "https://api.github.com/repos/zhanhb/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+, Repo
+    { repoSshUrl =
+        Just (URL "git@github.com:zotherstupidguy/github-backup.git")
+    , repoDescription =
+        Just
+          "backs up everything github knows about a repository, to the repository"
+    , repoCreatedAt = Just 2015 (-11) (-26) 15 : 13 : 36 UTC
+    , repoHtmlUrl =
+        URL "https://github.com/zotherstupidguy/github-backup"
+    , repoSvnUrl =
+        Just (URL "https://github.com/zotherstupidguy/github-backup")
+    , repoForks = Just 0
+    , repoHomepage = Just ""
+    , repoFork = Just True
+    , repoGitUrl =
+        Just (URL "git://github.com/zotherstupidguy/github-backup.git")
+    , repoPrivate = False
+    , repoCloneUrl =
+        Just (URL "https://github.com/zotherstupidguy/github-backup.git")
+    , repoSize = Just 1053
+    , repoUpdatedAt = Just 2015 (-11) (-26) 15 : 13 : 37 UTC
+    , repoWatchers = Just 0
+    , repoOwner =
+        SimpleOwner
+          { simpleOwnerId = Id 10923261
+          , simpleOwnerLogin = N "zotherstupidguy"
+          , simpleOwnerUrl =
+              URL "https://api.github.com/users/zotherstupidguy"
+          , simpleOwnerAvatarUrl =
+              URL "https://avatars.githubusercontent.com/u/10923261?v=3"
+          , simpleOwnerType = OwnerUser
+          }
+    , repoName = N "github-backup"
+    , repoLanguage = Just (Language "Haskell")
+    , repoDefaultBranch = Just "master"
+    , repoPushedAt = Just 2015 (-09) (-15) 14 : 18 : 33 UTC
+    , repoId = Id 46933493
+    , repoUrl =
+        URL "https://api.github.com/repos/zotherstupidguy/github-backup"
+    , repoOpenIssues = Just 0
+    , repoHasWiki = Just True
+    , repoHasIssues = Just False
+    , repoHasDownloads = Just True
+    , repoParent = Nothing
+    , repoSource = Nothing
+    , repoHooksUrl =
+        URL
+          "https://api.github.com/repos/zotherstupidguy/github-backup/hooks"
+    , repoStargazersCount = 0
+    }
+]
