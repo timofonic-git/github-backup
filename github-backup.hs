@@ -157,7 +157,9 @@ stargazersStore = simpleHelper "stargazers" Github.stargazersFor $
 	storeSorted "stargazers"
 
 pullrequestsStore :: Storer
-pullrequestsStore = simpleHelper "pullrequest" Github.pullRequestsFor' $
+pullrequestsStore = simpleHelper "pullrequest"
+	-- No way to send auth to pullRequestsFor currently.
+	(\_auth -> Github.pullRequestsFor) $
 	forValues $ \req r -> do
 		let repo = requestRepo req
 		let n = Github.simplePullRequestNumber r
@@ -179,14 +181,9 @@ milestonesStore = simpleHelper "milestone" GitHub.Endpoints.Issues.Milestones.mi
 		store ("milestone" </> show n) req m
 
 issuesStore :: Storer
-issuesStore = withHelper "issue" (\a u r y ->
-	Github.issuesForRepo' a (fromString u) (fromString r) (y <> [Github.Open])
-		>>= either (return . Left)
-			(\xs -> Github.issuesForRepo' a (fromString u) (fromString r)
-				(y <> [Github.OnlyClosed])
-					>>= either (return . Left)
-						(\ys -> return (Right (xs <> ys)))))
-	[Github.PerPage 100] go
+issuesStore = withHelper "issue"
+	(\a u r -> Github.issuesForRepo' a (fromString u) (fromString r))
+	Github.stateAll go
   where
 	go = forValues $ \req i -> do
 		let repo = requestRepo req
@@ -568,9 +565,10 @@ backupOwner noforks exclude (Owner name) = do
   where
 	excludeurls = map repoUrl exclude
 	
+	makenameurl :: Github.Repo -> Maybe (String, String)
 	makenameurl repo = 
 		case Github.repoGitUrl repo of
-			Just url -> Just (T.unpack $ Github.untagName $ Github.repoName repo, T.unpack url)
+			Just url -> Just (T.unpack $ Github.untagName $ Github.repoName repo, T.unpack $ Github.getUrl url)
 			Nothing -> Nothing
 
 	prepare (dir, url)

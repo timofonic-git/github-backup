@@ -1,9 +1,12 @@
-github-backup (1.20161119) UNRELEASED; urgency=medium
+github-backup (1.20170221) unstable; urgency=medium
 
+  * Updated to use github-0.15.
+  * Due to a regression in github-0.15, the pull request list is retrieved
+    without authentication.
   * Various updates to internal git and utility libraries shared
     with git-annex.
 
- -- Joey Hess <id@joeyh.name>  Sat, 24 Dec 2016 14:57:02 -0400
+ -- Joey Hess <id@joeyh.name>  Tue, 21 Feb 2017 15:33:56 -0400
 
 github-backup (1.20161118) unstable; urgency=medium
 

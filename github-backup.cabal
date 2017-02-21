@@ -1,5 +1,5 @@
 Name: github-backup
-Version: 1.20161118
+Version: 1.20170221
 Cabal-Version: >= 1.8
 Maintainer: Joey Hess <id@joeyh.name>
 Author: Joey Hess
@@ -37,11 +37,12 @@ Flag network-uri
 Executable github-backup
   Main-Is: github-backup.hs
   GHC-Options: -Wall -fno-warn-tabs
-  Build-Depends: MissingH, hslogger, directory, filepath, containers, mtl,
-   network, exceptions, transformers, unix-compat, bytestring, vector,
-   IfElse, pretty-show, text, process, optparse-applicative, utf8-string,
-   github >= 0.14.0 && < 0.15.0,
-   base >= 4.8, base < 5
+  Build-Depends:
+    base (>= 4.8 && < 5),
+    github (>= 0.15.0 && < 0.16.0),
+    MissingH, hslogger, directory, filepath, containers, mtl,
+    network, exceptions, transformers, unix-compat, bytestring, vector,
+    IfElse, pretty-show, text, process, optparse-applicative, utf8-string
   
   if (! os(windows))
     Build-Depends: unix
@@ -104,9 +105,12 @@ Executable github-backup
 Executable gitriddance
   Main-Is: gitriddance.hs
   GHC-Options: -Wall -fno-warn-tabs
-  Build-Depends: github >= 0.14.0 && < 0.15.0, base >= 4.8, base < 5, text, filepath,
-    MissingH, exceptions, transformers, bytestring, vector, hslogger, process,
-    containers, unix-compat, IfElse, directory, mtl, utf8-string
+  Build-Depends: 
+    base (>= 4.8 && < 5),
+    github (>= 0.15.0 && < 0.16.0),
+    text, filepath, MissingH, exceptions, transformers, bytestring, vector,
+    hslogger, process, containers, unix-compat, IfElse, directory, mtl,
+    utf8-string
   
   if (! os(windows))
     Build-Depends: unix

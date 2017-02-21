@@ -48,7 +48,7 @@ onlyOriginRemote r = r { Git.remotes = filter isorigin (Git.remotes r) }
 closeall :: Github.Auth -> GithubUserRepo -> String -> IO ()
 closeall auth (GithubUserRepo user repo) msg =
 	either (oops "getting issue list") (mapM_ close)
-		=<< Github.issuesForRepo' (Just auth) (fromString user) (fromString repo) [Github.Open]
+		=<< Github.issuesForRepo' (Just auth) (fromString user) (fromString repo) Github.stateOpen
   where
 	oops action err = error $ "failed " ++ action ++ ": " ++ show err
 	close issue = do
@@ -58,4 +58,4 @@ closeall auth (GithubUserRepo user repo) msg =
 			=<< Github.createComment auth (fromString user) (fromString repo) (Github.mkId (Github.Id 0) i) (T.pack msg)
 		either (oops "closing issue/pull") (const $ return ())
 			=<< Github.editIssue auth (fromString user) (fromString repo) (Github.mkId (Github.Id 0) i)
-				(Github.editOfIssue { Github.editIssueState = Just (T.pack "closed") } )
+				(Github.editOfIssue { Github.editIssueState = Just Github.StateClosed } )
