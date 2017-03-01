@@ -1,0 +1,6 @@
+github-backup used to be hosted on Github, but their new TOS makes this
+either impossible or undesirable. So, that repository was removed.
+
+There is a backup of all the github issues etc in the `github` branch
+of the github-backup git repository. Some of those issues were still open,
+and ought to be imported here.

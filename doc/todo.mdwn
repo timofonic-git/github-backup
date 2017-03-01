@@ -1,0 +1,5 @@
+This is github-backup's todo list, for both posting feature requests, and merge
+requests. Link items to [[todo/done]] when done.
+
+[[!inline pages="./todo/* and !./todo/done and !link(done)
+and !*/Discussion" actions=yes postform=yes show=0 archive=yes]]

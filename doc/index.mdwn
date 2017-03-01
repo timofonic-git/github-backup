@@ -1,0 +1,12 @@
+github-backup is a simple tool you run in a git repository you cloned from
+GitHub. It backs up everything GitHub publishes about the repository,
+including branches, tags, other forks, issues, comments, wikis, milestones,
+pull requests, watchers, and stars.
+
+See the [[README]] for installation and usage instructions.
+
+[[!sidebar content="""
+[[README]]  
+[[news]]  
+[[todo]]  
+"""]]
