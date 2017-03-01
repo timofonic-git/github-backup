@@ -62,6 +62,8 @@ add_plugins:
 - testpagespec
 - version
 - theme
+- sidebar
+- gitpush
 # plugins to disable
 disable_plugins: []
 # additional directory to search for template files
@@ -109,8 +111,7 @@ libdirs: []
 # extra library and plugin directory (searched after libdirs)
 libdir: /home/b-github-backup/.ikiwiki
 # environment variables
-ENV:
-  TMPDIR: /home/b-github-backup/tmp
+#ENV: ''
 # time zone name
 timezone: GMT
 # regexp of normally excluded files to include
@@ -168,7 +169,8 @@ gitmaster_branch: master
 
 # gitpush plugin
 # git repository urls that changes are pushed to
-#git_push_to: []
+git_push_to:
+- joey@kitenet.net:/srv/git/github-backup.git/
 
 # htmlscrubber plugin
 # PageSpec specifying pages not to scrub
@@ -283,9 +285,9 @@ langdefdir: /usr/share/highlight/langDefs
 #- es|EspaÃ±ol
 #- de|Deutsch
 # PageSpec controlling which pages are translatable
-#po_translatable_pages: '* and !*/Discussion'
+po_translatable_pages: ''
 # internal linking behavior (default/current/negotiated)
-#po_link_to: current
+po_link_to: default
 
 ######################################################################
 # special-purpose plugins
@@ -318,8 +320,8 @@ langdefdir: /usr/share/highlight/langDefs
 
 ######################################################################
 # web plugins
-#   (404, attachment, comments, editdiff, edittemplate, getsource, google,
-#    goto, mirrorlist, remove, rename, repolist, search, theme, userlist,
+#   (404, attachment, comments, editdiff, edittemplate, google, goto,
+#    mirrorlist, remove, rename, repolist, search, theme, userlist,
 #    websetup, wmd)
 ######################################################################
 
@@ -331,23 +333,19 @@ virus_checker: clamdscan -
 
 # comments plugin
 # PageSpec of pages where comments are allowed
-#comments_pagespec: blog/* and !*/Discussion
+comments_pagespec: ''
 # PageSpec of pages where posting new comments is not allowed
-#comments_closed_pagespec: blog/controversial or blog/flamewar
+comments_closed_pagespec: ''
 # Base name for comments, e.g. "comment_" for pages like "sandbox/comment_12"
-#comments_pagename: ''
+comments_pagename: comment_
 # Interpret directives in comments?
 #comments_allowdirectives: 0
 # Allow anonymous commenters to set an author name?
 #comments_allowauthor: 0
 # commit comments to the VCS
-#comments_commit: 1
+comments_commit: 1
 # Restrict formats for comments to (no restriction if empty)
-#comments_allowformats: mdwn txt
-
-# getsource plugin
-# Mime type for returned source.
-#getsource_mimetype: text/plain; charset=utf-8
+comments_allowformats: ''
 
 # mirrorlist plugin
 # list of mirrors
@@ -404,13 +402,13 @@ websetup_show_unsafe: 0
 
 # calendar plugin
 # base of the archives hierarchy
-#archivebase: archives
+archivebase: archives
 # PageSpec of pages to include in the archives, if option `calendar_autocreate` is true.
-#archive_pagespec: page(posts/*) and !*/Discussion
+archive_pagespec: '*'
 # autocreate new calendar pages?
-#calendar_autocreate: 1
+calendar_autocreate: ''
 # if set, when building calendar pages, also build pages of year and month when no pages were published (building empty calendars).
-#calendar_fill_gaps: 1
+calendar_fill_gaps: 1
 
 # img plugin
 # Image formats to process (jpeg, png, gif, svg, pdf or 'everything' to accept all)
@@ -454,13 +452,13 @@ directive_description_dir: ikiwiki/directive
 
 # aggregate plugin
 # enable aggregation to internal pages?
-#aggregateinternal: 1
+aggregateinternal: 1
 # allow aggregation to be triggered via the web?
 #aggregate_webtrigger: 0
 
 # autoindex plugin
 # commit autocreated index pages
-#autoindex_commit: 1
+autoindex_commit: 1
 
 # camelcase plugin
 # list of words to not turn into links
@@ -480,7 +478,7 @@ directive_description_dir: ikiwiki/directive
 
 # prettydate plugin
 # format to use to display date
-#prettydateformat: '%X, %B %o, %Y'
+prettydateformat: '%X, %B %o, %Y'
 
 # recentchanges plugin
 # name of the recentchanges page
