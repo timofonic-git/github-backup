@@ -18,8 +18,8 @@ Build-Depends:
 	libghc-utf8-string-dev,
 Maintainer: James McCoy <jamessan@debian.org>
 Standards-Version: 3.9.8
-Vcs-Git: git://github.com/joeyh/github-backup.git
-Homepage: http://github.com/joeyh/github-backup
+Vcs-Git: git://github-backup.branchable.com/
+Homepage: http://github-backup.branchable.com/
 
 Package: github-backup
 Architecture: any
