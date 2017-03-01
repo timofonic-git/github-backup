@@ -1,9 +1,9 @@
-github-backup (1.20170222) UNRELEASED; urgency=medium
+github-backup (1.20170301) unstable; urgency=medium
 
   * No longer hosted on Github due to their horrible new TOS.
     New site: https://github-backup.branchable.com/
 
- -- Joey Hess <id@joeyh.name>  Wed, 01 Mar 2017 16:31:13 -0400
+ -- Joey Hess <id@joeyh.name>  Wed, 01 Mar 2017 17:28:50 -0400
 
 github-backup (1.20170221) unstable; urgency=medium
 
