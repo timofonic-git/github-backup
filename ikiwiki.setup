@@ -10,10 +10,10 @@
 # name of the wiki
 wikiname: github-backup
 # contact email for wiki
-adminemail: admin@branchable.com
+adminemail: joey@kitenet.net
 # users who are wiki admins
 adminuser:
-- http://none/
+- http://joeyh.name/
 # users who are banned from the wiki
 banned_users: []
 # where the source of the wiki is located
@@ -143,7 +143,7 @@ branchable: 1
 # Allow anyone to git push verified changes to this site?
 anonpush: 1
 # Display "Branchable" link on action bar?
-#branchable_action: 1
+branchable_action: 1
 
 # git plugin
 # git hook to generate
@@ -153,7 +153,7 @@ git_wrapper: /home/b-github-backup/source.git/hooks/post-update
 # mode for git_wrapper (can safely be made suid)
 git_wrappermode: 6755
 # git pre-receive hook to generate
-#git_test_receive_wrapper: /git/wiki.git/hooks/pre-receive
+git_test_receive_wrapper: /home/b-github-backup/source.git/hooks/pre-receive
 # unix users whose commits should be checked by the pre-receive hook
 untrusted_committers:
 - ikiwiki-anon
@@ -162,9 +162,9 @@ historyurl: http://source.github-backup.branchable.com/?p=source.git;a=history;f
 # gitweb url to show a diff ([[file]], [[sha1_to]], [[sha1_from]], [[sha1_commit]], and [[sha1_parent]] substituted)
 diffurl: http://source.github-backup.branchable.com/?p=source.git;a=blobdiff;f=[[file]];h=[[sha1_to]];hp=[[sha1_from]];hb=[[sha1_commit]];hpb=[[sha1_parent]]
 # where to pull and push changes (set to empty string to disable)
-#gitorigin_branch: origin
+gitorigin_branch: origin
 # branch that the wiki is stored in
-#gitmaster_branch: master
+gitmaster_branch: master
 
 # gitpush plugin
 # git repository urls that changes are pushed to
@@ -188,9 +188,9 @@ created: 1488401128
 # how many days to retain logs
 #log_period: 7
 # disable IPv6?
-#ipv6_disabled: 1
+ipv6_disabled: 0
 # redirect from http to https?
-#redirect_to_https: 1
+redirect_to_https: 0
 # use Lets Encrypt to generate https certificate?
 #use_letsencrypt: 1
 
@@ -204,7 +204,7 @@ atom: 1
 # allow atom feeds to be used?
 #allowatom: 0
 # urls to ping (using XML-RPC) on feed update
-#pingurl: http://rpc.technorati.com/rpc/ping
+pingurl: []
 
 ######################################################################
 # auth plugins
@@ -264,9 +264,9 @@ openid_cgiurl: http://github-backup.branchable.com/ikiwiki.cgi
 # types of source files to syntax highlight
 #tohighlight: .c .h .cpp .pl .py Makefile:make
 # location of highlight's filetypes.conf
-#filetypes_conf: /etc/highlight/filetypes.conf
+filetypes_conf: /etc/highlight/filetypes.conf
 # location of highlight's langDefs directory
-#langdefdir: /usr/share/highlight/langDefs
+langdefdir: /usr/share/highlight/langDefs
 
 # mdwn plugin
 # enable multimarkdown features?
@@ -357,12 +357,13 @@ virus_checker: clamdscan -
 
 # repolist plugin
 # URIs of repositories containing the wiki's source
-#repositories:
-#- svn://svn.example.org/wiki/trunk
+repositories:
+- ssh://b-github-backup@github-backup.branchable.com/
+- git://github-backup.branchable.com/
 
 # search plugin
 # path to the omega cgi program
-#omega_cgi: /usr/lib/cgi-bin/omega/omega
+omega_cgi: /usr/lib/cgi-bin/omega/omega
 # use google site search rather than internal xapian index?
 google_search: 1
 
@@ -417,7 +418,7 @@ websetup_show_unsafe: 0
 
 # listdirectives plugin
 # directory in srcdir that contains directive descriptions
-#directive_description_dir: ikiwiki/directive
+directive_description_dir: ikiwiki/directive
 
 # teximg plugin
 # Should teximg use dvipng to render, or dvips and convert?
@@ -483,9 +484,9 @@ websetup_show_unsafe: 0
 
 # recentchanges plugin
 # name of the recentchanges page
-#recentchangespage: recentchanges
+recentchangespage: recentchanges
 # number of changes to track
-#recentchangesnum: 100
+recentchangesnum: 100
 
 # rsync plugin
 # command to run to sync updated pages
@@ -501,7 +502,7 @@ websetup_show_unsafe: 0
 # autocreate new tag pages?
 #tag_autocreate: 1
 # commit autocreated tag pages
-#tag_autocreate_commit: 1
+tag_autocreate_commit: 1
 
 # typography plugin
 # Text::Typography attributes value
