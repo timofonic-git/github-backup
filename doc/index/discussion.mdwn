@@ -1,0 +1,6 @@
+Hi,
+
+is it possible to include submodules in a repo-backup? I am trying to backup the repo supercollider, which makes heavy use of submodules.
+
+Thanks
+Rainer
