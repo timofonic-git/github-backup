@@ -1,3 +1,10 @@
+github-backup (1.20170302) UNRELEASED; urgency=medium
+
+  * Build with -threaded, which fixes some issues with the non-threaded
+    GHC RTS.
+
+ -- Joey Hess <id@joeyh.name>  Wed, 29 Mar 2017 12:10:13 -0400
+
 github-backup (1.20170301) unstable; urgency=medium
 
   * No longer hosted on Github due to their horrible new TOS.

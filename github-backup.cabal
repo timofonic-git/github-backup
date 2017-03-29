@@ -36,7 +36,7 @@ Flag network-uri
 
 Executable github-backup
   Main-Is: github-backup.hs
-  GHC-Options: -Wall -fno-warn-tabs
+  GHC-Options: -Wall -fno-warn-tabs -threaded
   Build-Depends:
     base (>= 4.8 && < 5),
     github (>= 0.15.0 && < 0.16.0),
